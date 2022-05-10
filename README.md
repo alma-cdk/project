@@ -157,7 +157,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     import { Project, Accounts } from '@alma-cdk/project';
     import { Environment } from '../lib/environment';
 
-    const project = new Project({/* removed for brevity */})
+    const project = new Project({/* removed for brevity, see step 1 */})
 
     new Environment(project);
     ```
