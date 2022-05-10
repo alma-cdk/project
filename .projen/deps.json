@@ -1,12 +1,11 @@
 {
   "dependencies": [
     {
-      "name": "@almamedia-open-source/cdk-project-context",
-      "version": "0.0.11",
+      "name": "@types/jest",
       "type": "build"
     },
     {
-      "name": "@types/jest",
+      "name": "@types/lodash",
       "type": "build"
     },
     {
@@ -82,6 +81,10 @@
       "type": "build"
     },
     {
+      "name": "lodash",
+      "type": "build"
+    },
+    {
       "name": "npm-check-updates",
       "version": "^12",
       "type": "build"
@@ -109,9 +112,8 @@
       "type": "bundled"
     },
     {
-      "name": "@almamedia-open-source/cdk-project-context",
-      "version": "v0.0.11",
-      "type": "peer"
+      "name": "lodash",
+      "type": "bundled"
     },
     {
       "name": "aws-cdk-lib",
