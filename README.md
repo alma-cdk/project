@@ -2,7 +2,7 @@
 	<br/>
 	<br/>
   <h1>
-	<img width="300" src="alma-cdk-project.svg" alt="Alma CDK Project" />
+	<img width="300" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
   <br/>
   <br/>
   </h1>
