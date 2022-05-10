@@ -28,7 +28,6 @@
   > &nbsp;&nbsp;&nbsp;&nbsp;– Ari Palo, Lead Technologist, Alma Media
 
   </div>
-  <hr/>
   <br/>
 </div>
 
