@@ -125,7 +125,7 @@ Steps required to define a _environmental_ project resources; At first, it might
 
     export class Environment extends EnvironmentWrapper {
       constructor(scope: Construct) {
-        new MyStack(this, 'MyStack', { summary: 'This is required' });)
+        new MyStack(this, 'MyStack', { description: 'This is required' });)
       }
     }
     ```

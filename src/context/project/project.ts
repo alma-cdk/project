@@ -45,7 +45,7 @@ export interface ProjectProps extends ProjectConfiguration, AppProps {}
 export class Project extends App {
 
   /** Namespace/key how this tool internally keeps track of the project configuration */
-  public static readonly CONTEXT_SCOPE = '@almamedia-open-source/cdk-project-context@v1';
+  public static readonly CONTEXT_SCOPE = '@alma-cdk/project@v1';
 
   /** Return the project configuration as given in ProjectProps */
   public static getConfiguration(scope: Construct): ProjectConfiguration {

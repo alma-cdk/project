@@ -14,6 +14,10 @@
       "type": "build"
     },
     {
+      "name": "@types/nunjucks",
+      "type": "build"
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "version": "^5",
       "type": "build"
@@ -90,6 +94,10 @@
       "type": "build"
     },
     {
+      "name": "nunjucks",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "type": "build"
     },
@@ -113,6 +121,10 @@
     },
     {
       "name": "lodash",
+      "type": "bundled"
+    },
+    {
+      "name": "nunjucks",
       "type": "bundled"
     },
     {
