@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { loadTemplate, renderTemplate, TemplateContext } from '../../template';
 import { isSet } from '../../utils/isSet';
 const template = loadTemplate(path.join(__dirname, 'name.njk'));

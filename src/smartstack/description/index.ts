@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { loadTemplate, renderTemplate, TemplateContext } from '../../template';
 const template = loadTemplate(path.join(__dirname, 'description.njk'));
 
