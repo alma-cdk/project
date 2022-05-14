@@ -7,14 +7,15 @@ import { formatDescription } from './description';
 import { formatName } from './name';
 import { addTags } from './tags';
 import { decideTerminationProtection } from './termination';
+import { addError } from '../error/add';
 
-
-export interface SmartStackProps extends StackProps {
-  readonly description: string;
-}
 
 export class SmartStack extends Stack {
-  constructor(scope: Construct, id: string, props: SmartStackProps) {
+
+  private readonly descriptionMinLength: number = 12;
+  private readonly descriptionMaxLength: number = 280;
+
+  constructor(scope: Construct, id: string, props: StackProps) {
 
     const baseProps = getBaseProps(props);
     const accountId = props?.env?.account || ProjectContext.getAccountId(scope);
@@ -32,7 +33,7 @@ export class SmartStack extends Stack {
     });
 
     const description = formatDescription({
-      body: props.description,
+      body: props.description!,
       accountType,
       environmentType,
     });
@@ -48,12 +49,28 @@ export class SmartStack extends Stack {
       terminationProtection,
       description,
       env: {
-        ...env, // TODO should we allow override?
+        ...env, // for future-proofing purposes in case CDK adds new fields
         account: accountId,
         region: region,
       },
     });
 
+    this.validateDescriptionMinLength(props);
+    this.validateDescriptionMaxLength(props);
+
+
     addTags(this);
+  }
+
+  private validateDescriptionMinLength(props: StackProps) {
+    if (typeof props.description !== 'string' || props.description.length < this.descriptionMinLength) {
+      addError(this, `Description is required and should be at least ${this.descriptionMinLength} characters`)
+    }
+  }
+
+  private validateDescriptionMaxLength(props: StackProps) {
+    if (typeof props.description === 'string' && props.description.length > this.descriptionMaxLength) {
+      addError(this, `Description is should be at max ${this.descriptionMaxLength} characters`)
+    }
   }
 }
