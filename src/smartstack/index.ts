@@ -1,1 +1,1 @@
-export { SmartStack, SmartStackProps } from './stack';
+export { SmartStack } from './stack';
