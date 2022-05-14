@@ -1,7 +1,7 @@
 import { Tags } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { excludeSpecials } from './exclude';
-import { tagAccount, tagEnvironment, tagProject, tagAuthorInfo } from './taggers';
+import { tagAccount, tagEnvironment, tagProject, tagAuthorEmail, tagAuthorName, tagAuthorOrganization } from './taggers';
 import { resolveTagValues } from './values';
 
 function getTags(scope: Construct): Tags {
@@ -15,6 +15,8 @@ export function addTags(scope: Construct): void {
   tagAccount(scope, tags, values);
   tagEnvironment(scope, tags, values);
   tagProject(scope, tags, values);
-  tagAuthorInfo(scope, tags, values);
+  tagAuthorName(scope, tags, values);
+  tagAuthorOrganization(scope, tags, values);
+  tagAuthorEmail(scope, tags, values);
   excludeSpecials(tags);
 }

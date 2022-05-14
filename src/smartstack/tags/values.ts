@@ -6,8 +6,8 @@ export interface Values {
   environmentType?: string;
   projectName: string;
   authorName: string;
-  authorOrganization: string;
-  authorEmail: string;
+  authorOrganization?: string;
+  authorEmail?: string;
 }
 
 export enum tagKey {
