@@ -1329,6 +1329,45 @@ Human-readable name for the organization responsible for this project/service.
 ```
 
 
+### NameProps <a name="NameProps" id="@alma-cdk/project.NameProps"></a>
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.NameProps.Initializer"></a>
+
+```typescript
+import { NameProps } from '@alma-cdk/project'
+
+const nameProps: NameProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.NameProps.property.maxLength">maxLength</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@alma-cdk/project.NameProps.property.trim">trim</a></code> | <code>boolean</code> | *No description.* |
+
+---
+
+##### `maxLength`<sup>Optional</sup> <a name="maxLength" id="@alma-cdk/project.NameProps.property.maxLength"></a>
+
+```typescript
+public readonly maxLength: number;
+```
+
+- *Type:* number
+
+---
+
+##### `trim`<sup>Optional</sup> <a name="trim" id="@alma-cdk/project.NameProps.property.trim"></a>
+
+```typescript
+public readonly trim: boolean;
+```
+
+- *Type:* boolean
+
+---
+
 ### ProjectConfiguration <a name="ProjectConfiguration" id="@alma-cdk/project.ProjectConfiguration"></a>
 
 #### Initializer <a name="Initializer" id="@alma-cdk/project.ProjectConfiguration.Initializer"></a>
@@ -1866,6 +1905,218 @@ public test(value: string): boolean
 
 
 
+### Name <a name="Name" id="@alma-cdk/project.Name"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.Name.Initializer"></a>
+
+```typescript
+import { Name } from '@alma-cdk/project'
+
+new Name()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.Name.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.Name.it">it</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.Name.withProject">withProject</a></code> | *No description.* |
+
+---
+
+##### `globally` <a name="globally" id="@alma-cdk/project.Name.globally"></a>
+
+```typescript
+import { Name } from '@alma-cdk/project'
+
+Name.globally(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.Name.globally.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.Name.globally.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.Name.globally.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `it` <a name="it" id="@alma-cdk/project.Name.it"></a>
+
+```typescript
+import { Name } from '@alma-cdk/project'
+
+Name.it(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.Name.it.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.Name.it.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.Name.it.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `withProject` <a name="withProject" id="@alma-cdk/project.Name.withProject"></a>
+
+```typescript
+import { Name } from '@alma-cdk/project'
+
+Name.withProject(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.Name.withProject.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.Name.withProject.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.Name.withProject.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+
+
+### PathName <a name="PathName" id="@alma-cdk/project.PathName"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.PathName.Initializer"></a>
+
+```typescript
+import { PathName } from '@alma-cdk/project'
+
+new PathName()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.PathName.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.PathName.it">it</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.PathName.withProject">withProject</a></code> | *No description.* |
+
+---
+
+##### `globally` <a name="globally" id="@alma-cdk/project.PathName.globally"></a>
+
+```typescript
+import { PathName } from '@alma-cdk/project'
+
+PathName.globally(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.PathName.globally.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.PathName.globally.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.PathName.globally.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `it` <a name="it" id="@alma-cdk/project.PathName.it"></a>
+
+```typescript
+import { PathName } from '@alma-cdk/project'
+
+PathName.it(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.PathName.it.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.PathName.it.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.PathName.it.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `withProject` <a name="withProject" id="@alma-cdk/project.PathName.withProject"></a>
+
+```typescript
+import { PathName } from '@alma-cdk/project'
+
+PathName.withProject(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.PathName.withProject.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.PathName.withProject.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.PathName.withProject.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+
+
 ### ProjectContext <a name="ProjectContext" id="@alma-cdk/project.ProjectContext"></a>
 
 #### Initializers <a name="Initializers" id="@alma-cdk/project.ProjectContext.Initializer"></a>
@@ -2065,6 +2316,112 @@ ProjectContext.tryGetEnvironment(scope: Construct)
 ###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.ProjectContext.tryGetEnvironment.parameter.scope"></a>
 
 - *Type:* constructs.Construct
+
+---
+
+
+
+### UrlName <a name="UrlName" id="@alma-cdk/project.UrlName"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.UrlName.Initializer"></a>
+
+```typescript
+import { UrlName } from '@alma-cdk/project'
+
+new UrlName()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.UrlName.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.UrlName.it">it</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.UrlName.withProject">withProject</a></code> | *No description.* |
+
+---
+
+##### `globally` <a name="globally" id="@alma-cdk/project.UrlName.globally"></a>
+
+```typescript
+import { UrlName } from '@alma-cdk/project'
+
+UrlName.globally(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.UrlName.globally.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.UrlName.globally.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.UrlName.globally.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `it` <a name="it" id="@alma-cdk/project.UrlName.it"></a>
+
+```typescript
+import { UrlName } from '@alma-cdk/project'
+
+UrlName.it(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.UrlName.it.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.UrlName.it.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.UrlName.it.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
+
+---
+
+##### `withProject` <a name="withProject" id="@alma-cdk/project.UrlName.withProject"></a>
+
+```typescript
+import { UrlName } from '@alma-cdk/project'
+
+UrlName.withProject(scope: Construct, baseName: string, props?: NameProps)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.UrlName.withProject.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `baseName`<sup>Required</sup> <a name="baseName" id="@alma-cdk/project.UrlName.withProject.parameter.baseName"></a>
+
+- *Type:* string
+
+---
+
+###### `props`<sup>Optional</sup> <a name="props" id="@alma-cdk/project.UrlName.withProject.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.NameProps">NameProps</a>
 
 ---
 
