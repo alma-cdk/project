@@ -16,11 +16,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
 
   // Publish configuration
   defaultReleaseBranch: 'main',
+  packageManager: javascript.NodePackageManager.NPM,
   //npmAccess: javascript.NpmAccess.PUBLIC,
 
   // Dependencies
   minNodeVersion: nodejsVersion,
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.24.1',
   constructsVersion: '10.0.0',
   peerDeps: ['constructs', 'aws-cdk-lib'],
   devDeps: [
@@ -38,7 +39,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
 
   // Gitignore
-  gitignore: ['.DS_Store'],
+  gitignore: [
+    '.DS_Store',
+    '/examples/**/cdk.context.json',
+    '/examples/**/node_modules',
+    '/examples/**/cdk.out',
+    '/examples/**/.git',
+  ],
 
 
 });

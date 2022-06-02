@@ -31,6 +31,10 @@ jspm_packages/
 .yarn-integrity
 .cache
 .DS_Store
+/examples/**/cdk.context.json
+/examples/**/node_modules
+/examples/**/cdk.out
+/examples/**/.git
 !/.projenrc.js
 /test-reports/
 junit.xml
