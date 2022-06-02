@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { addError } from '../../error/add';
+import { addError } from '../error';
 import { EnvRegExp } from './envregexp';
 
 

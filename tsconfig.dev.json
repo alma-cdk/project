@@ -22,7 +22,19 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "ES2019"
+    "target": "ES2019",
+    "baseUrl": "./src",
+    "paths": {
+      "@project": [
+        "project/index.ts"
+      ],
+      "@name": [
+        "name/index.ts"
+      ],
+      "@error": [
+        "error/index.ts"
+      ]
+    }
   },
   "include": [
     ".projenrc.js",

@@ -47,12 +47,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '/examples/**/.git',
   ],
 
-
 });
 
 new TextFile(project, '.nvmrc', {
   lines: [nodejsVersion],
 });
-
 
 project.synth();

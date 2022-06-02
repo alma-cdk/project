@@ -1,6 +1,6 @@
 import { Construct } from 'constructs';
 import { findKey } from 'lodash';
-import { addError } from '../../error/add';
+import { addError } from '../error';
 import { EnvRegExp } from './envregexp';
 import { Account } from './interfaces';
 

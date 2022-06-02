@@ -1,6 +1,6 @@
 import { pascalCase } from 'change-case';
 import { Construct } from 'constructs';
-import { ProjectContext } from '../context';
+import { ProjectContext } from '../project';
 import { NameProps } from './interfaces';
 import { validateMaxLength } from './max-length';
 import { trim } from './trim';

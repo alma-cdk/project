@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { ProjectContext } from '../../context';
+import { ProjectContext } from '../../project';
 
 export interface Values {
   accountType?: string; // TODO allow fail (tryGet...) ??

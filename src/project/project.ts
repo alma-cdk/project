@@ -1,6 +1,6 @@
 import { App, AppProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { addError } from '../../error/add';
+import { addError } from '../error';
 import { Account, ProjectConfiguration } from './interfaces';
 import { resolveDefaultRegion } from './resolve-region';
 
