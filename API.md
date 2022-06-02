@@ -1248,6 +1248,195 @@ List of strings or strings representing regexp initialization (passed onto `new 
 ```
 
 
+### AccountConfiguration <a name="AccountConfiguration" id="@alma-cdk/project.AccountConfiguration"></a>
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountConfiguration.Initializer"></a>
+
+```typescript
+import { AccountConfiguration } from '@alma-cdk/project'
+
+const accountConfiguration: AccountConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountConfiguration.property.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountConfiguration.property.config">config</a></code> | <code>{[ key: string ]: any}</code> | *No description.* |
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@alma-cdk/project.AccountConfiguration.property.id"></a>
+
+```typescript
+public readonly id: string;
+```
+
+- *Type:* string
+
+---
+
+##### `config`<sup>Optional</sup> <a name="config" id="@alma-cdk/project.AccountConfiguration.property.config"></a>
+
+```typescript
+public readonly config: {[ key: string ]: any};
+```
+
+- *Type:* {[ key: string ]: any}
+
+---
+
+### AccountsOneProps <a name="AccountsOneProps" id="@alma-cdk/project.AccountsOneProps"></a>
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsOneProps.Initializer"></a>
+
+```typescript
+import { AccountsOneProps } from '@alma-cdk/project'
+
+const accountsOneProps: AccountsOneProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountsOneProps.property.shared">shared</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsOneProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+
+---
+
+##### `shared`<sup>Required</sup> <a name="shared" id="@alma-cdk/project.AccountsOneProps.property.shared"></a>
+
+```typescript
+public readonly shared: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsOneProps.property.mock"></a>
+
+```typescript
+public readonly mock: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+### AccountsThreeProps <a name="AccountsThreeProps" id="@alma-cdk/project.AccountsThreeProps"></a>
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsThreeProps.Initializer"></a>
+
+```typescript
+import { AccountsThreeProps } from '@alma-cdk/project'
+
+const accountsThreeProps: AccountsThreeProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.preprod">preprod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+
+---
+
+##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountsThreeProps.property.dev"></a>
+
+```typescript
+public readonly dev: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `preprod`<sup>Required</sup> <a name="preprod" id="@alma-cdk/project.AccountsThreeProps.property.preprod"></a>
+
+```typescript
+public readonly preprod: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountsThreeProps.property.prod"></a>
+
+```typescript
+public readonly prod: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsThreeProps.property.mock"></a>
+
+```typescript
+public readonly mock: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+### AccountsTwoProps <a name="AccountsTwoProps" id="@alma-cdk/project.AccountsTwoProps"></a>
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsTwoProps.Initializer"></a>
+
+```typescript
+import { AccountsTwoProps } from '@alma-cdk/project'
+
+const accountsTwoProps: AccountsTwoProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+
+---
+
+##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountsTwoProps.property.dev"></a>
+
+```typescript
+public readonly dev: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountsTwoProps.property.prod"></a>
+
+```typescript
+public readonly prod: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsTwoProps.property.mock"></a>
+
+```typescript
+public readonly mock: AccountConfiguration;
+```
+
+- *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
 ### Author <a name="Author" id="@alma-cdk/project.Author"></a>
 
 Author information.
@@ -1686,6 +1875,305 @@ Include construct tree metadata as part of the Cloud Assembly.
 
 ## Classes <a name="Classes" id="Classes"></a>
 
+### AccountContext <a name="AccountContext" id="@alma-cdk/project.AccountContext"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.AccountContext.Initializer"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+new AccountContext()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.AccountContext.getAccountConfig">getAccountConfig</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.getAccountId">getAccountId</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.getAccountType">getAccountType</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.isDev">isDev</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.isMock">isMock</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.isPreProd">isPreProd</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.isProd">isProd</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountContext.isShared">isShared</a></code> | *No description.* |
+
+---
+
+##### `getAccountConfig` <a name="getAccountConfig" id="@alma-cdk/project.AccountContext.getAccountConfig"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.getAccountConfig(scope: Construct, key: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.getAccountConfig.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `key`<sup>Required</sup> <a name="key" id="@alma-cdk/project.AccountContext.getAccountConfig.parameter.key"></a>
+
+- *Type:* string
+
+---
+
+##### `getAccountId` <a name="getAccountId" id="@alma-cdk/project.AccountContext.getAccountId"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.getAccountId(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.getAccountId.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `getAccountType` <a name="getAccountType" id="@alma-cdk/project.AccountContext.getAccountType"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.getAccountType(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.getAccountType.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `isDev` <a name="isDev" id="@alma-cdk/project.AccountContext.isDev"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.isDev(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.isDev.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `isMock` <a name="isMock" id="@alma-cdk/project.AccountContext.isMock"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.isMock(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.isMock.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `isPreProd` <a name="isPreProd" id="@alma-cdk/project.AccountContext.isPreProd"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.isPreProd(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.isPreProd.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `isProd` <a name="isProd" id="@alma-cdk/project.AccountContext.isProd"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.isProd(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.isProd.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `isShared` <a name="isShared" id="@alma-cdk/project.AccountContext.isShared"></a>
+
+```typescript
+import { AccountContext } from '@alma-cdk/project'
+
+AccountContext.isShared(scope: Construct)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountContext.isShared.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+
+
+### Accounts <a name="Accounts" id="@alma-cdk/project.Accounts"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.Accounts.Initializer"></a>
+
+```typescript
+import { Accounts } from '@alma-cdk/project'
+
+new Accounts()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.Accounts.one">one</a></code> | Enables single account strategy. |
+| <code><a href="#@alma-cdk/project.Accounts.three">three</a></code> | Enables triple account strategy. |
+| <code><a href="#@alma-cdk/project.Accounts.two">two</a></code> | Enables dual account strategy. |
+
+---
+
+##### `one` <a name="one" id="@alma-cdk/project.Accounts.one"></a>
+
+```typescript
+import { Accounts } from '@alma-cdk/project'
+
+Accounts.one(props: AccountsOneProps)
+```
+
+Enables single account strategy.
+
+1. `shared` account with environments:
+    - development
+    - feature/*
+    - test
+    - qaN
+    - staging
+    - preproduction
+    - production
+
+*Example*
+
+```typescript
+Accounts.ONE({
+  shared: {
+    id: '111111111111',
+  },
+}),
+```
+
+
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.one.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.AccountsOneProps">AccountsOneProps</a>
+
+---
+
+##### `three` <a name="three" id="@alma-cdk/project.Accounts.three"></a>
+
+```typescript
+import { Accounts } from '@alma-cdk/project'
+
+Accounts.three(props: AccountsThreeProps)
+```
+
+Enables triple account strategy.
+
+1. `dev` account with environments:
+    - development
+    - feature/*
+    - test
+    - staging
+2. `preprod` account with environments:
+    - qaN
+    - preproduction
+3. `prod` account with environments:
+    - production
+
+*Example*
+
+```typescript
+Accounts.THREE({
+  dev: {
+    id: '111111111111',
+  },
+  preprod: {
+    id: '222222222222',
+  },
+  prod: {
+    id: '333333333333',
+  },
+}),
+```
+
+
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.three.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.AccountsThreeProps">AccountsThreeProps</a>
+
+---
+
+##### `two` <a name="two" id="@alma-cdk/project.Accounts.two"></a>
+
+```typescript
+import { Accounts } from '@alma-cdk/project'
+
+Accounts.two(props: AccountsTwoProps)
+```
+
+Enables dual account strategy.
+
+1. `dev` account with environments:
+    - development
+    - feature/*
+    - test
+    - qaN
+    - staging
+2. `prod` account with environments:
+    - preproduction
+    - production
+
+*Example*
+
+```typescript
+Accounts.TWO({
+  dev: {
+    id: '111111111111',
+  },
+  prod: {
+    id: '222222222222',
+  },
+}),
+```
+
+
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.two.parameter.props"></a>
+
+- *Type:* <a href="#@alma-cdk/project.AccountsTwoProps">AccountsTwoProps</a>
+
+---
+
+
+
 ### AccountType <a name="AccountType" id="@alma-cdk/project.AccountType"></a>
 
 Internal class to handle set/get operations for Account Type.
@@ -1771,6 +2259,306 @@ AccountType.set(scope: Construct, accountType: string)
 ###### `accountType`<sup>Required</sup> <a name="accountType" id="@alma-cdk/project.AccountType.set.parameter.accountType"></a>
 
 - *Type:* string
+
+---
+
+
+
+### EnvironmentContext <a name="EnvironmentContext" id="@alma-cdk/project.EnvironmentContext"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.EnvironmentContext.Initializer"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+new EnvironmentContext()
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+
+---
+
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.getCategory">getCategory</a></code> | Get Environment Category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.getFeatureInfo">getFeatureInfo</a></code> | Get Feature Info. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.getLabel">getLabel</a></code> | Get Environment Label. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.getName">getName</a></code> | Get Environment Name. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.getUrlName">getUrlName</a></code> | Get Environment URL/DNS Compatible Name. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isDevelopment">isDevelopment</a></code> | Check if Environment is part of `development` category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isFeature">isFeature</a></code> | Check if Environment is part of `feature` category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isMock">isMock</a></code> | Check if Environment is part of `mock` category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isStable">isStable</a></code> | Check if Environment is part of `stable` category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isVerification">isVerification</a></code> | Check if Environment is part of `verification` category. |
+
+---
+
+##### `getCategory` <a name="getCategory" id="@alma-cdk/project.EnvironmentContext.getCategory"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.getCategory(scope: Construct)
+```
+
+Get Environment Category.
+
+Categories are useful grouping to make distinction between `stable`
+environments (`staging` & `production`) from `feature` or `verification`
+environments (such as `test` or `preproduction`).
+
+*Example*
+
+```typescript
+'mock'
+'development'
+'feature'
+'verification'
+'stable'
+```
+
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.getCategory.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `getFeatureInfo` <a name="getFeatureInfo" id="@alma-cdk/project.EnvironmentContext.getFeatureInfo"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.getFeatureInfo(scope: Construct)
+```
+
+Get Feature Info.
+
+If environment belongs to `feature` category,
+this will return a string describing the feature (sting after `feature/`-prefix).
+
+If environment is not a feature environment, will return an empty string.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.getFeatureInfo.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `getLabel` <a name="getLabel" id="@alma-cdk/project.EnvironmentContext.getLabel"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.getLabel(scope: Construct)
+```
+
+Get Environment Label.
+
+Labels are useful since Environment Name can be complex,
+such as `feature/foo-bar` or `qa3`,
+but we need to be able to “label” all `feature/*` and `qaN` environments
+as either `feature` or `qa`.
+
+*Example*
+
+```typescript
+'mock'
+'development'
+'feature'
+'test'
+'staging'
+'qa'
+'preproduction'
+'production'
+```
+
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.getLabel.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `getName` <a name="getName" id="@alma-cdk/project.EnvironmentContext.getName"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.getName(scope: Construct)
+```
+
+Get Environment Name.
+
+*Example*
+
+```typescript
+'mock1'
+'mock2'
+'mock3'
+'development'
+'feature/foo-bar'
+'feature/ABC-123/new-stuff'
+'test'
+'staging'
+'qa1'
+'qa2'
+'qa3'
+'preproduction'
+'production'
+```
+
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.getName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `getUrlName` <a name="getUrlName" id="@alma-cdk/project.EnvironmentContext.getUrlName"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.getUrlName(scope: Construct)
+```
+
+Get Environment URL/DNS Compatible Name.
+
+*Example*
+
+```typescript
+'mock1'
+'mock2'
+'mock3'
+'development'
+'feature-foo-bar'
+'feature-abc-123-new-stuff'
+'test'
+'staging'
+'qa1'
+'qa2'
+'qa3'
+'preproduction'
+'production'
+```
+
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.getUrlName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `isDevelopment` <a name="isDevelopment" id="@alma-cdk/project.EnvironmentContext.isDevelopment"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isDevelopment(scope: Construct)
+```
+
+Check if Environment is part of `development` category.
+
+Returns true for `development`, otherwise `false`.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isDevelopment.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `isFeature` <a name="isFeature" id="@alma-cdk/project.EnvironmentContext.isFeature"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isFeature(scope: Construct)
+```
+
+Check if Environment is part of `feature` category.
+
+Returns `true` for environments with name beginning with `feature/`-prefix, otherwise `false`.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isFeature.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `isMock` <a name="isMock" id="@alma-cdk/project.EnvironmentContext.isMock"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isMock(scope: Construct)
+```
+
+Check if Environment is part of `mock` category.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isMock.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `isStable` <a name="isStable" id="@alma-cdk/project.EnvironmentContext.isStable"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isStable(scope: Construct)
+```
+
+Check if Environment is part of `stable` category.
+
+Returns `true` for `staging` & `production`, otherwise `false`.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isStable.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
+
+---
+
+##### `isVerification` <a name="isVerification" id="@alma-cdk/project.EnvironmentContext.isVerification"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isVerification(scope: Construct)
+```
+
+Check if Environment is part of `verification` category.
+
+Returns `true` for `test` & `preproduction`, otherwise `false`.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isVerification.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+Construct.
 
 ---
 
@@ -2427,4 +3215,114 @@ UrlName.withProject(scope: Construct, baseName: string, props?: NameProps)
 
 
 
+
+## Enums <a name="Enums" id="Enums"></a>
+
+### EnvironmentCategory <a name="EnvironmentCategory" id="@alma-cdk/project.EnvironmentCategory"></a>
+
+Availalbe Enviroment Categories.
+
+Categories are useful grouping to make distinction between `stable`
+environments (`staging` & `production`) from `feature` or `verification`
+environments (such as `test` or `preproduction`).
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentCategory.MOCK">MOCK</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentCategory.DEVELOPMENT">DEVELOPMENT</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentCategory.FEATURE">FEATURE</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentCategory.VERIFICATION">VERIFICATION</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentCategory.STABLE">STABLE</a></code> | *No description.* |
+
+---
+
+##### `MOCK` <a name="MOCK" id="@alma-cdk/project.EnvironmentCategory.MOCK"></a>
+
+---
+
+
+##### `DEVELOPMENT` <a name="DEVELOPMENT" id="@alma-cdk/project.EnvironmentCategory.DEVELOPMENT"></a>
+
+---
+
+
+##### `FEATURE` <a name="FEATURE" id="@alma-cdk/project.EnvironmentCategory.FEATURE"></a>
+
+---
+
+
+##### `VERIFICATION` <a name="VERIFICATION" id="@alma-cdk/project.EnvironmentCategory.VERIFICATION"></a>
+
+---
+
+
+##### `STABLE` <a name="STABLE" id="@alma-cdk/project.EnvironmentCategory.STABLE"></a>
+
+---
+
+
+### EnvironmentLabel <a name="EnvironmentLabel" id="@alma-cdk/project.EnvironmentLabel"></a>
+
+Available Environment Labels.
+
+Labels are useful since Environment Name can be complex,
+such as `feature/foo-bar` or `qa3`,
+but we need to be able to “label” all `feature/*` and `qaN` environments
+as either `feature` or `qa`.
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.MOCK">MOCK</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.DEVELOPMENT">DEVELOPMENT</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.FEATURE">FEATURE</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.TEST">TEST</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.STAGING">STAGING</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.QA">QA</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.PREPRODUCTION">PREPRODUCTION</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.EnvironmentLabel.PRODUCTION">PRODUCTION</a></code> | *No description.* |
+
+---
+
+##### `MOCK` <a name="MOCK" id="@alma-cdk/project.EnvironmentLabel.MOCK"></a>
+
+---
+
+
+##### `DEVELOPMENT` <a name="DEVELOPMENT" id="@alma-cdk/project.EnvironmentLabel.DEVELOPMENT"></a>
+
+---
+
+
+##### `FEATURE` <a name="FEATURE" id="@alma-cdk/project.EnvironmentLabel.FEATURE"></a>
+
+---
+
+
+##### `TEST` <a name="TEST" id="@alma-cdk/project.EnvironmentLabel.TEST"></a>
+
+---
+
+
+##### `STAGING` <a name="STAGING" id="@alma-cdk/project.EnvironmentLabel.STAGING"></a>
+
+---
+
+
+##### `QA` <a name="QA" id="@alma-cdk/project.EnvironmentLabel.QA"></a>
+
+---
+
+
+##### `PREPRODUCTION` <a name="PREPRODUCTION" id="@alma-cdk/project.EnvironmentLabel.PREPRODUCTION"></a>
+
+---
+
+
+##### `PRODUCTION` <a name="PRODUCTION" id="@alma-cdk/project.EnvironmentLabel.PRODUCTION"></a>
+
+---
 
