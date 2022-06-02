@@ -2,6 +2,176 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
+### AccountWrapper <a name="AccountWrapper" id="@alma-cdk/project.AccountWrapper"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.AccountWrapper.Initializer"></a>
+
+```typescript
+import { AccountWrapper } from '@alma-cdk/project'
+
+new AccountWrapper(scope: Construct)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountWrapper.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.AccountWrapper.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.AccountWrapper.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@alma-cdk/project.AccountWrapper.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.AccountWrapper.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.AccountWrapper.isConstruct"></a>
+
+```typescript
+import { AccountWrapper } from '@alma-cdk/project'
+
+AccountWrapper.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.AccountWrapper.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.AccountWrapper.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@alma-cdk/project.AccountWrapper.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+
+### EnvironmentWrapper <a name="EnvironmentWrapper" id="@alma-cdk/project.EnvironmentWrapper"></a>
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.EnvironmentWrapper.Initializer"></a>
+
+```typescript
+import { EnvironmentWrapper } from '@alma-cdk/project'
+
+new EnvironmentWrapper(scope: Construct)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentWrapper.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentWrapper.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentWrapper.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@alma-cdk/project.EnvironmentWrapper.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentWrapper.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.EnvironmentWrapper.isConstruct"></a>
+
+```typescript
+import { EnvironmentWrapper } from '@alma-cdk/project'
+
+EnvironmentWrapper.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.EnvironmentWrapper.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.EnvironmentWrapper.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@alma-cdk/project.EnvironmentWrapper.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+
 ### Project <a name="Project" id="@alma-cdk/project.Project"></a>
 
 High-level wrapper for `cdk.App` with specific requirements for props.
