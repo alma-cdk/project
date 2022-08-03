@@ -45,6 +45,7 @@ describe('Integration', () => {
       });
 
       expect(stack.stackName).toBe('MyCoolProject-Development-Environment-TestStack');
+      expect(stack.terminationProtection).toBeFalsy();
 
       const expectedTags: TagValue[] = [
         { Key: 'Account', Value: 'dev' },
@@ -115,6 +116,7 @@ describe('Integration', () => {
       });
 
       expect(stack.stackName).toBe('MyCoolProject-Production-Environment-TestStack');
+      expect(stack.terminationProtection).toBeTruthy();
 
       const expectedTags: TagValue[] = [
         { Key: 'Account', Value: 'prod' },
