@@ -34,6 +34,9 @@ export class Name {
     return trimmed;
   }
 
+  /**
+   * PascalCase naming with global prefixes (org, project…).
+   */
   public static globally(scope: Construct, baseName: string, props?: NameProps): string {
     const info = Name.getContextualInformation(scope);
     const result = Name.nameIt(baseName, {
