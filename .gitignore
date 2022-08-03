@@ -35,6 +35,7 @@ jspm_packages/
 /examples/**/node_modules
 /examples/**/cdk.out
 /examples/**/.git
+TODO.md
 !/.projenrc.js
 /test-reports/
 junit.xml
