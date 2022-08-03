@@ -130,6 +130,8 @@ describe('Integration', () => {
 
     const myStack = new MyStack(environment, 'MyStack', { description: 'This is required' });
 
+    expect(myStack.stackName).toBe('MyCoolProject-Development-Environment-MyStack');
+
     const template = Template.fromStack(myStack);
 
     template.hasResourceProperties(
