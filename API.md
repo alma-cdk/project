@@ -2883,7 +2883,7 @@ new Name()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@alma-cdk/project.Name.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.Name.globally">globally</a></code> | PascalCase naming with global prefixes (org, project…). |
 | <code><a href="#@alma-cdk/project.Name.it">it</a></code> | *No description.* |
 | <code><a href="#@alma-cdk/project.Name.withProject">withProject</a></code> | *No description.* |
 
@@ -2896,6 +2896,8 @@ import { Name } from '@alma-cdk/project'
 
 Name.globally(scope: Construct, baseName: string, props?: NameProps)
 ```
+
+PascalCase naming with global prefixes (org, project…).
 
 ###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.Name.globally.parameter.scope"></a>
 
