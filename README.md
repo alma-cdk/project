@@ -88,12 +88,16 @@ Steps required to define a _environmental_ project resources; At first, it might
         new dynamodb.Table(this, 'Table', {
           removalPolicy: EC.isStable(this) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY,
 
-          queueName: Name.it(this, 'MyTable'),
+          tableName: Name.it(this, 'MyTable'),
+          partitionKey: {
+            type: dynamodb.AttributeType.STRING,
+            name: 'pk',
+          },
           // StagingMyTable
         });
 
         new events.EventBus(this, 'EventBus', {
-          topicName: Name.withProject(this, 'MyEventBus'),
+          eventBusName: Name.withProject(this, 'MyEventBus'),
           // MyCoolProjectStagingMyEventBus
         });
 
@@ -125,7 +129,8 @@ Steps required to define a _environmental_ project resources; At first, it might
 
     export class Environment extends EnvironmentWrapper {
       constructor(scope: Construct) {
-        new MyStack(this, 'MyStack', { description: 'This is required' });)
+        super(scope);
+        new MyStack(this, 'MyStack', { description: 'This is required' });
       }
     }
     ```
