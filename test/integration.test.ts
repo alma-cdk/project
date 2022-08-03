@@ -77,6 +77,17 @@ const expectedTags: TagValue[] = [
   },
 ];
 
+function sortTagsByKey(tags: TagValue[]): TagValue[] {
+  return tags.sort((a, b) => a.Key.localeCompare(b.Key));
+}
+
+function tagsAsDictionary(tags: TagValue[]): { [key: string]: string } {
+  return tags.reduce((acc: any, tag) => {
+    acc[tag.Key] = tag.Value;
+    return acc;
+  }, {});
+}
+
 
 describe('Integration', () => {
 
@@ -147,14 +158,24 @@ describe('Integration', () => {
       'AWS::S3::Bucket',
       Match.objectLike({
         BucketName: 'acme-corp-my-cool-project-development-my-bucket',
-        // TODO:
-        // Tags: Match.arrayWith([
-        //   ...expectedTags,
-        //   {
-        //     Key: 'aws-cdk:auto-delete-objects',
-        //     Value: 'true',
-        //   },
-        // ]),
+        Tags: Match.arrayWith(sortTagsByKey([
+          ...expectedTags,
+          {
+            Key: 'aws-cdk:auto-delete-objects',
+            Value: 'true',
+          },
+        ])),
+      }),
+    );
+
+    template.hasResourceProperties(
+      'AWS::SSM::Parameter',
+      Match.objectLike({
+        Type: 'String',
+        Value: 'Foo',
+        Name: '/my/cool/project/development/MyNamespace/MyParameter',
+        Tags: tagsAsDictionary(expectedTags),
+        Tier: 'Advanced',
       }),
     );
   });
