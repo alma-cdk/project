@@ -2,10 +2,11 @@ import { RemovalPolicy, StackProps } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as events from 'aws-cdk-lib/aws-events';
+import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
-import { Project, EnvironmentWrapper, SmartStack, EC, Name, PathName, UrlName, ProjectProps } from '../../src';
+import { Project, EnvironmentWrapper, SmartStack, EC, Name, PathName, UrlName, ProjectProps, AC } from '../../src';
 
 
 export class MyStack extends SmartStack {
@@ -43,6 +44,11 @@ export class MyStack extends SmartStack {
       parameterName: PathName.withProject(this, 'MyNamespace/MyParameter'),
       // /MyCoolProject/Staging/MyNamespace/MyParameter
     });
+
+    new route53.HostedZone(this, 'Zone', {
+      zoneName: AC.getAccountConfig(this, 'baseDomain'),
+    });
+
   }
 }
 

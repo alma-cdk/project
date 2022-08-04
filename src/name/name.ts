@@ -55,9 +55,13 @@ export class Name {
 
   private static getContextualInformation(scope: Construct): ContextualNamingInformation {
     return {
-      environment: pascalCase(ProjectContext.tryGetEnvironment(scope) || ''),
+      environment: Name.stripNonAlphanumeric(pascalCase(ProjectContext.tryGetEnvironment(scope) || '')),
       projectName: pascalCase(ProjectContext.getName(scope)),
       organizationName: pascalCase(ProjectContext.getAuthorOrganization(scope) || ''),
     };
+  }
+
+  private static stripNonAlphanumeric(name: string): string {
+    return name.replace(/[^a-z0-9]/gi, '');
   }
 }
