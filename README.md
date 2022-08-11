@@ -34,7 +34,7 @@
 
 ## Overview
 
-Depending on the use case, you may choose a configuration between 1-3 AWS accounts:
+Depending on the use case, you may choose a configuration between 1-3 AWS accounts with the following environments:
 
 
 <details><summary><strong>Shared account (1x) <code>shared</code></strong></summary>
