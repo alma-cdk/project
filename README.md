@@ -34,6 +34,8 @@
 
 ## Overview
 
+Depending on the use case, you may choose a configuration between 1-3 AWS accounts:
+
 <details><summary><strong>Multi-account (2x) <code>dev</code>+<code>prod</code></strong>– DEFAULT</summary>
 <br/>
 
