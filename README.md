@@ -32,7 +32,7 @@
 </div>
 
 
-## Overview
+## Account Strategies
 
 Depending on the use case, you may choose a configuration between 1-3 AWS accounts with the following environments:
 
@@ -67,7 +67,9 @@ Depending on the use case, you may choose a configuration between 1-3 AWS accoun
 
 Steps required to define a _environmental_ project resources; At first, it might seem complex but once you get into the habbit of defining your projects this way it starts to make sense:
 
-1. Initialize a new `Project` instead of `cdk.App`:
+1. Choose your [Account Strategy](#account-strategies)
+
+2. Initialize a new `Project` instead of `cdk.App`:
 
     ```ts
     // bin/app.ts
@@ -105,7 +107,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     })
     ```
 
-2. Define a stack which `extends SmartStack` with resources:
+3. Define a stack which `extends SmartStack` with resources:
     ```ts
     // lib/my-stack.ts
     import { Construct } from 'constructs';
@@ -151,7 +153,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     }
     ```
 
-3. Define a new _environmental_ which `extends EnvironmentWrapper` and initialize all your environmental `SmartStack` stacks within:
+4. Define a new _environmental_ which `extends EnvironmentWrapper` and initialize all your environmental `SmartStack` stacks within:
 
     ```ts
     // lib/environment.ts
@@ -186,7 +188,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     | `Organization`          | `Acme Corp`                       |
     | `Contact`               | `mad.scientists@acme.example.com` |
 
-4. Finally initialize the environment with the `Project` scope:
+5. Finally initialize the environment with the `Project` scope:
 
     ```ts
     // bin/app.ts
