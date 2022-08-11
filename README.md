@@ -36,7 +36,16 @@
 
 Depending on the use case, you may choose a configuration between 1-3 AWS accounts:
 
-<details><summary><strong>Multi-account (2x) <code>dev</code>+<code>prod</code></strong>– DEFAULT</summary>
+
+<details><summary><strong>Shared account (1x) <code>shared</code></strong></summary>
+<br/>
+
+> ![default-multi](assets/accounts-1x.svg)
+
+<br/>
+</details>
+
+<details><summary><strong>Multi-account (2x) <code>dev</code>+<code>prod</code></strong><i>– RECOMMENDED</i></summary>
 <br/>
 
 > ![default-multi](assets/accounts-2x.svg)
@@ -44,18 +53,10 @@ Depending on the use case, you may choose a configuration between 1-3 AWS accoun
 <br/>
 </details>
 
-<details><summary><strong>Multi-account (3x) <code>dev</code>+<code>preprod</code>+<code>prod</code></strong><i>– Optional</i></summary>
+<details><summary><strong>Multi-account (3x) <code>dev</code>+<code>preprod</code>+<code>prod</code></strong></summary>
 <br/>
 
 > ![default-multi](assets/accounts-3x.svg)
-
-<br/>
-</details>
-
-<details><summary><strong>Shared account (1x) <code>shared</code></strong><i>– Optional</i></summary>
-<br/>
-
-> ![default-multi](assets/accounts-1x.svg)
 
 <br/>
 </details>
