@@ -61,6 +61,8 @@ Depending on the use case, you may choose a configuration between 1-3 AWS accoun
 <br/>
 </details>
 
+You may also roll your own by providing a bit more configuration code but it's not recommended as you lose many benefits of this framework.
+
 <br/>
 
 ## Getting Started
