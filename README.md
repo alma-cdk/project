@@ -18,7 +18,7 @@
   - managing account configuration through standardized props (no more random config files)
   - querying account and/or environment specific information within your CDK code
   - enabling dynamic & short-lived “feature-environments”
-  - enabling Well-defined tagging
+  - enabling well-defined tagging
   - providing structure & common conventions to CDK projects
   - choosing the target account & environment by passing in runtime context:
 
