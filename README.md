@@ -32,6 +32,34 @@
 </div>
 
 
+## Overview
+
+<details><summary><strong>Multi-account (2x) <code>dev</code>+<code>prod</code></strong>– DEFAULT</summary>
+<br/>
+
+> ![default-multi](assets/accounts-2x.svg)
+
+<br/>
+</details>
+
+<details><summary><strong>Multi-account (3x) <code>dev</code>+<code>preprod</code>+<code>prod</code></strong><i>– Optional</i></summary>
+<br/>
+
+> ![default-multi](assets/accounts-3x.svg)
+
+<br/>
+</details>
+
+<details><summary><strong>Shared account (1x) <code>shared</code></strong><i>– Optional</i></summary>
+<br/>
+
+> ![default-multi](assets/accounts-1x.svg)
+
+<br/>
+</details>
+
+<br/>
+
 ## Getting Started
 
 Steps required to define a _environmental_ project resources; At first, it might seem complex but once you get into the habbit of defining your projects this way it starts to make sense:
