@@ -37,12 +37,12 @@
 Depending on the use case, you may choose a configuration between 1-3 AWS accounts with the following environments:
 
 
-1. <strong>Shared account <code>shared</code></strong>
+1. **Shared account (`shared`)**:
 
     ![default-multi](assets/accounts-1x.svg)
     <br/>
 
-2. <strong>Multi-account <code>dev</code>+<code>prod</code></strong><i>– RECOMMENDED</i>
+2. **Multi-account (`dev`+`prod`)**_– RECOMMENDED_:
 
     ![default-multi](assets/accounts-2x.svg)
     <br/>
@@ -50,7 +50,7 @@ Depending on the use case, you may choose a configuration between 1-3 AWS accoun
 <br/>
 </details>
 
-3. <strong>Multi-account <code>dev</code>+<code>preprod</code>+<code>prod</code></strong>
+3. **Multi-account (`dev`+`preprod`+`prod`)**:
 
     ![default-multi](assets/accounts-3x.svg)
     <br/>
