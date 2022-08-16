@@ -73,7 +73,7 @@ Steps required to define a _environmental_ project resources; At first, it might
 
     ```ts
     // bin/app.ts
-    import { Project, Accounts } from '@alma-cdk/project';
+    import { Project, AccountStrategy } from '@alma-cdk/project';
 
     const project = new Project({
       // Basic info, you could also read these from package.json if you want
@@ -88,7 +88,7 @@ Steps required to define a _environmental_ project resources; At first, it might
       defaultRegion: 'eu-west-1',
 
       // Configures the project to use 2 AWS accounts (recommended)
-      accounts: Accounts.two({
+      accounts: AccountStrategy.two({
         dev: {
           id: '111111111111',
           config: {
@@ -199,3 +199,19 @@ Steps required to define a _environmental_ project resources; At first, it might
 
     new Environment(project);
     ```
+
+<br/>
+
+
+## Documentation
+
+See detailed documentation for specific classes & methods at [constructs.dev](http://constructs.dev/packages/@alma-cdk/project).
+
+Generally speaking you would be most interested in the following:
+- Project
+- AccountStrategy
+- SmartStack
+- AccountWrapper & EnvironmentWrapper
+- AccountContext (AC)
+- EnvironmentContext (EC)
+- Name / UrlName / PathName

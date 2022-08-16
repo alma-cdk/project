@@ -1,5 +1,5 @@
 export {
-  Accounts,
+  AccountStrategy,
   AccountConfiguration,
   AccountsOneProps,
   AccountsTwoProps,

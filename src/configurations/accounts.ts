@@ -44,8 +44,14 @@ const emptyMockAccountProps: AccountConfiguration = {
   id: '123456789012',
 };
 
-
-export class Accounts {
+/**
+ * Use static methods of Accounts abstract class to define your account strategy.
+ * Available strategies are:
+ * - One Account: `shared`
+ * - Two Accounts: `dev`+`prod` – _recommended_
+ * - Three Accounts: `dev`+`preprod`+`prod`
+ */
+export abstract class AccountStrategy {
 
   /**
    * Enables single account strategy.
@@ -60,7 +66,7 @@ export class Accounts {
    *    - production
    *
    * @example
-   * Accounts.ONE({
+   * AccountStrategy.one({
    *   shared: {
    *     id: '111111111111',
    *   },
@@ -104,7 +110,7 @@ export class Accounts {
    *    - production
    *
    * @example
-   * Accounts.TWO({
+   * AccountStrategy.two({
    *   dev: {
    *     id: '111111111111',
    *   },
@@ -157,7 +163,7 @@ export class Accounts {
    *    - production
    *
    * @example
-   * Accounts.THREE({
+   * AccountStrategy.three({
    *   dev: {
    *     id: '111111111111',
    *   },

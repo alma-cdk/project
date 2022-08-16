@@ -1,5 +1,5 @@
 import { Match } from 'aws-cdk-lib/assertions';
-import { Accounts } from '../src';
+import { AccountStrategy } from '../src';
 import { generateTestApp } from './helpers/app';
 import { sortTagsByKey, tagsAsDictionary, TagValue } from './helpers/tags';
 
@@ -15,7 +15,7 @@ describe('Integration', () => {
         email: 'mad.scientists@acme.example.com',
       },
       defaultRegion: 'eu-west-1',
-      accounts: Accounts.two({
+      accounts: AccountStrategy.two({
         dev: {
           id: '111111111111',
           config: {

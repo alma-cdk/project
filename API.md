@@ -2196,14 +2196,21 @@ AccountContext.isShared(scope: Construct)
 
 
 
-### Accounts <a name="Accounts" id="@alma-cdk/project.Accounts"></a>
+### AccountStrategy <a name="AccountStrategy" id="@alma-cdk/project.AccountStrategy"></a>
 
-#### Initializers <a name="Initializers" id="@alma-cdk/project.Accounts.Initializer"></a>
+Use static methods of Accounts abstract class to define your account strategy.
+
+Available strategies are:
+- One Account: `shared`
+- Two Accounts: `dev`+`prod` – _recommended_
+- Three Accounts: `dev`+`preprod`+`prod`
+
+#### Initializers <a name="Initializers" id="@alma-cdk/project.AccountStrategy.Initializer"></a>
 
 ```typescript
-import { Accounts } from '@alma-cdk/project'
+import { AccountStrategy } from '@alma-cdk/project'
 
-new Accounts()
+new AccountStrategy()
 ```
 
 | **Name** | **Type** | **Description** |
@@ -2216,18 +2223,18 @@ new Accounts()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@alma-cdk/project.Accounts.one">one</a></code> | Enables single account strategy. |
-| <code><a href="#@alma-cdk/project.Accounts.three">three</a></code> | Enables triple account strategy. |
-| <code><a href="#@alma-cdk/project.Accounts.two">two</a></code> | Enables dual account strategy. |
+| <code><a href="#@alma-cdk/project.AccountStrategy.one">one</a></code> | Enables single account strategy. |
+| <code><a href="#@alma-cdk/project.AccountStrategy.three">three</a></code> | Enables triple account strategy. |
+| <code><a href="#@alma-cdk/project.AccountStrategy.two">two</a></code> | Enables dual account strategy. |
 
 ---
 
-##### `one` <a name="one" id="@alma-cdk/project.Accounts.one"></a>
+##### `one` <a name="one" id="@alma-cdk/project.AccountStrategy.one"></a>
 
 ```typescript
-import { Accounts } from '@alma-cdk/project'
+import { AccountStrategy } from '@alma-cdk/project'
 
-Accounts.one(props: AccountsOneProps)
+AccountStrategy.one(props: AccountsOneProps)
 ```
 
 Enables single account strategy.
@@ -2244,7 +2251,7 @@ Enables single account strategy.
 *Example*
 
 ```typescript
-Accounts.ONE({
+AccountStrategy.one({
   shared: {
     id: '111111111111',
   },
@@ -2252,18 +2259,18 @@ Accounts.ONE({
 ```
 
 
-###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.one.parameter.props"></a>
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.one.parameter.props"></a>
 
 - *Type:* <a href="#@alma-cdk/project.AccountsOneProps">AccountsOneProps</a>
 
 ---
 
-##### `three` <a name="three" id="@alma-cdk/project.Accounts.three"></a>
+##### `three` <a name="three" id="@alma-cdk/project.AccountStrategy.three"></a>
 
 ```typescript
-import { Accounts } from '@alma-cdk/project'
+import { AccountStrategy } from '@alma-cdk/project'
 
-Accounts.three(props: AccountsThreeProps)
+AccountStrategy.three(props: AccountsThreeProps)
 ```
 
 Enables triple account strategy.
@@ -2282,7 +2289,7 @@ Enables triple account strategy.
 *Example*
 
 ```typescript
-Accounts.THREE({
+AccountStrategy.three({
   dev: {
     id: '111111111111',
   },
@@ -2296,18 +2303,18 @@ Accounts.THREE({
 ```
 
 
-###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.three.parameter.props"></a>
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.three.parameter.props"></a>
 
 - *Type:* <a href="#@alma-cdk/project.AccountsThreeProps">AccountsThreeProps</a>
 
 ---
 
-##### `two` <a name="two" id="@alma-cdk/project.Accounts.two"></a>
+##### `two` <a name="two" id="@alma-cdk/project.AccountStrategy.two"></a>
 
 ```typescript
-import { Accounts } from '@alma-cdk/project'
+import { AccountStrategy } from '@alma-cdk/project'
 
-Accounts.two(props: AccountsTwoProps)
+AccountStrategy.two(props: AccountsTwoProps)
 ```
 
 Enables dual account strategy.
@@ -2325,7 +2332,7 @@ Enables dual account strategy.
 *Example*
 
 ```typescript
-Accounts.TWO({
+AccountStrategy.two({
   dev: {
     id: '111111111111',
   },
@@ -2336,7 +2343,7 @@ Accounts.TWO({
 ```
 
 
-###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.Accounts.two.parameter.props"></a>
+###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.two.parameter.props"></a>
 
 - *Type:* <a href="#@alma-cdk/project.AccountsTwoProps">AccountsTwoProps</a>
 
