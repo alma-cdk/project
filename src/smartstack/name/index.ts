@@ -1,7 +1,40 @@
-import * as path from 'path';
-import { loadTemplate, renderTemplate, TemplateContext } from '../../template';
+import { renderTemplate, TemplateContext } from '../../template';
 import { isSet } from '../../utils/isSet';
-const template = loadTemplate(path.join(__dirname, 'name.njk'));
+
+const template = `{# 
+    Template for Stack Name prop
+    --------------------------------------------------------------------------------
+    AWS CloudFormation stack names have a maximum length of 128 characters.
+    This template truncates various values if they exceed their limit:
+    
+    Max Lenghts:
+    
+    - No Environment or Account present: 
+      32+1+48 = 81
+    
+    - Environment present:
+      32+1+32+13+48 = 126
+    
+    - Account present: 
+      32+1+32+9+48 = 122
+    
+    #}{# 
+    
+    "MyProject-"
+    #}{{ projectName | pascal | truncate(32, true, "") | append("-") }}{# 
+    
+    #}{% if environment | notEmpty %}{# 
+      "Staging-Environment-"
+      #}{{ environment | pascal | stripUnderscore | truncate(32, true, "") | append("-Environment-") }}{# 
+    
+    #}{% elif account | notEmpty %}{# 
+      "Dev-Account-"
+      #}{{ account | pascal| truncate(32, true, "") | append("-Account-") }}{# 
+    
+    #}{% endif %}{# 
+    
+    "MyStack"
+    #}{{ stackId | pascal | truncate(48, true, "")}}`;
 
 interface TemplateProps extends TemplateContext {
   stackId: string;
