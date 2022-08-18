@@ -1,6 +1,9 @@
 import { Account } from '../project';
 import { EnvironmentLabel } from './environments';
 
+/**
+ * Enumeration of all account types.
+ */
 export enum AccountType {
   MOCK='mock',
   SHARED='shared',
@@ -9,31 +12,27 @@ export enum AccountType {
   PROD='prod',
 }
 
+/** Interface for a single account type configuration. */
 export interface AccountConfiguration {
   readonly id: string;
   readonly config?: Record<string, any>;
 }
 
-export interface ProjectAccounts {
-  readonly mock?: Account;
-  readonly shared?: Account;
-  readonly dev?: Account;
-  readonly preprod?: Account;
-  readonly prod?: Account;
-}
-
-export interface AccountsOneProps {
+/** Props `AccountStrategy.one` */
+export interface AccountStrategyOneProps {
   readonly [AccountType.MOCK]?: AccountConfiguration;
   readonly [AccountType.SHARED]: AccountConfiguration;
 }
 
-export interface AccountsTwoProps {
+/** Props `AccountStrategy.two` */
+export interface AccountStrategyTwoProps {
   readonly [AccountType.MOCK]?: AccountConfiguration;
   readonly [AccountType.DEV]: AccountConfiguration;
   readonly [AccountType.PROD]: AccountConfiguration;
 }
 
-export interface AccountsThreeProps {
+/** Props `AccountStrategy.three` */
+export interface AccountStrategyThreeProps {
   readonly [AccountType.MOCK]?: AccountConfiguration;
   readonly [AccountType.DEV]: AccountConfiguration;
   readonly [AccountType.PREPROD]: AccountConfiguration;
@@ -45,7 +44,7 @@ const emptyMockAccountProps: AccountConfiguration = {
 };
 
 /**
- * Use static methods of Accounts abstract class to define your account strategy.
+ * Use static methods of `AccountStrategy` abstract class to define your account strategy.
  * Available strategies are:
  * - One Account: `shared`
  * - Two Accounts: `dev`+`prod` – _recommended_
@@ -72,7 +71,7 @@ export abstract class AccountStrategy {
    *   },
    * }),
    */
-  public static one(props: AccountsOneProps): Record<string, Account> {
+  public static one(props: AccountStrategyOneProps): Record<string, Account> {
     const mockProps = props[AccountType.MOCK];
     return {
       [AccountType.MOCK]: {
@@ -119,7 +118,7 @@ export abstract class AccountStrategy {
    *   },
    * }),
    */
-  public static two(props: AccountsTwoProps): Record<string, Account> {
+  public static two(props: AccountStrategyTwoProps): Record<string, Account> {
     const mockProps = props[AccountType.MOCK];
     return {
       [AccountType.MOCK]: {
@@ -175,7 +174,7 @@ export abstract class AccountStrategy {
    *   },
    * }),
    */
-  public static three(props: AccountsThreeProps): Record<string, Account> {
+  public static three(props: AccountStrategyThreeProps): Record<string, Account> {
     const mockProps = props[AccountType.MOCK];
     return {
       [AccountType.MOCK]: {

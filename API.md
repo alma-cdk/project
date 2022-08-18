@@ -1420,6 +1420,8 @@ List of strings or strings representing regexp initialization (passed onto `new 
 
 ### AccountConfiguration <a name="AccountConfiguration" id="@alma-cdk/project.AccountConfiguration"></a>
 
+Interface for a single account type configuration.
+
 #### Initializer <a name="Initializer" id="@alma-cdk/project.AccountConfiguration.Initializer"></a>
 
 ```typescript
@@ -1457,26 +1459,26 @@ public readonly config: {[ key: string ]: any};
 
 ---
 
-### AccountsOneProps <a name="AccountsOneProps" id="@alma-cdk/project.AccountsOneProps"></a>
+### AccountStrategyOneProps <a name="AccountStrategyOneProps" id="@alma-cdk/project.AccountStrategyOneProps"></a>
 
-#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsOneProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyOneProps.Initializer"></a>
 
 ```typescript
-import { AccountsOneProps } from '@alma-cdk/project'
+import { AccountStrategyOneProps } from '@alma-cdk/project'
 
-const accountsOneProps: AccountsOneProps = { ... }
+const accountStrategyOneProps: AccountStrategyOneProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/project.AccountsOneProps.property.shared">shared</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsOneProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyOneProps.property.shared">shared</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyOneProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
 
 ---
 
-##### `shared`<sup>Required</sup> <a name="shared" id="@alma-cdk/project.AccountsOneProps.property.shared"></a>
+##### `shared`<sup>Required</sup> <a name="shared" id="@alma-cdk/project.AccountStrategyOneProps.property.shared"></a>
 
 ```typescript
 public readonly shared: AccountConfiguration;
@@ -1486,7 +1488,7 @@ public readonly shared: AccountConfiguration;
 
 ---
 
-##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsOneProps.property.mock"></a>
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountStrategyOneProps.property.mock"></a>
 
 ```typescript
 public readonly mock: AccountConfiguration;
@@ -1496,28 +1498,28 @@ public readonly mock: AccountConfiguration;
 
 ---
 
-### AccountsThreeProps <a name="AccountsThreeProps" id="@alma-cdk/project.AccountsThreeProps"></a>
+### AccountStrategyThreeProps <a name="AccountStrategyThreeProps" id="@alma-cdk/project.AccountStrategyThreeProps"></a>
 
-#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsThreeProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyThreeProps.Initializer"></a>
 
 ```typescript
-import { AccountsThreeProps } from '@alma-cdk/project'
+import { AccountStrategyThreeProps } from '@alma-cdk/project'
 
-const accountsThreeProps: AccountsThreeProps = { ... }
+const accountStrategyThreeProps: AccountStrategyThreeProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.preprod">preprod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsThreeProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyThreeProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyThreeProps.property.preprod">preprod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyThreeProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyThreeProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
 
 ---
 
-##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountsThreeProps.property.dev"></a>
+##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountStrategyThreeProps.property.dev"></a>
 
 ```typescript
 public readonly dev: AccountConfiguration;
@@ -1527,7 +1529,7 @@ public readonly dev: AccountConfiguration;
 
 ---
 
-##### `preprod`<sup>Required</sup> <a name="preprod" id="@alma-cdk/project.AccountsThreeProps.property.preprod"></a>
+##### `preprod`<sup>Required</sup> <a name="preprod" id="@alma-cdk/project.AccountStrategyThreeProps.property.preprod"></a>
 
 ```typescript
 public readonly preprod: AccountConfiguration;
@@ -1537,7 +1539,7 @@ public readonly preprod: AccountConfiguration;
 
 ---
 
-##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountsThreeProps.property.prod"></a>
+##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountStrategyThreeProps.property.prod"></a>
 
 ```typescript
 public readonly prod: AccountConfiguration;
@@ -1547,7 +1549,7 @@ public readonly prod: AccountConfiguration;
 
 ---
 
-##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsThreeProps.property.mock"></a>
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountStrategyThreeProps.property.mock"></a>
 
 ```typescript
 public readonly mock: AccountConfiguration;
@@ -1557,27 +1559,27 @@ public readonly mock: AccountConfiguration;
 
 ---
 
-### AccountsTwoProps <a name="AccountsTwoProps" id="@alma-cdk/project.AccountsTwoProps"></a>
+### AccountStrategyTwoProps <a name="AccountStrategyTwoProps" id="@alma-cdk/project.AccountStrategyTwoProps"></a>
 
-#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountsTwoProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyTwoProps.Initializer"></a>
 
 ```typescript
-import { AccountsTwoProps } from '@alma-cdk/project'
+import { AccountStrategyTwoProps } from '@alma-cdk/project'
 
-const accountsTwoProps: AccountsTwoProps = { ... }
+const accountStrategyTwoProps: AccountStrategyTwoProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
-| <code><a href="#@alma-cdk/project.AccountsTwoProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyTwoProps.property.dev">dev</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyTwoProps.property.prod">prod</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.AccountStrategyTwoProps.property.mock">mock</a></code> | <code><a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a></code> | *No description.* |
 
 ---
 
-##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountsTwoProps.property.dev"></a>
+##### `dev`<sup>Required</sup> <a name="dev" id="@alma-cdk/project.AccountStrategyTwoProps.property.dev"></a>
 
 ```typescript
 public readonly dev: AccountConfiguration;
@@ -1587,7 +1589,7 @@ public readonly dev: AccountConfiguration;
 
 ---
 
-##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountsTwoProps.property.prod"></a>
+##### `prod`<sup>Required</sup> <a name="prod" id="@alma-cdk/project.AccountStrategyTwoProps.property.prod"></a>
 
 ```typescript
 public readonly prod: AccountConfiguration;
@@ -1597,7 +1599,7 @@ public readonly prod: AccountConfiguration;
 
 ---
 
-##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountsTwoProps.property.mock"></a>
+##### `mock`<sup>Optional</sup> <a name="mock" id="@alma-cdk/project.AccountStrategyTwoProps.property.mock"></a>
 
 ```typescript
 public readonly mock: AccountConfiguration;
@@ -2198,7 +2200,7 @@ AccountContext.isShared(scope: Construct)
 
 ### AccountStrategy <a name="AccountStrategy" id="@alma-cdk/project.AccountStrategy"></a>
 
-Use static methods of Accounts abstract class to define your account strategy.
+Use static methods of `AccountStrategy` abstract class to define your account strategy.
 
 Available strategies are:
 - One Account: `shared`
@@ -2234,7 +2236,7 @@ new AccountStrategy()
 ```typescript
 import { AccountStrategy } from '@alma-cdk/project'
 
-AccountStrategy.one(props: AccountsOneProps)
+AccountStrategy.one(props: AccountStrategyOneProps)
 ```
 
 Enables single account strategy.
@@ -2261,7 +2263,7 @@ AccountStrategy.one({
 
 ###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.one.parameter.props"></a>
 
-- *Type:* <a href="#@alma-cdk/project.AccountsOneProps">AccountsOneProps</a>
+- *Type:* <a href="#@alma-cdk/project.AccountStrategyOneProps">AccountStrategyOneProps</a>
 
 ---
 
@@ -2270,7 +2272,7 @@ AccountStrategy.one({
 ```typescript
 import { AccountStrategy } from '@alma-cdk/project'
 
-AccountStrategy.three(props: AccountsThreeProps)
+AccountStrategy.three(props: AccountStrategyThreeProps)
 ```
 
 Enables triple account strategy.
@@ -2305,7 +2307,7 @@ AccountStrategy.three({
 
 ###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.three.parameter.props"></a>
 
-- *Type:* <a href="#@alma-cdk/project.AccountsThreeProps">AccountsThreeProps</a>
+- *Type:* <a href="#@alma-cdk/project.AccountStrategyThreeProps">AccountStrategyThreeProps</a>
 
 ---
 
@@ -2314,7 +2316,7 @@ AccountStrategy.three({
 ```typescript
 import { AccountStrategy } from '@alma-cdk/project'
 
-AccountStrategy.two(props: AccountsTwoProps)
+AccountStrategy.two(props: AccountStrategyTwoProps)
 ```
 
 Enables dual account strategy.
@@ -2345,7 +2347,7 @@ AccountStrategy.two({
 
 ###### `props`<sup>Required</sup> <a name="props" id="@alma-cdk/project.AccountStrategy.two.parameter.props"></a>
 
-- *Type:* <a href="#@alma-cdk/project.AccountsTwoProps">AccountsTwoProps</a>
+- *Type:* <a href="#@alma-cdk/project.AccountStrategyTwoProps">AccountStrategyTwoProps</a>
 
 ---
 

@@ -1,9 +1,9 @@
 export {
   AccountStrategy,
   AccountConfiguration,
-  AccountsOneProps,
-  AccountsTwoProps,
-  AccountsThreeProps,
+  AccountStrategyOneProps as AccountsOneProps,
+  AccountStrategyTwoProps as AccountsTwoProps,
+  AccountStrategyThreeProps as AccountsThreeProps,
 } from './accounts';
 
 export {
