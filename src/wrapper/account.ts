@@ -2,6 +2,9 @@ import { pascalCase } from 'change-case';
 import { Construct } from 'constructs';
 import { AccountContext } from '../context/account';
 
+/**
+ * Wrapper for account-level stacks.
+ */
 export class AccountWrapper extends Construct {
 
   constructor(scope: Construct) {
