@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import { pascalCase } from 'change-case';
 import { Environment } from 'nunjucks';
 
@@ -19,11 +18,6 @@ env.addFilter('notEmpty', function(str: string) {
 env.addFilter('append', function(str: string, trailer: string) {
   return `${str}${trailer}`;
 });
-
-
-export function loadTemplate(path: string): string {
-  return readFileSync(path, 'utf-8').trim();
-}
 
 type TemplateContextValue = string | undefined;
 export type TemplateContext = Record<string, TemplateContextValue>;
