@@ -15,6 +15,10 @@ env.addFilter('notEmpty', function(str: string) {
   return typeof str === 'string' && str.length > 0;
 });
 
+env.addFilter('prepend', function(str: string, leader: string) {
+  return `${leader}${str}`;
+});
+
 env.addFilter('append', function(str: string, trailer: string) {
   return `${str}${trailer}`;
 });

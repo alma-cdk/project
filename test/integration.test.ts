@@ -44,7 +44,7 @@ describe('Integration', () => {
         },
       });
 
-      expect(stack.stackName).toBe('MyCoolProject-Development-Environment-TestStack');
+      expect(stack.stackName).toBe('MyCoolProject-Environment-Development-TestStack');
       expect(stack.terminationProtection).toBeFalsy();
       expect(stack.region).toBe('eu-west-1');
 
@@ -124,7 +124,7 @@ describe('Integration', () => {
         },
       });
 
-      expect(stack.stackName).toBe('MyCoolProject-FeatureAbc123-Environment-TestStack');
+      expect(stack.stackName).toBe('MyCoolProject-Environment-FeatureAbc123-TestStack');
       expect(stack.terminationProtection).toBeFalsy();
       expect(stack.region).toBe('eu-west-1');
 
@@ -204,7 +204,7 @@ describe('Integration', () => {
         },
       });
 
-      expect(stack.stackName).toBe('MyCoolProject-Production-Environment-TestStack');
+      expect(stack.stackName).toBe('MyCoolProject-Environment-Production-TestStack');
       expect(stack.terminationProtection).toBeTruthy();
       expect(stack.region).toBe('eu-west-1');
 

@@ -42,7 +42,7 @@ describe('SmartStack', () => {
           environmentType: 'testing',
           stackId: 'my-stack',
         },
-        expected: 'MyProject-Testing-Environment-MyStack',
+        expected: 'MyProject-Environment-Testing-MyStack',
       },
       {
         name: 'environmentType missing',
@@ -88,7 +88,7 @@ describe('SmartStack', () => {
           environmentType: 'testing',
           stackId: 'n'.repeat(49),
         },
-        expected: 'MyProject-Testing-Environment-'+capitalizeFirstLetter('n'.repeat(48)),
+        expected: 'MyProject-Environment-Testing-'+capitalizeFirstLetter('n'.repeat(48)),
       },
       {
         name: 'too long project name',
@@ -98,7 +98,7 @@ describe('SmartStack', () => {
           environmentType: 'testing',
           stackId: 'my-stack',
         },
-        expected: capitalizeFirstLetter('n'.repeat(32))+'-Testing-Environment-MyStack',
+        expected: capitalizeFirstLetter('n'.repeat(32))+'-Environment-Testing-MyStack',
       },
       {
         name: 'too long accountType name',
@@ -118,7 +118,7 @@ describe('SmartStack', () => {
           environmentType: 'n'.repeat(33),
           stackId: 'my-stack',
         },
-        expected: 'MyProject-'+capitalizeFirstLetter('n'.repeat(32))+'-Environment-MyStack',
+        expected: 'MyProject-Environment-'+capitalizeFirstLetter('n'.repeat(32))+'-MyStack',
       },
       {
         name: 'everything too long',
@@ -128,7 +128,7 @@ describe('SmartStack', () => {
           environmentType: 'n'.repeat(33),
           stackId: 'n'.repeat(49),
         },
-        expected: capitalizeFirstLetter('n'.repeat(32))+'-'+capitalizeFirstLetter('n'.repeat(32))+'-Environment-'+capitalizeFirstLetter('n'.repeat(48)),
+        expected: capitalizeFirstLetter('n'.repeat(32))+'-Environment-'+capitalizeFirstLetter('n'.repeat(32))+'-'+capitalizeFirstLetter('n'.repeat(48)),
       },
     ].map(runTest);
   });

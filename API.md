@@ -4,6 +4,8 @@
 
 ### AccountWrapper <a name="AccountWrapper" id="@alma-cdk/project.AccountWrapper"></a>
 
+Wrapper for account-level stacks.
+
 #### Initializers <a name="Initializers" id="@alma-cdk/project.AccountWrapper.Initializer"></a>
 
 ```typescript
@@ -88,6 +90,8 @@ The tree node.
 
 
 ### EnvironmentWrapper <a name="EnvironmentWrapper" id="@alma-cdk/project.EnvironmentWrapper"></a>
+
+Wrapper for environmental stacks.
 
 #### Initializers <a name="Initializers" id="@alma-cdk/project.EnvironmentWrapper.Initializer"></a>
 
@@ -1461,6 +1465,8 @@ public readonly config: {[ key: string ]: any};
 
 ### AccountStrategyOneProps <a name="AccountStrategyOneProps" id="@alma-cdk/project.AccountStrategyOneProps"></a>
 
+Props `AccountStrategy.one`.
+
 #### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyOneProps.Initializer"></a>
 
 ```typescript
@@ -1499,6 +1505,8 @@ public readonly mock: AccountConfiguration;
 ---
 
 ### AccountStrategyThreeProps <a name="AccountStrategyThreeProps" id="@alma-cdk/project.AccountStrategyThreeProps"></a>
+
+Props `AccountStrategy.three`.
 
 #### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyThreeProps.Initializer"></a>
 
@@ -1560,6 +1568,8 @@ public readonly mock: AccountConfiguration;
 ---
 
 ### AccountStrategyTwoProps <a name="AccountStrategyTwoProps" id="@alma-cdk/project.AccountStrategyTwoProps"></a>
+
+Props `AccountStrategy.two`.
 
 #### Initializer <a name="Initializer" id="@alma-cdk/project.AccountStrategyTwoProps.Initializer"></a>
 
