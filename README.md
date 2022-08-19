@@ -1,6 +1,6 @@
 <br/><br/><br/>
 
-🚧 **Work-in-Progress**
+🚧 **Work-in-Progress**: Breaking changes may occur at any given point durin `v0.x`.
 
 <br/><br/><br/>
 
