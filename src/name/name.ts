@@ -11,7 +11,7 @@ interface ContextualNamingInformation {
   readonly organizationName?: string;
 }
 
-export class Name {
+export abstract class Name {
 
   public static it(scope: Construct, baseName: string, props?: NameProps): string {
     const info = Name.getContextualInformation(scope);
