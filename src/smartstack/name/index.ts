@@ -28,8 +28,8 @@ const template = `{#
       #}{{ environment | pascal | stripUnderscore | truncate(32, true, "") | prepend("Environment-") | append("-") }}{#
 
     #}{% elif account | notEmpty %}{#
-      "Dev-Account-"
-      #}{{ account | pascal| truncate(32, true, "") | append("-Account-") }}{#
+      "Project-Account-"
+      #}Account-{#
 
     #}{% endif %}{#
 
