@@ -51,7 +51,7 @@ describe('SmartStack', () => {
           accountType: 'mock',
           stackId: 'my-stack',
         },
-        expected: 'MyProject-Mock-Account-MyStack',
+        expected: 'MyProject-Account-MyStack',
       },
       {
         name: 'environmentType empty',
@@ -61,7 +61,7 @@ describe('SmartStack', () => {
           environmentType: '',
           stackId: 'my-stack',
         },
-        expected: 'MyProject-Mock-Account-MyStack',
+        expected: 'MyProject-Account-MyStack',
       },
       {
         name: 'accountType missing',
@@ -108,7 +108,7 @@ describe('SmartStack', () => {
           environmentType: undefined,
           stackId: 'my-stack',
         },
-        expected: 'MyProject-'+capitalizeFirstLetter('n'.repeat(32))+'-Account-MyStack',
+        expected: 'MyProject-Account-MyStack',
       },
       {
         name: 'too long environmentType name',
