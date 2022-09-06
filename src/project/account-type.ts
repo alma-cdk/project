@@ -23,6 +23,7 @@ export class AccountType {
       addError(scope,
         'Account Type not specified! Provide account type as context argument for CDK CLI, for example: --context account-type=dev',
       );
+      return '';
     }
 
     return accountType;
