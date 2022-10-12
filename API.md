@@ -2482,6 +2482,7 @@ new EnvironmentContext()
 | <code><a href="#@alma-cdk/project.EnvironmentContext.isFeature">isFeature</a></code> | Check if Environment is part of `feature` category. |
 | <code><a href="#@alma-cdk/project.EnvironmentContext.isMock">isMock</a></code> | Check if Environment is part of `mock` category. |
 | <code><a href="#@alma-cdk/project.EnvironmentContext.isStable">isStable</a></code> | Check if Environment is part of `stable` category. |
+| <code><a href="#@alma-cdk/project.EnvironmentContext.isValid">isValid</a></code> | Does the scope specify a valid environment. |
 | <code><a href="#@alma-cdk/project.EnvironmentContext.isVerification">isVerification</a></code> | Check if Environment is part of `verification` category. |
 
 ---
@@ -2728,6 +2729,22 @@ Returns `true` for `staging` & `production`, otherwise `false`.
 - *Type:* constructs.Construct
 
 Construct.
+
+---
+
+##### `isValid` <a name="isValid" id="@alma-cdk/project.EnvironmentContext.isValid"></a>
+
+```typescript
+import { EnvironmentContext } from '@alma-cdk/project'
+
+EnvironmentContext.isValid(scope: Construct)
+```
+
+Does the scope specify a valid environment.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.EnvironmentContext.isValid.parameter.scope"></a>
+
+- *Type:* constructs.Construct
 
 ---
 

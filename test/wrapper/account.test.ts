@@ -56,7 +56,7 @@ describe('Account stack initialized in context specifying account and environmen
     stack = new SmartStack(account, 'TestStack', { description: 'Test stack' });
   });
 
-  test('Stack name is account wide', () => {
+  test('Stack name is account wide even in environment context', () => {
     expect(stack.stackName).toBe('TestProject-Account-TestStack');
   });
 });
