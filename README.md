@@ -157,6 +157,7 @@ Steps required to define a _environmental_ project resources; At first, it might
 
     ```ts
     // lib/environment.ts
+    import { Construct } from 'constructs';
     import { EnvironmentWrapper } from '@alma-cdk/project';
     import { MyStack } from './my-stack';
 
