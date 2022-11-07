@@ -29,7 +29,7 @@
   - choosing the target account & environment by passing in runtime context:
 
     ```sh
-    npx cdk deploy -c environment=feature/abc-123
+    npx cdk deploy -c account=dev -c environment=feature/abc-123
     ```
     ... which means you don't need to define all the possibile environments ahead of time!
 
