@@ -22,6 +22,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'alma-cdk.project',
     module: 'alma_cdk.project',
   },
+  publishToGo: {
+    moduleName: 'github.com/alma-cdk/project-go',
+  },
 
   // Dependencies
   minNodeVersion: nodejsVersion,
