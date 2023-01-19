@@ -179,9 +179,21 @@ export class EnvironmentContext {
     return name.replace(/^feature\//i, '');
   }
 
+  /**
+   * Does the scope specify a valid environment
+   * @param {Construct} scope
+   * @returns true if valid, false otherwise
+   */
+  static isValid (scope: Construct): boolean {
+    let category = EnvironmentContext.getCategory(scope);
+    // return true if category is not undefined
+    return category !== undefined;
+  }
+
   private static isEnvironmentCategoryMatch(scope: Construct, match: EnvironmentCategory): boolean {
     const category = EnvironmentContext.getCategory(scope);
     return category === match;
   }
+
 
 }

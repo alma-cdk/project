@@ -1,6 +1,7 @@
 import { Construct } from 'constructs';
 import { get } from 'lodash';
 import { addError } from '../error';
+import { AccountWrapper } from '../wrapper';
 import { AccountType } from './account-type';
 import { EnvironmentType } from './environment-type';
 import { Account } from './interfaces';
@@ -62,6 +63,9 @@ export class ProjectContext {
   }
 
   static tryGetEnvironment(scope: Construct): string | undefined {
+    if (scope instanceof AccountWrapper) {
+      return undefined;
+    }
     return EnvironmentType.tryGet(scope);
   }
 
