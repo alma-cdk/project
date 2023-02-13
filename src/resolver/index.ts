@@ -1,6 +1,3 @@
-/* eslint-disable no-multiple-empty-lines */
-/* eslint-disable no-trailing-spaces */
-
 import { Construct } from 'constructs';
 import { getDefiniteAccountName } from './lookup';
 import { EnvironmentCategory, EnvironmentLabel } from '../configurations';
