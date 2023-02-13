@@ -1,5 +1,5 @@
-import { Account } from '../project';
 import { EnvironmentLabel } from './environments';
+import { Account } from '../project';
 
 /**
  * Enumeration of all account types.

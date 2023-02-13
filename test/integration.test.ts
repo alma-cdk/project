@@ -1,7 +1,7 @@
 import { Match } from 'aws-cdk-lib/assertions';
-import { AccountStrategy } from '../src';
 import { generateTestApp } from './helpers/app';
 import { sortTagsByKey, tagsAsDictionary, TagValue } from './helpers/tags';
+import { AccountStrategy } from '../src';
 
 
 describe('Integration', () => {

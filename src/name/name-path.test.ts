@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
-import { Project, ProjectProps } from '../project';
 import { PathName, pathName } from './';
+import { Project, ProjectProps } from '../project';
 
 const projectProps: ProjectProps = {
   name: 'test-project',

@@ -1,12 +1,12 @@
 import { env } from 'process';
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { addError } from '../error';
-import { ProjectContext } from '../project';
 import { formatDescription } from './description';
 import { formatName } from './name';
 import { addTags } from './tags';
 import { decideTerminationProtection } from './termination';
+import { addError } from '../error';
+import { ProjectContext } from '../project';
 
 
 export class SmartStack extends Stack {

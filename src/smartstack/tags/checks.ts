@@ -1,6 +1,6 @@
 import { Construct } from 'constructs';
-import { isSet } from '../../utils/isSet';
 import { Values } from './values';
+import { isSet } from '../../utils/isSet';
 
 export function hasAccount(values: Values): boolean {
   return isSet(values.accountType);

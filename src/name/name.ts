@@ -1,9 +1,9 @@
 import { pascalCase } from 'change-case';
 import { Construct } from 'constructs';
-import { ProjectContext } from '../project';
 import { NameProps } from './interfaces';
 import { validateMaxLength } from './max-length';
 import { trim } from './trim';
+import { ProjectContext } from '../project';
 
 interface ContextualNamingInformation {
   readonly environment?: string;

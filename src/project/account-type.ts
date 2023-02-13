@@ -1,8 +1,8 @@
 import { Construct } from 'constructs';
 import { findKey } from 'lodash';
-import { addError } from '../error';
 import { EnvRegExp } from './envregexp';
 import { Account } from './interfaces';
+import { addError } from '../error';
 
 /**
  * Internal class to handle set/get operations for Account Type
