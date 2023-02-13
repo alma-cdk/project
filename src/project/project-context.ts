@@ -11,7 +11,7 @@ export class ProjectContext {
    * Returns the account type given in runtime/CLI context
    */
   static getAccountType(scope: Construct): string {
-    return AccountType.get(scope);
+    return AccountType.get(scope, Project.getConfiguration(scope));
   }
 
   static getAccountId(scope: Construct): string {
