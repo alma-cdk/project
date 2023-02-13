@@ -71,21 +71,6 @@ export class ProjectContext {
   }
 
   /**
-   * Low-level / internal method which in most cases you should not use or depend upon.
-   *
-   * TODO Figure out
-   *
-   * @internal
-   */
-  static _getAccountTypeByEnvironment(
-    scope: Construct,
-    environmentType: string,
-  ): string {
-    const projectConfiguration = Project.getConfiguration(scope);
-    return AccountType.matchFromEnvironment(scope, projectConfiguration.accounts, environmentType);
-  }
-
-  /**
    * Returns the account specific project configuration
    */
   private static getProjectAccountConfiguration(scope: Construct): Account {

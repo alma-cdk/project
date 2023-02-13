@@ -29,26 +29,4 @@ export class AccountType {
     return accountType;
   }
 
-  static matchFromEnvironment(
-    scope: Construct,
-    accounts: Record<string, Account>,
-    environmentType: string,
-  ): string {
-
-    const accountType = findKey(accounts, (account) =>
-      account.environments?.filter((environment) =>
-        new EnvRegExp(environment).test(environmentType),
-      ),
-    );
-
-    if (typeof accountType !== 'string') {
-      addError(scope,
-        `Could not find matching account type for given environment ${environmentType}`,
-      );
-      return '';
-    }
-
-    return accountType;
-  }
-
 }
