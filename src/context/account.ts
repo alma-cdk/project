@@ -9,6 +9,7 @@ export class AccountContext {
     return ProjectContext.getAccountId(scope);
   }
 
+  // TODO make generic
   static getAccountConfig(scope: Construct, key: string): any {
     return ProjectContext.getAccountConfig(scope, key);
   }
