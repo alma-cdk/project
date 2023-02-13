@@ -2,11 +2,11 @@
 /* eslint-disable no-trailing-spaces */
 
 import { Construct } from 'constructs';
-import { getCtxAccount, getCtxEnvironment } from '../runtime-ctx';
 import { getDefiniteAccountName } from './lookup';
 import { EnvironmentCategory, EnvironmentLabel } from '../configurations';
 import { getCategoryByLabel, getLabelByName } from '../configurations/environments';
 import { ProjectConfiguration } from '../project';
+import { getCtxAccount, getCtxEnvironment } from '../runtime-ctx';
 
 export interface Resolved<T extends Record<string, any>> {
   readonly account: {
