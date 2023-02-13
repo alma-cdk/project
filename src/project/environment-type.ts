@@ -8,12 +8,6 @@ import { addError } from '../error';
  */
 export class EnvironmentType {
 
-  static set(scope: Construct, environmentType: string): void {
-    scope.node.setContext('environment-type', environmentType);
-    scope.node.setContext('environment', environmentType);
-    scope.node.setContext('env', environmentType);
-  }
-
   static tryGet(scope: Construct): string | undefined {
     const environmentType =
       scope.node.tryGetContext('environment-type') ||
