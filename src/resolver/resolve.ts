@@ -5,6 +5,9 @@ import { getCategoryByLabel, getLabelByName } from '../configurations/environmen
 import { ProjectConfiguration } from '../project';
 import { getCtxAccount, getCtxEnvironment } from '../runtime-ctx';
 
+/**
+ * Resolved Account and Environment information.
+ */
 export interface Resolved<T extends Record<string, any>> {
   readonly account: {
     readonly id: string;
@@ -17,6 +20,14 @@ export interface Resolved<T extends Record<string, any>> {
   };
 }
 
+/**
+ * Resolve Account and Environment information based on the Project Configuration
+ * and runtime context.
+ *
+ * @param scope Construct Scope
+ * @param config Project Configuration
+ * @returns Resolved Account and Environment information
+ */
 export function resolve(scope: Construct, config: ProjectConfiguration): Resolved<any> {
 
   const ctxAccount = getCtxAccount(scope);
