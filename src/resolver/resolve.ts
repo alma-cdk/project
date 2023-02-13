@@ -11,7 +11,7 @@ const mGetDefiniteAccountType = memoize(getDefiniteAccountType);
 /**
  * Resolved Account and Environment information.
  */
-export interface Resolved<T extends Record<string, any>> {
+export interface Target<T extends Record<string, any>> {
   readonly account: {
     readonly type: string;
     readonly id: string;
@@ -33,7 +33,7 @@ export interface Resolved<T extends Record<string, any>> {
  * @param config Project Configuration
  * @returns Resolved Account & Environment information or undefined if invalid configration
  */
-export function resolveTarget(scope: Construct, config: ProjectConfiguration): Resolved<any> | undefined {
+export function resolveTarget(scope: Construct, config: ProjectConfiguration): Target<any> | undefined {
 
   const ctxAccount = getCtxAccount(scope);
   const ctxEnvironment = getCtxEnvironment(scope);
