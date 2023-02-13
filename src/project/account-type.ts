@@ -8,11 +8,6 @@ import { resolveTarget } from '../resolver';
  */
 export class AccountType {
 
-  static set(scope: Construct, accountType: string): void {
-    scope.node.setContext('account-type', accountType);
-    scope.node.setContext('account', accountType);
-  }
-
   static get(scope: Construct, projectConfiguration: ProjectConfiguration): string {
     const target = resolveTarget(scope, projectConfiguration);
     if (typeof target === 'undefined') {
