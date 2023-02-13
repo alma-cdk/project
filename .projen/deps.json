@@ -56,6 +56,10 @@
       "type": "build"
     },
     {
+      "name": "fast-memoize",
+      "type": "build"
+    },
+    {
       "name": "jest-junit",
       "version": "^13",
       "type": "build"
@@ -114,6 +118,10 @@
     },
     {
       "name": "change-case",
+      "type": "bundled"
+    },
+    {
+      "name": "fast-memoize",
       "type": "bundled"
     },
     {

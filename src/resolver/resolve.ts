@@ -1,24 +1,29 @@
 import { Construct } from 'constructs';
-import { getDefiniteAccountName } from './lookup';
+import memoize from 'fast-memoize';
+import { getDefiniteAccountType } from './lookup';
 import { EnvironmentCategory, EnvironmentLabel } from '../configurations';
 import { getCategoryByLabel, getLabelByName } from '../configurations/environments';
 import { ProjectConfiguration } from '../project';
 import { getCtxAccount, getCtxEnvironment } from '../runtime-ctx';
+
+const mGetDefiniteAccountType = memoize(getDefiniteAccountType);
 
 /**
  * Resolved Account and Environment information.
  */
 export interface Resolved<T extends Record<string, any>> {
   readonly account: {
+    readonly type: string;
     readonly id: string;
     readonly config: T;
   };
   readonly environment?: {
-    readonly name: string;
+    readonly type: string;
     readonly label: EnvironmentLabel;
     readonly category: EnvironmentCategory;
   };
 }
+
 
 /**
  * Resolve Account and Environment information based on the Project Configuration
@@ -26,18 +31,23 @@ export interface Resolved<T extends Record<string, any>> {
  *
  * @param scope Construct Scope
  * @param config Project Configuration
- * @returns Resolved Account and Environment information
+ * @returns Resolved Account & Environment information or undefined if invalid configration
  */
-export function resolve(scope: Construct, config: ProjectConfiguration): Resolved<any> {
+export function resolveTarget(scope: Construct, config: ProjectConfiguration): Resolved<any> | undefined {
 
   const ctxAccount = getCtxAccount(scope);
   const ctxEnvironment = getCtxEnvironment(scope);
 
-  const accountName = getDefiniteAccountName(config, ctxAccount, ctxEnvironment);
+  const accountType = mGetDefiniteAccountType(config, ctxAccount, ctxEnvironment);
+
+  if (typeof accountType !== 'string') {
+    return undefined;
+  }
 
   const account = {
-    id: config.accounts[accountName].id,
-    config: config.accounts[accountName].config,
+    type: accountType,
+    id: config.accounts[accountType].id,
+    config: config.accounts[accountType].config,
   };
 
   if (typeof ctxEnvironment === 'undefined') {
@@ -49,7 +59,7 @@ export function resolve(scope: Construct, config: ProjectConfiguration): Resolve
   return {
     account,
     environment: {
-      name: ctxEnvironment,
+      type: ctxEnvironment,
       label: getLabelByName(ctxEnvironment),
       category: getCategoryByLabel(getLabelByName(ctxEnvironment)),
     },

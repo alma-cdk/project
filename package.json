@@ -49,6 +49,7 @@
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.27.5",
+    "fast-memoize": "^2.5.2",
     "jest": "^27",
     "jest-junit": "^13",
     "jsii": "^1.74.0",
@@ -69,11 +70,13 @@
   },
   "dependencies": {
     "change-case": "^4.1.2",
+    "fast-memoize": "^2.5.2",
     "lodash": "^4.17.21",
     "nunjucks": "^3.2.3"
   },
   "bundledDependencies": [
     "change-case",
+    "fast-memoize",
     "lodash",
     "nunjucks"
   ],

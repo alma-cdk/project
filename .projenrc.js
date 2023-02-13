@@ -38,11 +38,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'constructs',
     'lodash',
     'nunjucks',
+    'fast-memoize',
   ],
   bundledDeps: [
     'change-case',
     'lodash',
     'nunjucks',
+    'fast-memoize',
   ],
 
   // Gitignore

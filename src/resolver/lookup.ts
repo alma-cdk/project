@@ -52,14 +52,14 @@ export function generateLookupTable(config: ProjectConfiguration): LookupTable {
 // TODO separete function to validate project config
 
 /**
- * Get the definite account name from the project configuration.
+ * Get the definite account type from the project configuration.
  *
  * @param config Project Configuration
  * @param ctxAccount Account Name received from context
  * @param ctxEnvironment Environment Name received from context
- * @returns Definite Account Name (that exists in Project Configuration)
+ * @returns Definite Account Name (that exists in Project Configuration) or undefined if invalid
  */
-export function getDefiniteAccountName(config: ProjectConfiguration, ctxAccount?: string, ctxEnvironment?: string): string {
+export function getDefiniteAccountType(config: ProjectConfiguration, ctxAccount?: string, ctxEnvironment?: string): string | undefined {
 
   const lookup = generateLookupTable(config);
 
@@ -75,10 +75,9 @@ export function getDefiniteAccountName(config: ProjectConfiguration, ctxAccount?
     return lookup.withAccount[ctxAccount];
   }
 
-  throw new Error('NOT FOUND'); // TODO better error handling
+  return undefined;
 
 }
-
 
 function isStringValue(value: any): value is string {
   return typeof value === 'string' && value.length > 0;

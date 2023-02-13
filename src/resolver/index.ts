@@ -1,1 +1,1 @@
-export { resolve, Resolved } from './resolve';
+export { resolveTarget, Resolved } from './resolve';
