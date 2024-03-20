@@ -1,10 +1,10 @@
 import { Construct } from 'constructs';
-import { get } from 'lodash';
 import { AccountType } from './account-type';
 import { EnvironmentType } from './environment-type';
 import { Account } from './interfaces';
 import { Project } from './project';
 import { addError } from '../error';
+import { get } from '../utils/get';
 
 export class ProjectContext {
   /**

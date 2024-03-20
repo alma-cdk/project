@@ -1,8 +1,7 @@
 import { Construct } from 'constructs';
-import { findKey } from 'lodash';
-import { EnvRegExp } from './envregexp';
 import { Account } from './interfaces';
 import { addError } from '../error';
+import { findAccountTypeByEnvironment } from '../utils/find';
 
 /**
  * Internal class to handle set/get operations for Account Type
@@ -35,11 +34,7 @@ export class AccountType {
     environmentType: string,
   ): string {
 
-    const accountType = findKey(accounts, (account) =>
-      account.environments?.filter((environment) =>
-        new EnvRegExp(environment).test(environmentType),
-      ),
-    );
+    const accountType = findAccountTypeByEnvironment(accounts, environmentType);
 
     if (typeof accountType !== 'string') {
       addError(scope,

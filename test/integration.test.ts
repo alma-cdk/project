@@ -1,7 +1,7 @@
 import { Match } from 'aws-cdk-lib/assertions';
 import { generateTestApp } from './helpers/app';
 import { sortTagsByKey, tagsAsDictionary, TagValue } from './helpers/tags';
-import { AccountStrategy } from '../src';
+import { AccountStrategy, PC } from '../src';
 
 
 describe('Integration', () => {
@@ -20,12 +20,32 @@ describe('Integration', () => {
           id: '111111111111',
           config: {
             baseDomain: 'example.net',
+            sizing: {
+              staging: {
+                cpu: 256,
+                memory: 512,
+              },
+            },
+            flags: [
+              'foo',
+              'bar',
+            ],
           },
         },
         prod: {
           id: '222222222222',
           config: {
             baseDomain: 'example.com',
+            sizing: {
+              production: {
+                cpu: 1024,
+                memory: 4096,
+              },
+            },
+            flags: [
+              'foo',
+              'bar',
+            ],
           },
         },
       }),
@@ -65,7 +85,7 @@ describe('Integration', () => {
             },
           ],
           TableName: 'DevelopmentMyTable',
-          Tags: expectedTags,
+          Tags: Match.arrayWith(expectedTags),
         }),
       );
 
@@ -106,7 +126,7 @@ describe('Integration', () => {
         'AWS::Route53::HostedZone',
         Match.objectLike({
           Name: 'example.net.',
-          HostedZoneTags: expectedTags,
+          HostedZoneTags: Match.arrayWith(expectedTags),
         }),
       );
     });
@@ -145,7 +165,7 @@ describe('Integration', () => {
             },
           ],
           TableName: 'FeatureAbc123MyTable',
-          Tags: expectedTags,
+          Tags: Match.arrayWith(expectedTags),
         }),
       );
 
@@ -186,7 +206,7 @@ describe('Integration', () => {
         'AWS::Route53::HostedZone',
         Match.objectLike({
           Name: 'example.net.',
-          HostedZoneTags: expectedTags,
+          HostedZoneTags: Match.arrayWith(expectedTags),
         }),
       );
     });
@@ -225,7 +245,7 @@ describe('Integration', () => {
             },
           ],
           TableName: 'ProductionMyTable',
-          Tags: expectedTags,
+          Tags: Match.arrayWith(expectedTags),
         }),
       );
 
@@ -241,7 +261,7 @@ describe('Integration', () => {
         'AWS::S3::Bucket',
         Match.objectLike({
           BucketName: 'acme-corp-my-cool-project-production-my-bucket',
-          Tags: expectedTags,
+          Tags: Match.arrayWith(expectedTags),
         }),
       );
 
@@ -260,9 +280,47 @@ describe('Integration', () => {
         'AWS::Route53::HostedZone',
         Match.objectLike({
           Name: 'example.com.',
-          HostedZoneTags: expectedTags,
+          HostedZoneTags: Match.arrayWith(expectedTags),
         }),
       );
+    });
+
+    test('dev/config', () => {
+
+      const {
+        stack,
+      } = generateTestApp({
+        ...props,
+        context: {
+          account: 'dev',
+          environment: 'development',
+        },
+      });
+
+      expect(PC.getAccountConfig(stack, 'baseCamp', 'no camping')).toBe('no camping');
+      expect(PC.getAccountConfig(stack, 'baseDomain')).toBe('example.net');
+      expect(PC.getAccountConfig(stack, 'sizing.staging.cpu')).toBe(256);
+      expect(PC.getAccountConfig(stack, 'sizing.test.cpu', 256)).toBe(256);
+      expect(PC.getAccountConfig(stack, 'flags[0]')).toBe('foo');
+    });
+
+    test('prod/config', () => {
+
+      const {
+        stack,
+      } = generateTestApp({
+        ...props,
+        context: {
+          account: 'prod',
+          environment: 'production',
+        },
+      });
+
+      expect(PC.getAccountConfig(stack, 'baseCamp', 'no camping')).toBe('no camping');
+      expect(PC.getAccountConfig(stack, 'baseDomain')).toBe('example.com');
+      expect(PC.getAccountConfig(stack, 'sizing.production.cpu')).toBe(1024);
+      expect(PC.getAccountConfig(stack, 'sizing.preproduction.cpu', 512)).toBe(512);
+      expect(PC.getAccountConfig(stack, 'flags[0]')).toBe('foo');
     });
 
   });

@@ -1,6 +1,4 @@
-import { values } from 'lodash';
 
-
-export function isSet(value?: string | undefined): boolean {
-  return (typeof value === 'string' && values.length > 0);
+export function isNonEmptyString(value?: unknown): value is string {
+  return (typeof value === 'string' && value.length > 0);
 }

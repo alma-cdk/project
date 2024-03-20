@@ -1,5 +1,5 @@
 import { renderTemplate, TemplateContext } from '../../template';
-import { isSet } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isSet';
 
 const template = `{#
     Template for Stack Name prop
@@ -54,7 +54,7 @@ export interface NameProps {
 export function formatName(props: NameProps): string {
 
   // allow end-user override
-  if (isSet(props.override)) return props.override!;
+  if (isNonEmptyString(props.override)) return props.override!;
 
   // otherwise user our recommended format
   return renderTemplate(template, <TemplateProps>{

@@ -1,9 +1,9 @@
 import { Tags } from 'aws-cdk-lib';
 import { capitalCase, pascalCase } from 'change-case';
 import { Construct } from 'constructs';
-import { isSet } from 'lodash';
 import { hasAccount, hasEnvironment, useLegacyTags } from './checks';
 import { tagKey, Values } from './values';
+import { isNonEmptyString } from '../../utils/isSet';
 
 interface Tagger {
   (scope: Construct, tags: Tags, values: Values): void;
@@ -41,13 +41,13 @@ export const tagAuthorName: Tagger = (_: Construct, tags: Tags, values: Values) 
 };
 
 export const tagAuthorOrganization: Tagger = (_: Construct, tags: Tags, values: Values) => {
-  if (isSet(values.authorOrganization)) {
+  if (isNonEmptyString(values.authorOrganization)) {
     tags.add(tagKey.AUTHOR_ORGANIZATION, values.authorOrganization);
   }
 };
 
 export const tagAuthorEmail: Tagger = (_: Construct, tags: Tags, values: Values) => {
-  if (isSet(values.authorEmail)) {
+  if (isNonEmptyString(values.authorEmail)) {
     tags.add(tagKey.AUTHOR_EMAIL, values.authorEmail);
   }
 };
