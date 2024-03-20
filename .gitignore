@@ -36,7 +36,6 @@ jspm_packages/
 /examples/**/cdk.out
 /examples/**/.git
 TODO.md
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -58,4 +57,4 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
-!/.nvmrc
+!/.projenrc.js

@@ -1,3 +1,222 @@
+<br/><br/><br/>
+
+🚧 **Work-in-Progress**: Breaking changes may occur at any given point during `v0.x`.
+
+<br/><br/><br/>
+
+<div align="center">
+	<br/>
+	<br/>
+  <h1>
+	<img width="300" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
+  <br/>
+  <br/>
+  </h1>
+
+  ```sh
+  npm i -D @alma-cdk/project
+  ```
+
+  <div align="left">
+
+  Opinionated CDK “framework” with constructs & utilities for:
+  - deploying multiple environments to multiple accounts (with many-to-many relationship)
+  - managing account configuration through standardized props (no more random config files)
+  - querying account and/or environment specific information within your CDK code
+  - enabling dynamic & short-lived “feature-environments”
+  - enabling well-defined tagging
+  - providing structure & common conventions to CDK projects
+  - choosing the target account & environment by passing in runtime context:
+
+    ```sh
+    npx cdk deploy -c account=dev -c environment=feature/abc-123
+    ```
+    ... which means you don't need to define all the possibile environments ahead of time!
+
+  </div>
+  <br/>
+</div>
+
+
+## Account Strategies
+
+Depending on the use case, you may choose a configuration between 1-3 AWS accounts with the following environments:
+
+
+1. **Shared account (`shared`)**:
+
+    ![default-multi](assets/accounts-1x.svg)
+    <br/>
+
+2. **Multi-account (`dev`+`prod`)**_– RECOMMENDED_:
+
+    ![default-multi](assets/accounts-2x.svg)
+    <br/>
+
+<br/>
+</details>
+
+3. **Multi-account (`dev`+`preprod`+`prod`)**:
+
+    ![default-multi](assets/accounts-3x.svg)
+    <br/>
+
+<br/>
+
+## Getting Started
+
+Steps required to define a _environmental_ project resources; At first, it might seem complex but once you get into the habbit of defining your projects this way it starts to make sense:
+
+1. Choose your [Account Strategy](#account-strategies)
+
+2. Initialize a new `Project` instead of `cdk.App`:
+
+    ```ts
+    // bin/app.ts
+    import { Project, AccountStrategy } from '@alma-cdk/project';
+
+    const project = new Project({
+      // Basic info, you could also read these from package.json if you want
+      name: 'my-cool-project',
+      author: {
+        organization: 'Acme Corp',
+        name: 'Mad Scientists',
+        email: 'mad.scientists@acme.example.com',
+      },
+
+      // If not set, defaults to one of: $CDK_DEFAULT_REGION, $AWS_REGION or us-east-1
+      defaultRegion: 'eu-west-1',
+
+      // Configures the project to use 2 AWS accounts (recommended)
+      accounts: AccountStrategy.two({
+        dev: {
+          id: '111111111111',
+          config: {
+            // whatever you want here as [string]: any
+            baseDomain: 'example.net',
+          },
+        },
+        prod: {
+          id: '222222222222',
+          config: {
+            // whatever you want here as [string]: any
+            baseDomain: 'example.com',
+          },
+        },
+      }),
+    })
+    ```
+
+3. Define a stack which `extends SmartStack` with resources:
+    ```ts
+    // lib/my-stack.ts
+    import { Construct } from 'constructs';
+    import { StackProps, RemovalPolicy } from 'aws-cdk-lib';
+    import { SmartStack, Name, UrlName, PathName, EC } from '@alma-cdk/project';
+
+    export class MyStack extends SmartStack {
+      constructor(scope: Construct, id: string, props?: StackProps) {
+        super(scope, id, props);
+
+        new dynamodb.Table(this, 'Table', {
+          removalPolicy: EC.isStable(this) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY,
+
+          tableName: Name.it(this, 'MyTable'),
+          partitionKey: {
+            type: dynamodb.AttributeType.STRING,
+            name: 'pk',
+          },
+          // StagingMyTable
+        });
+
+        new events.EventBus(this, 'EventBus', {
+          eventBusName: Name.withProject(this, 'MyEventBus'),
+          // MyCoolProjectStagingMyEventBus
+        });
+
+        new s3.Bucket(this, 'Bucket', {
+
+          removalPolicy: EC.isStable(this) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY,
+          autoDeleteObjects: EC.isStable(this) ? false : true,
+
+          bucketName: UrlName.globally(this, 'MyBucket'),
+          // acme-corp-my-cool-project-feature-foo-bar-my-bucket
+        });
+
+        new ssm.StringParameter(this, 'Parameter', {
+          stringValue: 'Foo',
+          tier: ssm.ParameterTier.ADVANCED,
+          parameterName: PathName.withProject(this, 'MyNamespace/MyParameter'),
+          // /MyCoolProject/Staging/MyNamespace/MyParameter
+        });
+      }
+    }
+    ```
+
+4. Define a new _environmental_ which `extends EnvironmentWrapper` and initialize all your environmental `SmartStack` stacks within:
+
+    ```ts
+    // lib/environment.ts
+    import { Construct } from 'constructs';
+    import { EnvironmentWrapper } from '@alma-cdk/project';
+    import { MyStack } from './my-stack';
+
+    export class Environment extends EnvironmentWrapper {
+      constructor(scope: Construct) {
+        super(scope);
+        new MyStack(this, 'MyStack', { description: 'This is required' });
+      }
+    }
+    ```
+
+    Resulting Stack properties (given `environment=staging`):
+
+    |        Property         |                    Example value                     |
+    | :---------------------- | :--------------------------------------------------- |
+    | `stackName`             | `"MyCoolProject-Environment-Staging-MyExampleStack"` |
+    | `terminationProtection` | `true`                                               |
+    | `env.account`           | `"111111111111"`                                     |
+    | `env.region`            | `"eu-west-1"`                                        |
+
+    Resulting Tags for the Stack and its resources (given `environment=staging`):
+
+    |        Property         |           Example value           |
+    | :---------------------- | :-------------------------------- |
+    | `Account`               | `dev`                             |
+    | `Environment`           | `staging`                         |
+    | `Project`               | `my-cool-project`                 |
+    | `Author`                | `Mad Scientists`                  |
+    | `Organization`          | `Acme Corp`                       |
+    | `Contact`               | `mad.scientists@acme.example.com` |
+
+5. Finally initialize the environment with the `Project` scope:
+
+    ```ts
+    // bin/app.ts
+    import { Project, Accounts } from '@alma-cdk/project';
+    import { Environment } from '../lib/environment';
+
+    const project = new Project({/* removed for brevity, see step 1 */})
+
+    new Environment(project);
+    ```
+
+<br/>
+
+
+## Documentation
+
+See detailed documentation for specific classes & methods at [constructs.dev](http://constructs.dev/packages/@alma-cdk/project).
+
+Generally speaking you would be most interested in the following:
+- Project
+- AccountStrategy
+- SmartStack
+- AccountWrapper & EnvironmentWrapper
+- AccountContext (AC)
+- EnvironmentContext (EC)
+- Name / UrlName / PathName
+
 # API Reference <a name="API Reference" id="api-reference"></a>
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
@@ -50,7 +269,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.AccountWrapper.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@alma-cdk/project.AccountWrapper.isConstruct"></a>
 
 ```typescript
 import { AccountWrapper } from '@alma-cdk/project'
@@ -59,6 +278,20 @@ AccountWrapper.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.AccountWrapper.isConstruct.parameter.x"></a>
 
@@ -137,7 +370,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.EnvironmentWrapper.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@alma-cdk/project.EnvironmentWrapper.isConstruct"></a>
 
 ```typescript
 import { EnvironmentWrapper } from '@alma-cdk/project'
@@ -146,6 +379,20 @@ EnvironmentWrapper.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.EnvironmentWrapper.isConstruct.parameter.x"></a>
 
@@ -281,7 +528,7 @@ calls will return the same assembly.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.Project.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@alma-cdk/project.Project.isConstruct"></a>
 
 ```typescript
 import { Project } from '@alma-cdk/project'
@@ -290,6 +537,20 @@ Project.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.Project.isConstruct.parameter.x"></a>
 
@@ -398,6 +659,7 @@ Return the project configuration as given in ProjectProps.
 | <code><a href="#@alma-cdk/project.Project.property.artifactId">artifactId</a></code> | <code>string</code> | Artifact ID of the assembly if it is a nested stage. The root stage (app) will return an empty string. |
 | <code><a href="#@alma-cdk/project.Project.property.assetOutdir">assetOutdir</a></code> | <code>string</code> | The cloud assembly asset output directory. |
 | <code><a href="#@alma-cdk/project.Project.property.outdir">outdir</a></code> | <code>string</code> | The cloud assembly output directory. |
+| <code><a href="#@alma-cdk/project.Project.property.policyValidationBeta1">policyValidationBeta1</a></code> | <code>aws-cdk-lib.IPolicyValidationPluginBeta1[]</code> | Validation plugins to run during synthesis. |
 | <code><a href="#@alma-cdk/project.Project.property.stageName">stageName</a></code> | <code>string</code> | The name of the stage. |
 | <code><a href="#@alma-cdk/project.Project.property.account">account</a></code> | <code>string</code> | The default account for all resources defined within this stage. |
 | <code><a href="#@alma-cdk/project.Project.property.parentStage">parentStage</a></code> | <code>aws-cdk-lib.Stage</code> | The parent stage or `undefined` if this is the app. |
@@ -452,6 +714,22 @@ public readonly outdir: string;
 - *Type:* string
 
 The cloud assembly output directory.
+
+---
+
+##### `policyValidationBeta1`<sup>Required</sup> <a name="policyValidationBeta1" id="@alma-cdk/project.Project.property.policyValidationBeta1"></a>
+
+```typescript
+public readonly policyValidationBeta1: IPolicyValidationPluginBeta1[];
+```
+
+- *Type:* aws-cdk-lib.IPolicyValidationPluginBeta1[]
+- *Default:* no validation plugins are used
+
+Validation plugins to run during synthesis.
+
+If any plugin reports any violation,
+synthesis will be interrupted and the report displayed to the user.
 
 ---
 
@@ -570,8 +848,10 @@ new SmartStack(scope: Construct, id: string, props: StackProps)
 | --- | --- |
 | <code><a href="#@alma-cdk/project.SmartStack.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@alma-cdk/project.SmartStack.addDependency">addDependency</a></code> | Add a dependency between this stack and another stack. |
+| <code><a href="#@alma-cdk/project.SmartStack.addMetadata">addMetadata</a></code> | Adds an arbitary key-value pair, with information you want to record about the stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.addTransform">addTransform</a></code> | Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template. |
-| <code><a href="#@alma-cdk/project.SmartStack.exportValue">exportValue</a></code> | Create a CloudFormation Export for a value. |
+| <code><a href="#@alma-cdk/project.SmartStack.exportStringListValue">exportStringListValue</a></code> | Create a CloudFormation Export for a string list value. |
+| <code><a href="#@alma-cdk/project.SmartStack.exportValue">exportValue</a></code> | Create a CloudFormation Export for a string value. |
 | <code><a href="#@alma-cdk/project.SmartStack.formatArn">formatArn</a></code> | Creates an ARN from components. |
 | <code><a href="#@alma-cdk/project.SmartStack.getLogicalId">getLogicalId</a></code> | Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource. |
 | <code><a href="#@alma-cdk/project.SmartStack.regionalFact">regionalFact</a></code> | Look up a fact value for the given fact for the region of this stack. |
@@ -580,6 +860,7 @@ new SmartStack(scope: Construct, id: string, props: StackProps)
 | <code><a href="#@alma-cdk/project.SmartStack.resolve">resolve</a></code> | Resolve a tokenized value in the context of the current stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.splitArn">splitArn</a></code> | Splits the provided ARN into its components. |
 | <code><a href="#@alma-cdk/project.SmartStack.toJsonString">toJsonString</a></code> | Convert an object, potentially containing tokens, to a JSON string. |
+| <code><a href="#@alma-cdk/project.SmartStack.toYamlString">toYamlString</a></code> | Convert an object, potentially containing tokens, to a YAML string. |
 
 ---
 
@@ -614,6 +895,30 @@ app, and also supports nested stacks.
 
 ---
 
+##### `addMetadata` <a name="addMetadata" id="@alma-cdk/project.SmartStack.addMetadata"></a>
+
+```typescript
+public addMetadata(key: string, value: any): void
+```
+
+Adds an arbitary key-value pair, with information you want to record about the stack.
+
+These get translated to the Metadata section of the generated template.
+
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html)
+
+###### `key`<sup>Required</sup> <a name="key" id="@alma-cdk/project.SmartStack.addMetadata.parameter.key"></a>
+
+- *Type:* string
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="@alma-cdk/project.SmartStack.addMetadata.parameter.value"></a>
+
+- *Type:* any
+
+---
+
 ##### `addTransform` <a name="addTransform" id="@alma-cdk/project.SmartStack.addTransform"></a>
 
 ```typescript
@@ -643,13 +948,51 @@ The transform to add.
 
 ---
 
+##### `exportStringListValue` <a name="exportStringListValue" id="@alma-cdk/project.SmartStack.exportStringListValue"></a>
+
+```typescript
+public exportStringListValue(exportedValue: any, options?: ExportValueOptions): string[]
+```
+
+Create a CloudFormation Export for a string list value.
+
+Returns a string list representing the corresponding `Fn.importValue()`
+expression for this Export. The export expression is automatically wrapped with an
+`Fn::Join` and the import value with an `Fn::Split`, since CloudFormation can only
+export strings. You can control the name for the export by passing the `name` option.
+
+If you don't supply a value for `name`, the value you're exporting must be
+a Resource attribute (for example: `bucket.bucketName`) and it will be
+given the same name as the automatic cross-stack reference that would be created
+if you used the attribute in another Stack.
+
+One of the uses for this method is to *remove* the relationship between
+two Stacks established by automatic cross-stack references. It will
+temporarily ensure that the CloudFormation Export still exists while you
+remove the reference from the consuming stack. After that, you can remove
+the resource and the manual export.
+
+See `exportValue` for an example of this process.
+
+###### `exportedValue`<sup>Required</sup> <a name="exportedValue" id="@alma-cdk/project.SmartStack.exportStringListValue.parameter.exportedValue"></a>
+
+- *Type:* any
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@alma-cdk/project.SmartStack.exportStringListValue.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.ExportValueOptions
+
+---
+
 ##### `exportValue` <a name="exportValue" id="@alma-cdk/project.SmartStack.exportValue"></a>
 
 ```typescript
 public exportValue(exportedValue: any, options?: ExportValueOptions): string
 ```
 
-Create a CloudFormation Export for a value.
+Create a CloudFormation Export for a string value.
 
 Returns a string representing the corresponding `Fn.importValue()`
 expression for this Export. You can control the name for the export by
@@ -681,11 +1024,11 @@ Instead, the process takes two deployments:
 ### Deployment 1: break the relationship
 
 - Make sure `consumerStack` no longer references `bucket.bucketName` (maybe the consumer
-   stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just
-   remove the Lambda Function altogether).
+  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just
+  remove the Lambda Function altogether).
 - In the `ProducerStack` class, call `this.exportValue(this.bucket.bucketName)`. This
-   will make sure the CloudFormation Export continues to exist while the relationship
-   between the two stacks is being broken.
+  will make sure the CloudFormation Export continues to exist while the relationship
+  between the two stacks is being broken.
 - Deploy (this will effectively only change the `consumerStack`, but it's safe to deploy both).
 
 ### Deployment 2: remove the bucket resource
@@ -722,7 +1065,7 @@ into the generated ARN at the location that component corresponds to.
 
 The ARN will be formatted as follows:
 
-   arn:{partition}:{service}:{region}:{account}:{resource}{sep}}{resource-name}
+  arn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}
 
 The required ARN pieces that are omitted will be taken from the stack that
 the 'scope' is attached to. If all ARN pieces are supplied, the supplied scope
@@ -899,6 +1242,20 @@ Convert an object, potentially containing tokens, to a JSON string.
 
 ---
 
+##### `toYamlString` <a name="toYamlString" id="@alma-cdk/project.SmartStack.toYamlString"></a>
+
+```typescript
+public toYamlString(obj: any): string
+```
+
+Convert an object, potentially containing tokens, to a YAML string.
+
+###### `obj`<sup>Required</sup> <a name="obj" id="@alma-cdk/project.SmartStack.toYamlString.parameter.obj"></a>
+
+- *Type:* any
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -909,7 +1266,7 @@ Convert an object, potentially containing tokens, to a JSON string.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@alma-cdk/project.SmartStack.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@alma-cdk/project.SmartStack.isConstruct"></a>
 
 ```typescript
 import { SmartStack } from '@alma-cdk/project'
@@ -918,6 +1275,20 @@ SmartStack.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="@alma-cdk/project.SmartStack.isConstruct.parameter.x"></a>
 
@@ -1018,14 +1389,14 @@ The AWS account into which this stack will be deployed.
 This value is resolved according to the following rules:
 
 1. The value provided to `env.account` when the stack is defined. This can
-    either be a concerete account (e.g. `585695031111`) or the
-    `Aws.accountId` token.
-3. `Aws.accountId`, which represents the CloudFormation intrinsic reference
-    `{ "Ref": "AWS::AccountId" }` encoded as a string token.
+   either be a concrete account (e.g. `585695031111`) or the
+   `Aws.ACCOUNT_ID` token.
+3. `Aws.ACCOUNT_ID`, which represents the CloudFormation intrinsic reference
+   `{ "Ref": "AWS::AccountId" }` encoded as a string token.
 
 Preferably, you should use the return value as an opaque string and not
 attempt to parse it to implement your logic. If you do, you must first
-check that it is a concerete value an not an unresolved token. If this
+check that it is a concrete value an not an unresolved token. If this
 value is an unresolved token (`Token.isUnresolved(stack.account)` returns
 `true`), this implies that the user wishes that this stack will synthesize
 into a **account-agnostic template**. In this case, your code should either
@@ -1111,7 +1482,7 @@ You can use this value to determine if two stacks are targeting the same
 environment.
 
 If either `stack.account` or `stack.region` are not concrete values (e.g.
-`Aws.account` or `Aws.region`) the special strings `unknown-account` and/or
+`Aws.ACCOUNT_ID` or `Aws.REGION`) the special strings `unknown-account` and/or
 `unknown-region` will be used respectively to indicate this stack is
 region/account-agnostic.
 
@@ -1166,14 +1537,14 @@ The AWS region into which this stack will be deployed (e.g. `us-west-2`).
 This value is resolved according to the following rules:
 
 1. The value provided to `env.region` when the stack is defined. This can
-    either be a concerete region (e.g. `us-west-2`) or the `Aws.region`
-    token.
-3. `Aws.region`, which is represents the CloudFormation intrinsic reference
-    `{ "Ref": "AWS::Region" }` encoded as a string token.
+   either be a concrete region (e.g. `us-west-2`) or the `Aws.REGION`
+   token.
+3. `Aws.REGION`, which is represents the CloudFormation intrinsic reference
+   `{ "Ref": "AWS::Region" }` encoded as a string token.
 
 Preferably, you should use the return value as an opaque string and not
 attempt to parse it to implement your logic. If you do, you must first
-check that it is a concerete value an not an unresolved token. If this
+check that it is a concrete value an not an unresolved token. If this
 value is an unresolved token (`Token.isUnresolved(stack.region)` returns
 `true`), this implies that the user wishes that this stack will synthesize
 into a **region-agnostic template**. In this case, your code should either
@@ -1219,7 +1590,7 @@ name. Stacks that are defined deeper within the tree will use a hashed naming
 scheme based on the construct path to ensure uniqueness.
 
 If you wish to obtain the deploy-time AWS::StackName intrinsic,
-you can use `Aws.stackName` directly.
+you can use `Aws.STACK_NAME` directly.
 
 ---
 
@@ -1311,7 +1682,7 @@ If this is a nested stack, this represents its `AWS::CloudFormation::Stack` reso
 
 ---
 
-##### `terminationProtection`<sup>Optional</sup> <a name="terminationProtection" id="@alma-cdk/project.SmartStack.property.terminationProtection"></a>
+##### `terminationProtection`<sup>Required</sup> <a name="terminationProtection" id="@alma-cdk/project.SmartStack.property.terminationProtection"></a>
 
 ```typescript
 public readonly terminationProtection: boolean;
@@ -1871,7 +2242,10 @@ const projectProps: ProjectProps = { ... }
 | <code><a href="#@alma-cdk/project.ProjectProps.property.analyticsReporting">analyticsReporting</a></code> | <code>boolean</code> | Include runtime versioning information in the Stacks of this app. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.autoSynth">autoSynth</a></code> | <code>boolean</code> | Automatically call `synth()` before the program exits. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.context">context</a></code> | <code>{[ key: string ]: any}</code> | Additional context values for the application. |
+| <code><a href="#@alma-cdk/project.ProjectProps.property.defaultStackSynthesizer">defaultStackSynthesizer</a></code> | <code>aws-cdk-lib.IReusableStackSynthesizer</code> | The stack synthesizer to use by default for all Stacks in the App. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.outdir">outdir</a></code> | <code>string</code> | The output directory into which to emit synthesized artifacts. |
+| <code><a href="#@alma-cdk/project.ProjectProps.property.policyValidationBeta1">policyValidationBeta1</a></code> | <code>aws-cdk-lib.IPolicyValidationPluginBeta1[]</code> | Validation plugins to run after synthesis. |
+| <code><a href="#@alma-cdk/project.ProjectProps.property.postCliContext">postCliContext</a></code> | <code>{[ key: string ]: any}</code> | Additional context values for the application. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.stackTraces">stackTraces</a></code> | <code>boolean</code> | Include construct creation stack trace in the `aws:cdk:trace` metadata key of all constructs. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.treeMetadata">treeMetadata</a></code> | <code>boolean</code> | Include construct tree metadata as part of the Cloud Assembly. |
 
@@ -2010,6 +2384,23 @@ Context can be read from any construct using `node.getContext(key)`.
 
 ---
 
+##### `defaultStackSynthesizer`<sup>Optional</sup> <a name="defaultStackSynthesizer" id="@alma-cdk/project.ProjectProps.property.defaultStackSynthesizer"></a>
+
+```typescript
+public readonly defaultStackSynthesizer: IReusableStackSynthesizer;
+```
+
+- *Type:* aws-cdk-lib.IReusableStackSynthesizer
+- *Default:* A `DefaultStackSynthesizer` with default settings
+
+The stack synthesizer to use by default for all Stacks in the App.
+
+The Stack Synthesizer controls aspects of synthesis and deployment,
+like how assets are referenced and what IAM roles to use. For more
+information, see the README of the main CDK package.
+
+---
+
 ##### `outdir`<sup>Optional</sup> <a name="outdir" id="@alma-cdk/project.ProjectProps.property.outdir"></a>
 
 ```typescript
@@ -2028,6 +2419,60 @@ directory the CLI will fail to pick up the generated Cloud Assembly.
 This property is intended for internal and testing use.
 
 ---
+
+##### `policyValidationBeta1`<sup>Optional</sup> <a name="policyValidationBeta1" id="@alma-cdk/project.ProjectProps.property.policyValidationBeta1"></a>
+
+```typescript
+public readonly policyValidationBeta1: IPolicyValidationPluginBeta1[];
+```
+
+- *Type:* aws-cdk-lib.IPolicyValidationPluginBeta1[]
+- *Default:* no validation plugins
+
+Validation plugins to run after synthesis.
+
+---
+
+##### `postCliContext`<sup>Optional</sup> <a name="postCliContext" id="@alma-cdk/project.ProjectProps.property.postCliContext"></a>
+
+```typescript
+public readonly postCliContext: {[ key: string ]: any};
+```
+
+- *Type:* {[ key: string ]: any}
+- *Default:* no additional context
+
+Additional context values for the application.
+
+Context provided here has precedence over context set by:
+
+- The CLI via --context
+- The `context` key in `cdk.json`
+- The `AppProps.context` property
+
+This property is recommended over the `AppProps.context` property since you
+can make final decision over which context value to take in your app.
+
+Context can be read from any construct using `node.getContext(key)`.
+
+---
+
+*Example*
+
+```typescript
+// context from the CLI and from `cdk.json` are stored in the
+// CDK_CONTEXT env variable
+const cliContext = JSON.parse(process.env.CDK_CONTEXT!);
+
+// determine whether to take the context passed in the CLI or not
+const determineValue = process.env.PROD ? cliContext.SOMEKEY : 'my-prod-value';
+new App({
+  postCliContext: {
+    SOMEKEY: determineValue,
+  },
+});
+```
+
 
 ##### `stackTraces`<sup>Optional</sup> <a name="stackTraces" id="@alma-cdk/project.ProjectProps.property.stackTraces"></a>
 
