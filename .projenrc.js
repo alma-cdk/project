@@ -13,15 +13,22 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'Opinionated CDK Project “Framework”',
   repositoryUrl: 'https://github.com/alma-cdk/project.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
-
+  majorVersion: 0,
+  releaseBranches: {
+    beta: {
+      majorVersion: 1,
+      prerelease: 'beta',
+      npmDistTag: 'beta',
+    },
+  },
   // Publish configuration
   defaultReleaseBranch: 'main',
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  python: {
-    distName: 'alma-cdk.project',
-    module: 'alma_cdk.project',
-  },
+  // python: {
+  //   distName: 'alma-cdk.project',
+  //   module: 'alma_cdk.project',
+  // },
   publishToGo: {
     moduleName: 'github.com/alma-cdk/project-go',
   },
