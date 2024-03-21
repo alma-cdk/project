@@ -112,6 +112,7 @@ new TextFile(project, 'sonar-project.properties', {
     'sonar.javascript.lcov.reportPaths=./coverage/lcov.info',
     'sonar.sources=./src',
     'sonar.tests=./test',
+    'sonar.test.inclusions=**/*.test.*',
   ],
 });
 
