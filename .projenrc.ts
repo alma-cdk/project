@@ -1,4 +1,6 @@
-import { awscdk, javascript } from 'projen';
+import { awscdk, javascript, TextFile } from 'projen';
+import { WorkflowSteps } from 'projen/lib/github';
+import { JobPermission } from 'projen/lib/github/workflows-model';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
@@ -52,8 +54,66 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '/examples/**/cdk.out',
     '/examples/**/.git',
     'TODO.md',
+    '.scannerwork/',
   ],
 
+});
+
+/**
+ * Sonarcloud report workflow
+ */
+const sonarCloudReportWorkflow = project.github?.addWorkflow('sonarcloud-report');
+sonarCloudReportWorkflow?.on({
+  push: { branches: ['main', 'beta'] },
+  pullRequest: {
+    types: ['opened', 'synchronize', 'reopened'],
+  },
+});
+sonarCloudReportWorkflow?.addJob('sonarcloud-report', {
+  runsOn: ['ubuntu-latest'],
+  tools: {
+    node: {
+      version: project.minNodeVersion!,
+    },
+  },
+  permissions: {
+    contents: JobPermission.READ,
+  },
+  steps: [
+    WorkflowSteps.checkout({
+      with: {
+        fetchDepth: 0,
+      },
+    }),
+    ...project.renderWorkflowSetup(),
+    {
+      name: 'Run tests',
+      run: 'npm run test',
+    },
+    {
+      name: 'SonarCloud Scan',
+      uses: 'SonarSource/sonarcloud-github-action@v2',
+      env: {
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
+        SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}',
+      },
+    },
+  ],
+});
+
+/**
+ * Sonarcloud properties file
+ */
+new TextFile(project, 'sonar-project.properties', {
+  lines: [
+    'sonar.host.url=https://sonarcloud.io',
+    `sonar.projectKey=${project.name.replace('@', '').replace('/', '_')}`,
+    `sonar.organization=${project.name.replace('@', '').split('/')[0]}`,
+    'sonar.javascript.lcov.reportPaths=./coverage/lcov.info',
+    'sonar.sources=./src',
+    'sonar.tests=./test',
+    'sonar.test.inclusions=**/*.test.*',
+  ],
 });
 
 project.synth();

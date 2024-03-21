@@ -36,6 +36,7 @@ jspm_packages/
 /examples/**/cdk.out
 /examples/**/.git
 TODO.md
+.scannerwork/
 /test-reports/
 junit.xml
 /coverage/
@@ -57,4 +58,6 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+!/.github/workflows/sonarcloud-report.yml
+!/sonar-project.properties
 !/.projenrc.ts
