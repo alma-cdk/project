@@ -439,24 +439,24 @@ const project = new Project({
     organization: 'Acme Corp',
     name: 'Mad Scientists',
     email: 'mad.scientists@acme.example.com',
-},
-defaultRegion: 'eu-west-1', // defaults to one of: $CDK_DEFAULT_REGION, $AWS_REGION or us-east-1
-accounts: {
-dev: {
- id: '111111111111',
- environments: ['development', 'feature/.*', 'staging'],
- config: {
-   baseDomain: 'example.net',
- },
-},
-prod: {
- id: '222222222222',
- environments: ['production'],
- config: {
-   baseDomain: 'example.com',
- },
-},
-},
+  },
+  defaultRegion: 'eu-west-1', // defaults to one of: $CDK_DEFAULT_REGION, $AWS_REGION or us-east-1
+  accounts: {
+    dev: {
+      id: '111111111111',
+      environments: ['development', 'feature/.*', 'staging'],
+      config: {
+        baseDomain: 'example.net',
+      },
+    },
+    prod: {
+      id: '222222222222',
+      environments: ['production'],
+      config: {
+        baseDomain: 'example.com',
+      },
+    },
+  },
 })
 ```
 
@@ -2697,13 +2697,13 @@ AccountStrategy.one(props: AccountStrategyOneProps)
 Enables single account strategy.
 
 1. `shared` account with environments:
-    - development
-    - feature/*
-    - test
-    - qaN
-    - staging
-    - preproduction
-    - production
+   - development
+   - feature/*
+   - test
+   - qaN
+   - staging
+   - preproduction
+   - production
 
 *Example*
 
@@ -2733,15 +2733,15 @@ AccountStrategy.three(props: AccountStrategyThreeProps)
 Enables triple account strategy.
 
 1. `dev` account with environments:
-    - development
-    - feature/*
-    - test
-    - staging
+   - development
+   - feature/*
+   - test
+   - staging
 2. `preprod` account with environments:
-    - qaN
-    - preproduction
+   - qaN
+   - preproduction
 3. `prod` account with environments:
-    - production
+   - production
 
 *Example*
 
@@ -2777,14 +2777,14 @@ AccountStrategy.two(props: AccountStrategyTwoProps)
 Enables dual account strategy.
 
 1. `dev` account with environments:
-    - development
-    - feature/*
-    - test
-    - qaN
-    - staging
+   - development
+   - feature/*
+   - test
+   - qaN
+   - staging
 2. `prod` account with environments:
-    - preproduction
-    - production
+   - preproduction
+   - production
 
 *Example*
 
@@ -3455,7 +3455,7 @@ new PathName()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@alma-cdk/project.PathName.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.PathName.globally">globally</a></code> | PascalCase naming with global prefixes (org, project…). |
 | <code><a href="#@alma-cdk/project.PathName.it">it</a></code> | *No description.* |
 | <code><a href="#@alma-cdk/project.PathName.withProject">withProject</a></code> | *No description.* |
 
@@ -3468,6 +3468,8 @@ import { PathName } from '@alma-cdk/project'
 
 PathName.globally(scope: Construct, baseName: string, props?: NameProps)
 ```
+
+PascalCase naming with global prefixes (org, project…).
 
 ###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.PathName.globally.parameter.scope"></a>
 
@@ -3765,7 +3767,7 @@ new UrlName()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@alma-cdk/project.UrlName.globally">globally</a></code> | *No description.* |
+| <code><a href="#@alma-cdk/project.UrlName.globally">globally</a></code> | PascalCase naming with global prefixes (org, project…). |
 | <code><a href="#@alma-cdk/project.UrlName.it">it</a></code> | *No description.* |
 | <code><a href="#@alma-cdk/project.UrlName.withProject">withProject</a></code> | *No description.* |
 
@@ -3778,6 +3780,8 @@ import { UrlName } from '@alma-cdk/project'
 
 UrlName.globally(scope: Construct, baseName: string, props?: NameProps)
 ```
+
+PascalCase naming with global prefixes (org, project…).
 
 ###### `scope`<sup>Required</sup> <a name="scope" id="@alma-cdk/project.UrlName.globally.parameter.scope"></a>
 
