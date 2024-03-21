@@ -60,4 +60,5 @@ tsconfig.json
 !/API.md
 !/.github/workflows/sonarcloud-report.yml
 !/sonar-project.properties
+!/.nvmrc
 !/.projenrc.ts

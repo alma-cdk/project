@@ -71,11 +71,6 @@ sonarCloudReportWorkflow?.on({
 });
 sonarCloudReportWorkflow?.addJob('sonarcloud-report', {
   runsOn: ['ubuntu-latest'],
-  tools: {
-    node: {
-      version: project.minNodeVersion!,
-    },
-  },
   permissions: {
     contents: JobPermission.READ,
   },
@@ -114,6 +109,13 @@ new TextFile(project, 'sonar-project.properties', {
     'sonar.tests=./test',
     'sonar.test.inclusions=**/*.test.*',
   ],
+});
+
+/**
+ * .nvmrc file
+ */
+new TextFile(project, '.nvmrc', {
+  lines: ['20.11.1'],
 });
 
 project.synth();
