@@ -1,9 +1,3 @@
-<br/><br/><br/>
-
-🚧 **Work-in-Progress**: Breaking changes may occur at any given point during `v0.x`.
-
-<br/><br/><br/>
-
 <div align="center">
 	<br/>
 	<br/>
