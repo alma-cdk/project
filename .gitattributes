@@ -8,6 +8,7 @@
 /.github/workflows/pull-request-lint.yml linguist-generated
 /.github/workflows/release-beta.yml linguist-generated
 /.github/workflows/release.yml linguist-generated
+/.github/workflows/sonarcloud-report.yml linguist-generated
 /.github/workflows/upgrade-beta.yml linguist-generated
 /.github/workflows/upgrade-main.yml linguist-generated
 /.gitignore linguist-generated
@@ -21,4 +22,5 @@
 /LICENSE linguist-generated
 /package-lock.json linguist-generated
 /package.json linguist-generated
+/sonar-project.properties linguist-generated
 /tsconfig.dev.json linguist-generated
