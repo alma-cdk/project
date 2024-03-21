@@ -1,7 +1,7 @@
 import { Match } from 'aws-cdk-lib/assertions';
 import { generateTestApp } from './helpers/app';
 import { sortTagsByKey, tagsAsDictionary, TagValue } from './helpers/tags';
-import { AccountStrategy, PC } from '../src';
+import { AccountStrategy, AccountType, PC } from '../src';
 
 
 describe('Integration', () => {
@@ -321,6 +321,36 @@ describe('Integration', () => {
       expect(PC.getAccountConfig(stack, 'sizing.production.cpu')).toBe(1024);
       expect(PC.getAccountConfig(stack, 'sizing.preproduction.cpu', 512)).toBe(512);
       expect(PC.getAccountConfig(stack, 'flags[0]')).toBe('foo');
+    });
+
+    test('dev/match', () => {
+      const {
+        stack,
+      } = generateTestApp({
+        ...props,
+        context: {
+          account: 'dev',
+          environment: 'development',
+        },
+      });
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'development')).toBe('dev');
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'feature/abc-123')).toBe('dev');
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'test')).toBe('dev');
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'staging')).toBe('dev');
+    });
+
+    test('prod/match', () => {
+      const {
+        stack,
+      } = generateTestApp({
+        ...props,
+        context: {
+          account: 'prod',
+          environment: 'production',
+        },
+      });
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'preproduction')).toBe('prod');
+      expect(AccountType.matchFromEnvironment(stack, props.accounts, 'production')).toBe('prod');
     });
 
   });
