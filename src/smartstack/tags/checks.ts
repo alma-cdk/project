@@ -1,6 +1,6 @@
 import { Construct } from 'constructs';
 import { Values } from './values';
-import { isNonEmptyString } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 export function hasAccount(values: Values): boolean {
   return isNonEmptyString(values.accountType);

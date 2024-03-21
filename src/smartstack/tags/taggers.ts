@@ -3,7 +3,7 @@ import { capitalCase, pascalCase } from 'change-case';
 import { Construct } from 'constructs';
 import { hasAccount, hasEnvironment, useLegacyTags } from './checks';
 import { tagKey, Values } from './values';
-import { isNonEmptyString } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 interface Tagger {
   (scope: Construct, tags: Tags, values: Values): void;

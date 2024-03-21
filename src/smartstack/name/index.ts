@@ -1,5 +1,5 @@
 import { renderTemplate, TemplateContext } from '../../template';
-import { isNonEmptyString } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 const template = `{#
     Template for Stack Name prop

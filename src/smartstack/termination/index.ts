@@ -1,4 +1,4 @@
-import { isNonEmptyString } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 export interface TerminationProtectionProps {
   override?: boolean;
