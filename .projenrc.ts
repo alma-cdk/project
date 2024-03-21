@@ -1,10 +1,11 @@
-const { awscdk, TextFile, javascript } = require('projen');
+import { awscdk, javascript } from 'projen';
 
 const project = new awscdk.AwsCdkConstructLibrary({
-
+  projenrcTs: true,
+  jsiiVersion: '~5.3.24',
   // Metadata
   stability: 'experimental',
-  authorName: 'Alma Media',
+  author: 'Alma Media',
   authorOrganization: true,
   authorAddress: 'opensource@almamedia.dev',
   name: '@alma-cdk/project',
