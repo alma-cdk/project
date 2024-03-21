@@ -1,4 +1,4 @@
-import { isSet } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 export interface TerminationProtectionProps {
   override?: boolean;
@@ -6,7 +6,7 @@ export interface TerminationProtectionProps {
 }
 
 function isEnvironmental(environmentType?: string): boolean {
-  return isSet(environmentType);
+  return isNonEmptyString(environmentType);
 }
 
 function isStagingProduction(environmentType?: string): boolean {

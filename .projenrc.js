@@ -1,7 +1,5 @@
 const { awscdk, TextFile, javascript } = require('projen');
 
-const nodejsVersion = '14.17.6';
-
 const project = new awscdk.AwsCdkConstructLibrary({
 
   // Metadata
@@ -25,30 +23,23 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  // python: {
-  //   distName: 'alma-cdk.project',
-  //   module: 'alma_cdk.project',
-  // },
+  python: {
+    distName: 'alma-cdk.project',
+    module: 'alma_cdk.project',
+  },
   publishToGo: {
     moduleName: 'github.com/alma-cdk/project-go',
   },
 
   // Dependencies
-  minNodeVersion: nodejsVersion,
-  cdkVersion: '2.24.1',
-  constructsVersion: '10.0.0',
-  peerDeps: ['constructs', 'aws-cdk-lib'],
+  cdkVersion: '2.133.0',
+  constructsVersion: '10.3.0',
   devDeps: [
-    '@types/lodash',
     '@types/nunjucks',
-    'aws-cdk-lib',
-    'constructs',
-    'lodash',
     'nunjucks',
   ],
   bundledDeps: [
     'change-case',
-    'lodash',
     'nunjucks',
   ],
 
@@ -62,10 +53,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'TODO.md',
   ],
 
-});
-
-new TextFile(project, '.nvmrc', {
-  lines: [nodejsVersion],
 });
 
 project.synth();

@@ -1,13 +1,13 @@
 import { Construct } from 'constructs';
 import { Values } from './values';
-import { isSet } from '../../utils/isSet';
+import { isNonEmptyString } from '../../utils/isNonEmptyString';
 
 export function hasAccount(values: Values): boolean {
-  return isSet(values.accountType);
+  return isNonEmptyString(values.accountType);
 }
 
 export function hasEnvironment(values: Values): boolean {
-  return isSet(values.environmentType);
+  return isNonEmptyString(values.environmentType);
 }
 
 export function useLegacyTags(scope: Construct): boolean {
