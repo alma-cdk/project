@@ -6,7 +6,7 @@ import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
-import { Project, EnvironmentWrapper, SmartStack, EC, Name, PathName, UrlName, ProjectProps, AC } from '../../src';
+import { Project, EnvironmentWrapper, SmartStack, EC, Name, PathName, UrlName, ProjectProps, AC, AccountWrapper } from '../../src';
 
 
 export class MyStack extends SmartStack {
@@ -53,6 +53,12 @@ export class MyStack extends SmartStack {
 }
 
 export class Environment extends EnvironmentWrapper {
+  constructor(scope: Construct) {
+    super(scope);
+  }
+}
+
+export class Account extends AccountWrapper {
   constructor(scope: Construct) {
     super(scope);
   }

@@ -5,6 +5,7 @@ import { Account } from './interfaces';
 import { Project } from './project';
 import { addError } from '../error';
 import { get } from '../utils/get';
+import { isNonEmptyString } from '../utils/isNonEmptyString';
 
 export class ProjectContext {
   /**
@@ -66,6 +67,14 @@ export class ProjectContext {
   }
 
   static getEnvironment(scope: Construct): string {
+    const environmentType = ProjectContext.tryGetEnvironment(scope);
+    const tryAccountType: string = ProjectContext.getAccountType(scope);
+    if (isNonEmptyString(environmentType) && tryAccountType == '') {
+      const accountType = ProjectContext._getAccountTypeByEnvironment(scope, environmentType);
+      if (isNonEmptyString(accountType)) {
+        AccountType.set(scope, accountType);
+      }
+    }
     const allowedEnvironments = ProjectContext.getAllowedEnvironments(scope);
     return EnvironmentType.get(scope, allowedEnvironments);
   }
