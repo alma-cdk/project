@@ -109,7 +109,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     import { SmartStack, Name, UrlName, PathName, EC } from '@alma-cdk/project';
 
     export class MyStack extends SmartStack {
-      constructor(scope: Construct, id: string, props?: StackProps) {
+      constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
         new dynamodb.Table(this, 'Table', {
