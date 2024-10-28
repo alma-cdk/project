@@ -39,7 +39,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   constructsVersion: '10.3.0',
   devDeps: [
     '@types/nunjucks',
-    'nunjucks',
   ],
   bundledDeps: [
     'change-case',
