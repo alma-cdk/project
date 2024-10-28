@@ -189,6 +189,7 @@ export abstract class AccountStrategy {
           EnvironmentLabel.DEVELOPMENT,
           EnvironmentLabel.FEATURE,
           EnvironmentLabel.TEST,
+          EnvironmentLabel.QA,
           EnvironmentLabel.STAGING,
         ],
       },
