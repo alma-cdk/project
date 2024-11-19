@@ -4,7 +4,7 @@ import { JobPermission } from 'projen/lib/github/workflows-model';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
-  jsiiVersion: '~5.3.24',
+  jsiiVersion: '~5.4.0',
   // Metadata
   stability: 'experimental',
   author: 'Alma Media',
