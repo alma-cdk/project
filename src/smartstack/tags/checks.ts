@@ -26,6 +26,8 @@ export function useLegacyTags(scope: Construct): boolean {
  * Due to a bug in v0, the `Contact` and `Organization` tags were NOT applied as they should have.
  * This flag can be used to enforce behavior that matches v0 implementation:
  * I.e. `Contact` and `Organization` tags are NOT applied.
+ * 
+ * @deprecated This behavior is not encouraged and will be removed in v2.
  */
 export function useCompatibilityV0Tags(scope: Construct): boolean {
   const contextKey = '@alma-cdk/project:compatibility:v0:tags';
