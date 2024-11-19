@@ -210,3 +210,21 @@ Generally speaking you would be most interested in the following:
 - AccountContext (AC)
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
+
+## Migration
+
+### v0 to v1
+
+#### Tagging behavior
+
+Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they should have. This means that by default, upgrading from v0→v1 introduces CloudFormation diff. Basically adding the `Contact` and `Organization` tags to all resources. This should be safe operation, but we allow disabling it via a feature flag (note that `Contact` and `Organization` tags will most likely be enforced in future `v2`).
+
+```diff
+// cdk.json
+{
+  "context": {
+    // existing context keys
++   "@alma-cdk/project:compatibility:v0:tags": true
+  },
+}
+```
