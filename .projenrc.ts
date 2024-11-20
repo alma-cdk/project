@@ -27,6 +27,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'Opinionated CDK Project “Framework”',
   repositoryUrl: 'https://github.com/alma-cdk/project.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
+  prettier: true,
   
   // Publish configuration
   majorVersion: 0,
