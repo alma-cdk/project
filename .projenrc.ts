@@ -17,7 +17,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   minNodeVersion: nodejsVersion.MIN,
   maxNodeVersion: nodejsVersion.MAX,
   projenrcTs: true,
-  jsiiVersion: '~5.4.0',
+  jsiiVersion: '~5.5.0',
   // Metadata
   stability: 'experimental',
   author: 'Alma Media',
