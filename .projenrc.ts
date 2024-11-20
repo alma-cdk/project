@@ -2,7 +2,20 @@ import { awscdk, javascript, TextFile } from 'projen';
 import { WorkflowSteps } from 'projen/lib/github';
 import { JobPermission } from 'projen/lib/github/workflows-model';
 
+const nodejsVersion = {
+  /**
+   * Minimum supported version.
+   */
+  MIN: '18',
+  /**
+   * Maximum supported version.
+   */
+  MAX: '23',
+} as const;
+
 const project = new awscdk.AwsCdkConstructLibrary({
+  minNodeVersion: nodejsVersion.MIN,
+  maxNodeVersion: nodejsVersion.MAX,
   projenrcTs: true,
   jsiiVersion: '~5.3.24',
   // Metadata
@@ -39,6 +52,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   constructsVersion: '10.3.0',
   devDeps: [
     '@types/nunjucks',
+    `@types/node@^${nodejsVersion.MIN}`,
   ],
   bundledDeps: [
     'change-case',
@@ -117,7 +131,7 @@ new TextFile(project, 'sonar-project.properties', {
  * .nvmrc file
  */
 new TextFile(project, '.nvmrc', {
-  lines: ['20.11.1'],
+  lines: [nodejsVersion.MIN],
 });
 
 project.synth();
