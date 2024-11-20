@@ -27,6 +27,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'Opinionated CDK Project “Framework”',
   repositoryUrl: 'https://github.com/alma-cdk/project.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
+  
+  // Publish configuration
   majorVersion: 0,
   releaseBranches: {
     beta: {
@@ -35,7 +37,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
       npmDistTag: 'beta',
     },
   },
-  // Publish configuration
   defaultReleaseBranch: 'main',
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
