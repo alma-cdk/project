@@ -28,6 +28,19 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/alma-cdk/project.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
   prettier: true,
+  prettierOptions: {
+    ignoreFileOptions: {
+      ignorePatterns: [
+        ".github/**/*",
+        ".projen/**/*",
+        ".vscode/**/*",
+        "coverage/**/*",
+        "dist/**/*",
+        "/*.*",
+        "!.projenrc.ts",
+      ],
+    },
+  },
   
   // Publish configuration
   majorVersion: 0,
@@ -72,6 +85,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.scannerwork/',
   ],
 
+});
+
+project.addTask('format', {
+  exec: 'prettier --write .',
 });
 
 /**
