@@ -1,7 +1,7 @@
 import { EnvironmentType } from "./environment-type";
+import { expectErrorMetadata } from "../__test__/expectErrorMetadata";
 import { TestableProjectStack } from "../__test__/TestableProjectStack";
 
-import { expectErrorMetadata } from "../__test__/expectErrorMetadata";
 import { AccountStrategy, AccountType } from "../configurations/accounts";
 
 describe("set", () => {
