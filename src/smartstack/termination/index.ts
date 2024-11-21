@@ -1,4 +1,4 @@
-import { isNonEmptyString } from '../../utils/isNonEmptyString';
+import { isNonEmptyString } from "../../utils/isNonEmptyString";
 
 export interface TerminationProtectionProps {
   override?: boolean;
@@ -10,13 +10,14 @@ function isEnvironmental(environmentType?: string): boolean {
 }
 
 function isStagingProduction(environmentType?: string): boolean {
-  return /^(staging|production)$/.test(environmentType || ''); // TODO: should this use isStable?
+  return /^(staging|production)$/.test(environmentType || ""); // TODO: should this use isStable?
 }
 
-export function decideTerminationProtection(props: TerminationProtectionProps): boolean {
-
+export function decideTerminationProtection(
+  props: TerminationProtectionProps,
+): boolean {
   // allow explicit override from end-user
-  if (typeof props.override === 'boolean') return props.override;
+  if (typeof props.override === "boolean") return props.override;
 
   // non-environmental stacks always have termination protection
   if (!isEnvironmental(props.environmentType)) return true;

@@ -1,7 +1,7 @@
 const regionRegexp = /^[a-z-]{2,}-[a-z-]{2,}-\d$/;
 
 export function ensureRegionString(value: string | undefined): boolean {
-  if (typeof value !== 'string') return false;
+  if (typeof value !== "string") return false;
   return regionRegexp.test(value);
 }
 
@@ -18,5 +18,5 @@ export function resolveDefaultRegion(regionProp?: string): string {
     return <string>process.env.AWS_REGION;
   }
 
-  return 'us-east-1';
+  return "us-east-1";
 }

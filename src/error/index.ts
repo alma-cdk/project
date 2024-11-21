@@ -1,1 +1,1 @@
-export { addError } from './add';
+export { addError } from "./add";

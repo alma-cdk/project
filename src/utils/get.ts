@@ -1,5 +1,8 @@
-
-export function get(obj: Record<string, any> | undefined, path: string, defValue?: any): any {
+export function get(
+  obj: Record<string, any> | undefined,
+  path: string,
+  defValue?: any,
+): any {
   // Regex explained: https://regexr.com/58j0k
   const pathArray = path.match(/([^[.\]])+/g);
   const result = pathArray?.reduce((prevObj, key) => {

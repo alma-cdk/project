@@ -1,32 +1,32 @@
-import { awscdk, javascript, TextFile } from 'projen';
-import { WorkflowSteps } from 'projen/lib/github';
-import { JobPermission } from 'projen/lib/github/workflows-model';
+import { awscdk, javascript, TextFile } from "projen";
+import { WorkflowSteps } from "projen/lib/github";
+import { JobPermission } from "projen/lib/github/workflows-model";
 
 const nodejsVersion = {
   /**
    * Minimum supported version.
    */
-  MIN: '18',
+  MIN: "18",
   /**
    * Maximum supported version.
    */
-  MAX: '23',
+  MAX: "23",
 } as const;
 
 const project = new awscdk.AwsCdkConstructLibrary({
   minNodeVersion: nodejsVersion.MIN,
   maxNodeVersion: nodejsVersion.MAX,
   projenrcTs: true,
-  jsiiVersion: '~5.5.0',
+  jsiiVersion: "~5.5.0",
   // Metadata
-  stability: 'experimental',
-  author: 'Alma Media',
+  stability: "experimental",
+  author: "Alma Media",
   authorOrganization: true,
-  authorAddress: 'opensource@almamedia.dev',
-  name: '@alma-cdk/project',
-  description: 'Opinionated CDK Project “Framework”',
-  repositoryUrl: 'https://github.com/alma-cdk/project.git',
-  keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
+  authorAddress: "opensource@almamedia.dev",
+  name: "@alma-cdk/project",
+  description: "Opinionated CDK Project “Framework”",
+  repositoryUrl: "https://github.com/alma-cdk/project.git",
+  keywords: ["cdk", "aws-cdk", "awscdk", "aws"],
   prettier: true,
   prettierOptions: {
     ignoreFileOptions: {
@@ -41,68 +41,62 @@ const project = new awscdk.AwsCdkConstructLibrary({
       ],
     },
   },
-  
+
   // Publish configuration
   majorVersion: 0,
   releaseBranches: {
     beta: {
       majorVersion: 1,
-      prerelease: 'beta',
-      npmDistTag: 'beta',
+      prerelease: "beta",
+      npmDistTag: "beta",
     },
   },
-  defaultReleaseBranch: 'main',
+  defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   python: {
-    distName: 'alma-cdk.project',
-    module: 'alma_cdk.project',
+    distName: "alma-cdk.project",
+    module: "alma_cdk.project",
   },
   publishToGo: {
-    moduleName: 'github.com/alma-cdk/project-go',
+    moduleName: "github.com/alma-cdk/project-go",
   },
 
   // Dependencies
-  cdkVersion: '2.133.0',
-  constructsVersion: '10.3.0',
-  devDeps: [
-    '@types/nunjucks',
-    `@types/node@^${nodejsVersion.MIN}`,
-  ],
-  bundledDeps: [
-    'change-case',
-    'nunjucks',
-  ],
+  cdkVersion: "2.133.0",
+  constructsVersion: "10.3.0",
+  devDeps: ["@types/nunjucks", `@types/node@^${nodejsVersion.MIN}`],
+  bundledDeps: ["change-case", "nunjucks"],
 
   // Gitignore
   gitignore: [
-    '.DS_Store',
-    '/examples/**/cdk.context.json',
-    '/examples/**/node_modules',
-    '/examples/**/cdk.out',
-    '/examples/**/.git',
-    'TODO.md',
-    '.scannerwork/',
+    ".DS_Store",
+    "/examples/**/cdk.context.json",
+    "/examples/**/node_modules",
+    "/examples/**/cdk.out",
+    "/examples/**/.git",
+    "TODO.md",
+    ".scannerwork/",
   ],
-
 });
 
-project.addTask('format', {
-  exec: 'prettier --write .',
+project.addTask("format", {
+  exec: "prettier --write .",
 });
 
 /**
  * Sonarcloud report workflow
  */
-const sonarCloudReportWorkflow = project.github?.addWorkflow('sonarcloud-report');
+const sonarCloudReportWorkflow =
+  project.github?.addWorkflow("sonarcloud-report");
 sonarCloudReportWorkflow?.on({
-  push: { branches: ['main', 'beta'] },
+  push: { branches: ["main", "beta"] },
   pullRequest: {
-    types: ['opened', 'synchronize', 'reopened'],
+    types: ["opened", "synchronize", "reopened"],
   },
 });
-sonarCloudReportWorkflow?.addJob('sonarcloud-report', {
-  runsOn: ['ubuntu-latest'],
+sonarCloudReportWorkflow?.addJob("sonarcloud-report", {
+  runsOn: ["ubuntu-latest"],
   permissions: {
     contents: JobPermission.READ,
   },
@@ -114,15 +108,15 @@ sonarCloudReportWorkflow?.addJob('sonarcloud-report', {
     }),
     ...project.renderWorkflowSetup(),
     {
-      name: 'Run tests',
-      run: 'npm run test',
+      name: "Run tests",
+      run: "npm run test",
     },
     {
-      name: 'SonarCloud Scan',
-      uses: 'SonarSource/sonarcloud-github-action@v2',
+      name: "SonarCloud Scan",
+      uses: "SonarSource/sonarcloud-github-action@v2",
       env: {
-        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}',
-        SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}',
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+        SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}",
       },
     },
   ],
@@ -131,25 +125,25 @@ sonarCloudReportWorkflow?.addJob('sonarcloud-report', {
 /**
  * Sonarcloud properties file
  */
-new TextFile(project, 'sonar-project.properties', {
+new TextFile(project, "sonar-project.properties", {
   lines: [
-    'sonar.host.url=https://sonarcloud.io',
-    `sonar.projectKey=${project.name.replace('@', '').replace('/', '_')}`,
-    `sonar.organization=${project.name.replace('@', '').split('/')[0]}`,
-    'sonar.javascript.lcov.reportPaths=./coverage/lcov.info',
-    'sonar.sources=./src',
-    'sonar.tests=./test',
-    'sonar.test.inclusions=**/*.test.*',
-    'sonar.issue.ignore.multicriteria=e1',
-    'sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874',
-    'sonar.issue.ignore.multicriteria.e1.resourceKey=src/smartstack/tags/*.ts',
+    "sonar.host.url=https://sonarcloud.io",
+    `sonar.projectKey=${project.name.replace("@", "").replace("/", "_")}`,
+    `sonar.organization=${project.name.replace("@", "").split("/")[0]}`,
+    "sonar.javascript.lcov.reportPaths=./coverage/lcov.info",
+    "sonar.sources=./src",
+    "sonar.tests=./test",
+    "sonar.test.inclusions=**/*.test.*",
+    "sonar.issue.ignore.multicriteria=e1",
+    "sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874",
+    "sonar.issue.ignore.multicriteria.e1.resourceKey=src/smartstack/tags/*.ts",
   ],
 });
 
 /**
  * .nvmrc file
  */
-new TextFile(project, '.nvmrc', {
+new TextFile(project, ".nvmrc", {
   lines: [nodejsVersion.MIN],
 });
 

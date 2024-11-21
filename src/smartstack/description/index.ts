@@ -1,4 +1,4 @@
-import { renderTemplate, TemplateContext } from '../../template';
+import { renderTemplate, TemplateContext } from "../../template";
 
 const template = `{# 
     Template for Stack Description prop

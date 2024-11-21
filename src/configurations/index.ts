@@ -4,9 +4,6 @@ export {
   AccountStrategyOneProps as AccountsOneProps,
   AccountStrategyTwoProps as AccountsTwoProps,
   AccountStrategyThreeProps as AccountsThreeProps,
-} from './accounts';
+} from "./accounts";
 
-export {
-  EnvironmentCategory,
-  EnvironmentLabel,
-} from './environments';
+export { EnvironmentCategory, EnvironmentLabel } from "./environments";

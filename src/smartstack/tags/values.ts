@@ -1,5 +1,5 @@
-import { Construct } from 'constructs';
-import { ProjectContext } from '../../project';
+import { Construct } from "constructs";
+import { ProjectContext } from "../../project";
 
 export interface Values {
   accountType?: string; // TODO allow fail (tryGet...) ??
@@ -11,14 +11,14 @@ export interface Values {
 }
 
 export enum tagKey {
-  NAME='Name',
-  ACCOUNT='Account',
-  ENVIRONMENT='Environment',
-  LEGACY_PROJECT_ENVIRONMENT='ProjectAndEnvironment',
-  PROJECT='Project',
-  AUTHOR_NAME='Author',
-  AUTHOR_ORGANIZATION='Organization',
-  AUTHOR_EMAIL='Contact',
+  NAME = "Name",
+  ACCOUNT = "Account",
+  ENVIRONMENT = "Environment",
+  LEGACY_PROJECT_ENVIRONMENT = "ProjectAndEnvironment",
+  PROJECT = "Project",
+  AUTHOR_NAME = "Author",
+  AUTHOR_ORGANIZATION = "Organization",
+  AUTHOR_EMAIL = "Contact",
 }
 
 export function resolveTagValues(scope: Construct): Values {
@@ -31,4 +31,3 @@ export function resolveTagValues(scope: Construct): Values {
     authorEmail: ProjectContext.getAuthorEmail(scope),
   };
 }
-

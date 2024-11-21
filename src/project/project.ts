@@ -1,8 +1,8 @@
-import { App, AppProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import { Account, ProjectConfiguration } from './interfaces';
-import { resolveDefaultRegion } from './resolve-region';
-import { addError } from '../error';
+import { App, AppProps } from "aws-cdk-lib";
+import { Construct } from "constructs";
+import { Account, ProjectConfiguration } from "./interfaces";
+import { resolveDefaultRegion } from "./resolve-region";
+import { addError } from "../error";
 
 /** Props given to `Project`.
  *
@@ -43,18 +43,18 @@ export interface ProjectProps extends ProjectConfiguration, AppProps {}
  * })
  */
 export class Project extends App {
-
   /** Namespace/key how this tool internally keeps track of the project configuration */
-  public static readonly CONTEXT_SCOPE = '@alma-cdk/project@v1';
+  public static readonly CONTEXT_SCOPE = "@alma-cdk/project@v1";
 
   /** Return the project configuration as given in ProjectProps */
   public static getConfiguration(scope: Construct): ProjectConfiguration {
     const projectConfiguration = <ProjectConfiguration | undefined>(
       scope.node.tryGetContext(Project.CONTEXT_SCOPE)
     );
-    if (typeof projectConfiguration === 'undefined') {
-      addError(scope,
-        'Project configuration missing. Did you forgot to instantiate new Project (instead of new App)?',
+    if (typeof projectConfiguration === "undefined") {
+      addError(
+        scope,
+        "Project configuration missing. Did you forgot to instantiate new Project (instead of new App)?",
       );
     }
     return <ProjectConfiguration>projectConfiguration;
@@ -65,7 +65,8 @@ export class Project extends App {
     const projectConfiguration = Project.getConfiguration(scope);
 
     if (!(accountType in projectConfiguration.accounts)) {
-      addError(scope,
+      addError(
+        scope,
         `Account Type ${accountType} not defined in Project Configuration Accounts`,
       );
     }
@@ -75,7 +76,6 @@ export class Project extends App {
 
   /** Initializes a new Project (which can be used in place of cdk.App) */
   constructor(props: ProjectProps) {
-
     // Define the project configuration set into App context
     const config: ProjectConfiguration = {
       name: props.name,
@@ -86,14 +86,14 @@ export class Project extends App {
 
     // TODO validate no duplicate environments in accounts
 
-    super({ // initialize the cdk.App
+    super({
+      // initialize the cdk.App
       ...props, // and pass in the given props
-      context: { // but overwrite context
+      context: {
+        // but overwrite context
         ...props.context, // while still passing the context given in props
         [Project.CONTEXT_SCOPE]: config, // and inject project context
       },
     });
   }
-
 }
-

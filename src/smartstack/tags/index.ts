@@ -1,8 +1,15 @@
-import { Tags } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import { excludeSpecials } from './exclude';
-import { tagAccount, tagEnvironment, tagProject, tagAuthorEmail, tagAuthorName, tagAuthorOrganization } from './taggers';
-import { resolveTagValues } from './values';
+import { Tags } from "aws-cdk-lib";
+import { Construct } from "constructs";
+import { excludeSpecials } from "./exclude";
+import {
+  tagAccount,
+  tagEnvironment,
+  tagProject,
+  tagAuthorEmail,
+  tagAuthorName,
+  tagAuthorOrganization,
+} from "./taggers";
+import { resolveTagValues } from "./values";
 
 function getTags(scope: Construct): Tags {
   return Tags.of(scope);
