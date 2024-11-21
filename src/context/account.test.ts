@@ -1,7 +1,6 @@
 import { AccountContext } from "./account";
 import { TestableProjectStack } from "../__test__/TestableProjectStack";
-import { AccountStrategy } from "../configurations/accounts";
-import { AccountType } from "../configurations/accounts";
+import { AccountStrategy, AccountType } from "../configurations/accounts";
 
 describe("getAccountId", () => {
   describe("one account", () => {
