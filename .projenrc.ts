@@ -27,6 +27,22 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'Opinionated CDK Project “Framework”',
   repositoryUrl: 'https://github.com/alma-cdk/project.git',
   keywords: ['cdk', 'aws-cdk', 'awscdk', 'aws'],
+  prettier: true,
+  prettierOptions: {
+    ignoreFileOptions: {
+      ignorePatterns: [
+        ".github/**/*",
+        ".projen/**/*",
+        ".vscode/**/*",
+        "coverage/**/*",
+        "dist/**/*",
+        "/*.*",
+        "!.projenrc.ts",
+      ],
+    },
+  },
+  
+  // Publish configuration
   majorVersion: 0,
   releaseBranches: {
     beta: {
@@ -35,7 +51,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
       npmDistTag: 'beta',
     },
   },
-  // Publish configuration
   defaultReleaseBranch: 'main',
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
@@ -70,6 +85,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.scannerwork/',
   ],
 
+});
+
+project.addTask('format', {
+  exec: 'prettier --write .',
 });
 
 /**

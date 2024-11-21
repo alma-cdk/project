@@ -13,6 +13,8 @@
     ".gitignore",
     ".mergify.yml",
     ".nvmrc",
+    ".prettierignore",
+    ".prettierrc.json",
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
