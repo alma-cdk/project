@@ -27,11 +27,14 @@ export class TestableProjectStack extends SmartStack {
     });
 
     project.node.setContext("account-type", accountType);
+    project.node.setContext("account", accountType);
 
     let wrapper: AccountWrapper | EnvironmentWrapper;
 
     if (environmentType) {
       project.node.setContext("environment-type", environmentType);
+      project.node.setContext("environment", environmentType);
+      project.node.setContext("env", environmentType);
       wrapper = new EnvironmentWrapper(project);
     } else {
       wrapper = new AccountWrapper(project);
