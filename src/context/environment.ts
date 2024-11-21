@@ -193,7 +193,7 @@ export class EnvironmentContext {
    * @returns string indicating the feature this environment relates to, if not feature environment returns an empty string
    */
   static getFeatureInfo(scope: Construct): string {
-    if (EnvironmentContext.isFeature(scope) !== false) return "";
+    if (EnvironmentContext.isFeature(scope) !== true) return "";
     const name = EnvironmentContext.getName(scope);
     return name.replace(/^feature\//i, "");
   }
