@@ -2,15 +2,13 @@ class EnvRegExp {
   private regexp: RegExp;
 
   constructor(base: string) {
-    this.regexp = new RegExp(`^${base}$`, 'i');
+    this.regexp = new RegExp(`^${base}$`, "i");
   }
 
   test(value: string): boolean {
     return this.regexp.test(value);
   }
-
 }
-
 
 /**
  * Availalbe Enviroment Categories.
@@ -20,11 +18,11 @@ class EnvRegExp {
  * environments (such as `test` or `preproduction`).
  */
 export enum EnvironmentCategory {
-  MOCK = 'mock',
-  DEVELOPMENT = 'development',
-  FEATURE = 'feature',
-  VERIFICATION = 'verification',
-  STABLE = 'stable',
+  MOCK = "mock",
+  DEVELOPMENT = "development",
+  FEATURE = "feature",
+  VERIFICATION = "verification",
+  STABLE = "stable",
 }
 
 /**
@@ -36,14 +34,14 @@ export enum EnvironmentCategory {
  * as either `feature` or `qa`.
  */
 export enum EnvironmentLabel {
-  MOCK='mock[0-9]',
-  DEVELOPMENT='development',
-  FEATURE='feature/[/a-zA-z0-9-]+',
-  TEST='test', // replaces "prestaging"
-  STAGING='staging',
-  QA='qa[0-9]',
-  PREPRODUCTION='preproduction',
-  PRODUCTION='production',
+  MOCK = "mock[0-9]",
+  DEVELOPMENT = "development",
+  FEATURE = "feature/[/a-zA-z0-9-]+",
+  TEST = "test", // replaces "prestaging"
+  STAGING = "staging",
+  QA = "qa[0-9]",
+  PREPRODUCTION = "preproduction",
+  PRODUCTION = "production",
 }
 
 /**
@@ -60,7 +58,6 @@ export const labelToCategory: Record<EnvironmentLabel, EnvironmentCategory> = {
   [EnvironmentLabel.PREPRODUCTION]: EnvironmentCategory.VERIFICATION,
   [EnvironmentLabel.PRODUCTION]: EnvironmentCategory.STABLE,
 };
-
 
 const ENV_REGEXP_MOCK = new EnvRegExp(EnvironmentLabel.MOCK);
 const ENV_REGEXP_FEATURE = new EnvRegExp(EnvironmentLabel.FEATURE);
@@ -79,8 +76,8 @@ export function getLabelByName(name: string): EnvironmentLabel {
 /**
  * TODO document
  */
-export function getCategoryByLabel(label: EnvironmentLabel): EnvironmentCategory {
+export function getCategoryByLabel(
+  label: EnvironmentLabel,
+): EnvironmentCategory {
   return labelToCategory[label];
 }
-
-

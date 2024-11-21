@@ -1,10 +1,8 @@
-import { Construct } from 'constructs';
-import { AccountType } from '../configurations/accounts';
-import { ProjectContext } from '../project';
-
+import { Construct } from "constructs";
+import { AccountType } from "../configurations/accounts";
+import { ProjectContext } from "../project";
 
 export class AccountContext {
-
   static getAccountId(scope: Construct): string {
     return ProjectContext.getAccountId(scope);
   }
@@ -38,9 +36,11 @@ export class AccountContext {
     return AccountContext.isAccountTypeMatch(scope, AccountType.PROD);
   }
 
-  private static isAccountTypeMatch(scope: Construct, matchType: AccountType): boolean {
+  private static isAccountTypeMatch(
+    scope: Construct,
+    matchType: AccountType,
+  ): boolean {
     const type = AccountContext.getAccountType(scope);
     return type === matchType;
   }
-
 }

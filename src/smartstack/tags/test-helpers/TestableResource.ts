@@ -1,6 +1,6 @@
-import * as cdk from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
-import { Construct } from 'constructs';
+import * as cdk from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import { Construct } from "constructs";
 
 interface TestableResourceProps {
   id?: string;
@@ -12,7 +12,7 @@ interface TestableResourceProps {
  * A helper class that allows easier testing.
  */
 export class TestableResource extends cdk.Resource implements cdk.ITaggable {
-  static readonly TYPE = 'For::Testing';
+  static readonly TYPE = "For::Testing";
 
   public readonly tags = new cdk.TagManager(
     cdk.TagType.KEY_VALUE,
@@ -20,7 +20,7 @@ export class TestableResource extends cdk.Resource implements cdk.ITaggable {
   );
 
   constructor(props: TestableResourceProps = {}) {
-    const { id = 'TestScope', scope = new cdk.Stack(), context = {} } = props;
+    const { id = "TestScope", scope = new cdk.Stack(), context = {} } = props;
 
     Object.entries(context).forEach(([key, value]) => {
       scope.node.setContext(key, value);
@@ -28,7 +28,7 @@ export class TestableResource extends cdk.Resource implements cdk.ITaggable {
 
     super(scope, id);
 
-    new cdk.CfnResource(this, 'Resource', {
+    new cdk.CfnResource(this, "Resource", {
       type: TestableResource.TYPE,
       properties: {
         Tags: this.tags.renderedTags,

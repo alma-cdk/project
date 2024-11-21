@@ -1,4 +1,3 @@
-
 export function isNonEmptyString(value?: unknown): value is string {
-  return (typeof value === 'string' && value.length > 0);
+  return typeof value === "string" && value.length > 0;
 }

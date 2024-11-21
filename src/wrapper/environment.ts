@@ -1,6 +1,6 @@
-import { pascalCase } from 'change-case';
-import { Construct } from 'constructs';
-import { EnvironmentContext } from '../context/environment';
+import { pascalCase } from "change-case";
+import { Construct } from "constructs";
+import { EnvironmentContext } from "../context/environment";
 
 /**
  * Wrapper for environmental stacks.
@@ -12,5 +12,3 @@ export class EnvironmentWrapper extends Construct {
     super(scope, id);
   }
 }
-
-

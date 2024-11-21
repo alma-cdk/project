@@ -1,15 +1,15 @@
-import { EnvironmentLabel } from './environments';
-import { Account } from '../project';
+import { EnvironmentLabel } from "./environments";
+import { Account } from "../project";
 
 /**
  * Enumeration of all account types.
  */
 export enum AccountType {
-  MOCK='mock',
-  SHARED='shared',
-  DEV='dev',
-  PREPROD='preprod',
-  PROD='prod',
+  MOCK = "mock",
+  SHARED = "shared",
+  DEV = "dev",
+  PREPROD = "preprod",
+  PROD = "prod",
 }
 
 /** Interface for a single account type configuration. */
@@ -40,7 +40,7 @@ export interface AccountStrategyThreeProps {
 }
 
 const emptyMockAccountProps: AccountConfiguration = {
-  id: '123456789012',
+  id: "123456789012",
 };
 
 /**
@@ -51,7 +51,6 @@ const emptyMockAccountProps: AccountConfiguration = {
  * - Three Accounts: `dev`+`preprod`+`prod`
  */
 export abstract class AccountStrategy {
-
   /**
    * Enables single account strategy.
    *
@@ -76,9 +75,7 @@ export abstract class AccountStrategy {
     return {
       [AccountType.MOCK]: {
         ...(mockProps ? mockProps : emptyMockAccountProps),
-        environments: [
-          EnvironmentLabel.MOCK,
-        ],
+        environments: [EnvironmentLabel.MOCK],
       },
       [AccountType.SHARED]: {
         ...props[AccountType.SHARED],
@@ -123,9 +120,7 @@ export abstract class AccountStrategy {
     return {
       [AccountType.MOCK]: {
         ...(mockProps ? mockProps : emptyMockAccountProps),
-        environments: [
-          EnvironmentLabel.MOCK,
-        ],
+        environments: [EnvironmentLabel.MOCK],
       },
       [AccountType.DEV]: {
         ...props[AccountType.DEV],
@@ -174,14 +169,14 @@ export abstract class AccountStrategy {
    *   },
    * }),
    */
-  public static three(props: AccountStrategyThreeProps): Record<string, Account> {
+  public static three(
+    props: AccountStrategyThreeProps,
+  ): Record<string, Account> {
     const mockProps = props[AccountType.MOCK];
     return {
       [AccountType.MOCK]: {
         ...(mockProps ? mockProps : emptyMockAccountProps),
-        environments: [
-          EnvironmentLabel.MOCK,
-        ],
+        environments: [EnvironmentLabel.MOCK],
       },
       [AccountType.DEV]: {
         ...props[AccountType.DEV],
@@ -196,19 +191,13 @@ export abstract class AccountStrategy {
 
       [AccountType.PREPROD]: {
         ...props[AccountType.PREPROD],
-        environments: [
-          EnvironmentLabel.QA,
-          EnvironmentLabel.PREPRODUCTION,
-        ],
+        environments: [EnvironmentLabel.QA, EnvironmentLabel.PREPRODUCTION],
       },
 
       [AccountType.PROD]: {
         ...props[AccountType.PROD],
-        environments: [
-          EnvironmentLabel.PRODUCTION,
-        ],
+        environments: [EnvironmentLabel.PRODUCTION],
       },
     };
   }
-
 }

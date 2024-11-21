@@ -1,6 +1,6 @@
-import { Construct } from 'constructs';
-import { Values } from './values';
-import { isNonEmptyString } from '../../utils/isNonEmptyString';
+import { Construct } from "constructs";
+import { Values } from "./values";
+import { isNonEmptyString } from "../../utils/isNonEmptyString";
 
 export function hasAccount(values: Values): boolean {
   return isNonEmptyString(values.accountType);
@@ -17,7 +17,7 @@ export function hasEnvironment(values: Values): boolean {
  * @deprecated This behavior is not encouraged and will be removed in v2. Additionally according to GitHub search, this is not used anymore.
  */
 export function useLegacyTags(scope: Construct): boolean {
-  const contextKey = '@alma-cdk/project:legacyTags';
+  const contextKey = "@alma-cdk/project:legacyTags";
   return scope.node.tryGetContext(contextKey) === true;
 }
 
@@ -30,6 +30,6 @@ export function useLegacyTags(scope: Construct): boolean {
  * @deprecated This behavior is not encouraged and will be removed in v2.
  */
 export function useCompatibilityV0Tags(scope: Construct): boolean {
-  const contextKey = '@alma-cdk/project:compatibility:v0:tags';
+  const contextKey = "@alma-cdk/project:compatibility:v0:tags";
   return scope.node.tryGetContext(contextKey) === true;
 }

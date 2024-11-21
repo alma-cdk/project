@@ -1,7 +1,5 @@
-
 /** AWS account configuration. */
 export interface Account {
-
   /** AWS Account ID.
    *
    * @example
@@ -44,7 +42,6 @@ export interface Account {
 
 /** Author information. I.e. who owns/develops this project/service. */
 export interface Author {
-
   /** Human-readable name for the organization responsible for this project/service.
    *
    * @example
@@ -68,7 +65,6 @@ export interface Author {
 }
 
 export interface ProjectConfiguration {
-
   /** Name of your project/service.
    *
    * Prefer `hyphen-case`.
@@ -88,7 +84,7 @@ export interface ProjectConfiguration {
    * 1. `$CDK_DEFAULT_REGION`
    * 2. `$AWS_REGION`
    * 3. 'us-east-1'
-  */
+   */
   readonly defaultRegion?: string;
 
   /** Dictionary of AWS account specific configuration.
