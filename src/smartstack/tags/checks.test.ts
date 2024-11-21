@@ -1,5 +1,5 @@
 import { useCompatibilityV0Tags, useLegacyTags } from "./checks";
-import { TestableResource } from "./test-helpers/TestableResource";
+import { TestableResource } from "../../__test__/TestableResource";
 
 describe("useLegacyTags", () => {
   test("returns false if the context key is not set", () => {
