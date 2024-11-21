@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnvironmentCategory 1`] = `
+Object {
+  "DEVELOPMENT": "development",
+  "FEATURE": "feature",
+  "MOCK": "mock",
+  "STABLE": "stable",
+  "VERIFICATION": "verification",
+}
+`;
+
+exports[`EnvironmentLabel 1`] = `
+Object {
+  "DEVELOPMENT": "development",
+  "FEATURE": "feature/[/a-zA-z0-9-]+",
+  "MOCK": "mock[0-9]",
+  "PREPRODUCTION": "preproduction",
+  "PRODUCTION": "production",
+  "QA": "qa[0-9]",
+  "STAGING": "staging",
+  "TEST": "test",
+}
+`;
+
+exports[`labelToCategory 1`] = `
+Object {
+  "development": "development",
+  "feature/[/a-zA-z0-9-]+": "feature",
+  "mock[0-9]": "mock",
+  "preproduction": "verification",
+  "production": "stable",
+  "qa[0-9]": "verification",
+  "staging": "stable",
+  "test": "verification",
+}
+`;
