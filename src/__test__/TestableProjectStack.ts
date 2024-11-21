@@ -1,3 +1,4 @@
+import * as cdk from "aws-cdk-lib";
 import {
   Project,
   SmartStack,
@@ -8,21 +9,35 @@ import {
 } from "..";
 
 interface TestStackInSharedAccountProps {
+  defaultRegion?: string;
   accounts: Record<string, Account>;
   accountType: AccountType;
   environmentType?: string;
+  stackProps?: cdk.StackProps;
 }
 
 export class TestableProjectStack extends SmartStack {
+  public readonly projectName: string;
+  public readonly stackConstructId: string;
+
   constructor(props: TestStackInSharedAccountProps) {
-    const { accounts, accountType, environmentType } = props;
+    const {
+      accounts,
+      accountType,
+      environmentType,
+      defaultRegion,
+      stackProps,
+    } = props;
+
+    const projectName = "test-project";
 
     const project = new Project({
-      name: "test",
+      name: projectName,
       author: {
         name: "test",
         email: "test@example.com",
       },
+      defaultRegion,
       accounts,
     });
 
@@ -40,8 +55,14 @@ export class TestableProjectStack extends SmartStack {
       wrapper = new AccountWrapper(project);
     }
 
-    super(wrapper, "Test", {
+    const stackConstructId = "TestStack";
+
+    super(wrapper, stackConstructId, {
       description: "This stack is for testing purposes only",
+      ...stackProps,
     });
+
+    this.projectName = projectName;
+    this.stackConstructId = stackConstructId;
   }
 }
