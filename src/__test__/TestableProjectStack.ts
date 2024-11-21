@@ -38,7 +38,7 @@ export class TestableProjectStack extends SmartStack {
     }
 
     super(wrapper, "Test", {
-      description: "Test stack",
+      description: "This stack is for testing purposes only",
     });
   }
 }
