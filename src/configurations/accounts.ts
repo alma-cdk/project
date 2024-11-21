@@ -39,7 +39,7 @@ export interface AccountStrategyThreeProps {
   readonly [AccountType.PROD]: AccountConfiguration;
 }
 
-const emptyMockAccountProps: AccountConfiguration = {
+export const emptyMockAccountProps: AccountConfiguration = {
   id: "123456789012",
 };
 
