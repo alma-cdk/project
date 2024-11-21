@@ -1,23 +1,7 @@
 import { EnvironmentContext } from "./environment";
+import { expectErrorMetadata } from "../__test__/expectErrorMetadata";
 import { TestableProjectStack } from "../__test__/TestableProjectStack";
 import { AccountStrategy, AccountType } from "../configurations/accounts";
-
-function expectErrorMetadata(
-  stack: TestableProjectStack,
-  matcher?: jest.Expect,
-) {
-  if (matcher === undefined) {
-    expect(stack.node.metadata).toEqual([]);
-  } else {
-    expect(stack.node.metadata).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          data: matcher,
-        }),
-      ]),
-    );
-  }
-}
 
 describe("getName", () => {
   test("returns environment name", () => {
