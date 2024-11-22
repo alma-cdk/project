@@ -7,6 +7,9 @@
   <br/>
   </h1>
 
+  ![NPM License](https://img.shields.io/npm/l/%40alma-cdk%2Fproject)
+  [![release](https://github.com/alma-cdk/project/actions/workflows/release.yml/badge.svg)](https://github.com/alma-cdk/project/actions/workflows/release.yml)
+
   ```sh
   npm i -D @alma-cdk/project
   ```
