@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountStrategy one 1`] = `
+Object {
+  "mock": Object {
+    "environments": Array [
+      "mock[0-9]",
+    ],
+    "id": "123456789012",
+  },
+  "shared": Object {
+    "config": Object {
+      "key": "value",
+    },
+    "environments": Array [
+      "development",
+      "feature/[/a-zA-z0-9-]+",
+      "test",
+      "qa[0-9]",
+      "staging",
+      "preproduction",
+      "production",
+    ],
+    "id": "123456789012",
+  },
+}
+`;
+
+exports[`AccountStrategy three 1`] = `
+Object {
+  "dev": Object {
+    "config": Object {
+      "cidr": "172.16.0.0/22",
+    },
+    "environments": Array [
+      "development",
+      "feature/[/a-zA-z0-9-]+",
+      "test",
+      "qa[0-9]",
+      "staging",
+    ],
+    "id": "111111111111",
+  },
+  "mock": Object {
+    "environments": Array [
+      "mock[0-9]",
+    ],
+    "id": "123456789012",
+  },
+  "preprod": Object {
+    "config": Object {
+      "cidr": "172.16.4.0/22",
+    },
+    "environments": Array [
+      "qa[0-9]",
+      "preproduction",
+    ],
+    "id": "222222222222",
+  },
+  "prod": Object {
+    "config": Object {
+      "cidr": "172.16.8.0/22",
+    },
+    "environments": Array [
+      "production",
+    ],
+    "id": "333333333333",
+  },
+}
+`;
+
+exports[`AccountStrategy two 1`] = `
+Object {
+  "dev": Object {
+    "config": Object {
+      "foo": "bar",
+    },
+    "environments": Array [
+      "development",
+      "feature/[/a-zA-z0-9-]+",
+      "test",
+      "qa[0-9]",
+      "staging",
+    ],
+    "id": "123456789012",
+  },
+  "mock": Object {
+    "environments": Array [
+      "mock[0-9]",
+    ],
+    "id": "123456789012",
+  },
+  "prod": Object {
+    "config": Object {
+      "baz": "quux",
+    },
+    "environments": Array [
+      "preproduction",
+      "production",
+    ],
+    "id": "213456789012",
+  },
+}
+`;
+
+exports[`AccountType 1`] = `
+Object {
+  "DEV": "dev",
+  "MOCK": "mock",
+  "PREPROD": "preprod",
+  "PROD": "prod",
+  "SHARED": "shared",
+}
+`;
+
+exports[`emptyMockAccountProps 1`] = `
+Object {
+  "id": "123456789012",
+}
+`;

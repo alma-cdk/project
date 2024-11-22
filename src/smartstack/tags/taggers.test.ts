@@ -8,7 +8,7 @@ import {
   tagAuthorOrganization,
   tagAuthorEmail,
 } from "./taggers";
-import { TestableResource } from "./test-helpers/TestableResource";
+import { TestableResource } from "../../__test__/TestableResource";
 
 describe("tagAccount", () => {
   test("no account", () => {

@@ -59,9 +59,9 @@ export const labelToCategory: Record<EnvironmentLabel, EnvironmentCategory> = {
   [EnvironmentLabel.PRODUCTION]: EnvironmentCategory.STABLE,
 };
 
-const ENV_REGEXP_MOCK = new EnvRegExp(EnvironmentLabel.MOCK);
-const ENV_REGEXP_FEATURE = new EnvRegExp(EnvironmentLabel.FEATURE);
-const ENV_REGEXP_QA = new EnvRegExp(EnvironmentLabel.QA);
+export const ENV_REGEXP_MOCK = new EnvRegExp(EnvironmentLabel.MOCK);
+export const ENV_REGEXP_FEATURE = new EnvRegExp(EnvironmentLabel.FEATURE);
+export const ENV_REGEXP_QA = new EnvRegExp(EnvironmentLabel.QA);
 
 /**
  * TODO document
