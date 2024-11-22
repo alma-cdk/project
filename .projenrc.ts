@@ -43,14 +43,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   // Publish configuration
-  majorVersion: 0, // TODO: IMPORTANT CHANGE TO 1 before merging to main!
-  releaseBranches: {
-    beta: {
-      majorVersion: 1,
-      prerelease: "beta",
-      npmDistTag: "beta",
-    },
-  },
+  majorVersion: 1,
   defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
