@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 import { Account, ProjectConfiguration } from "./interfaces";
 import { resolveDefaultRegion } from "./resolve-region";
 import { addError } from "../error";
+import { warnAboutDeprecatedTags } from "./deprecation-warnings";
 
 /** Props given to `Project`.
  *
@@ -95,5 +96,7 @@ export class Project extends App {
         [Project.CONTEXT_SCOPE]: config, // and inject project context
       },
     });
+
+    warnAboutDeprecatedTags(this);
   }
 }

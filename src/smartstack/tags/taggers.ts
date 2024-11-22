@@ -1,13 +1,9 @@
 import { Tags } from "aws-cdk-lib";
 import { capitalCase, pascalCase } from "change-case";
 import { Construct } from "constructs";
-import {
-  hasAccount,
-  hasEnvironment,
-  useCompatibilityV0Tags,
-  useLegacyTags,
-} from "./checks";
+import { hasAccount, hasEnvironment } from "./checks";
 import { tagKey, Values } from "./values";
+import * as featureFlags from "../../feature-flags";
 import { isNonEmptyString } from "../../utils/isNonEmptyString";
 
 interface Tagger {
@@ -32,7 +28,7 @@ export const tagEnvironment: Tagger = (
   if (hasEnvironment(values)) {
     tags.add(tagKey.ENVIRONMENT, values.environmentType!);
 
-    if (useLegacyTags(scope)) {
+    if (featureFlags.useLegacyTags(scope)) {
       tags.add(
         tagKey.LEGACY_PROJECT_ENVIRONMENT,
         `${pascalCase(values.projectName)}${pascalCase(values.environmentType!)}`,
@@ -47,7 +43,7 @@ export const tagProject: Tagger = (
   values: Values,
 ) => {
   let value = values.projectName;
-  if (useLegacyTags(scope)) {
+  if (featureFlags.useLegacyTags(scope)) {
     value = capitalCase(values.projectName);
   }
   tags.add(tagKey.PROJECT, value);
@@ -67,7 +63,7 @@ export const tagAuthorOrganization: Tagger = (
   values: Values,
 ) => {
   if (
-    !useCompatibilityV0Tags(scope) &&
+    !featureFlags.useCompatibilityV0Tags(scope) &&
     isNonEmptyString(values.authorOrganization)
   ) {
     tags.add(tagKey.AUTHOR_ORGANIZATION, values.authorOrganization);
@@ -79,7 +75,10 @@ export const tagAuthorEmail: Tagger = (
   tags: Tags,
   values: Values,
 ) => {
-  if (!useCompatibilityV0Tags(scope) && isNonEmptyString(values.authorEmail)) {
+  if (
+    !featureFlags.useCompatibilityV0Tags(scope) &&
+    isNonEmptyString(values.authorEmail)
+  ) {
     tags.add(tagKey.AUTHOR_EMAIL, values.authorEmail);
   }
 };
