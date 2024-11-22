@@ -2,32 +2,52 @@ import { warnAboutDeprecatedTags } from "./deprecation-warnings";
 import { expectErrorMetadata } from "../__test__/expectErrorMetadata";
 import { TestableResource } from "../__test__/TestableResource";
 
-test("@alma-cdk/project:legacyTags", () => {
-  const testable = new TestableResource({
-    context: {
-      "@alma-cdk/project:legacyTags": true,
-    },
+describe("@alma-cdk/project:legacyTags", () => {
+  test("feature flag present", () => {
+    const testable = new TestableResource({
+      context: {
+        "@alma-cdk/project:legacyTags": true,
+      },
+    });
+
+    warnAboutDeprecatedTags(testable);
+
+    expectErrorMetadata(
+      testable,
+      expect.stringContaining("@alma-cdk/project@v1:legacy-tags"),
+    );
   });
 
-  warnAboutDeprecatedTags(testable);
+  test("feature flag missing", () => {
+    const testable = new TestableResource();
 
-  expectErrorMetadata(
-    testable,
-    expect.stringContaining("@alma-cdk/project@v1:legacy-tags"),
-  );
+    warnAboutDeprecatedTags(testable);
+
+    expectErrorMetadata(testable, undefined);
+  });
 });
 
-test("@alma-cdk/project:compatibility:v0:tags", () => {
-  const testable = new TestableResource({
-    context: {
-      "@alma-cdk/project:compatibility:v0:tags": true,
-    },
+describe("@alma-cdk/project:compatibility:v0:tags", () => {
+  test("feature flag present", () => {
+    const testable = new TestableResource({
+      context: {
+        "@alma-cdk/project:compatibility:v0:tags": true,
+      },
+    });
+
+    warnAboutDeprecatedTags(testable);
+
+    expectErrorMetadata(
+      testable,
+      expect.stringContaining("@alma-cdk/project@v1:compatibility-v0-tags"),
+    );
   });
 
-  warnAboutDeprecatedTags(testable);
+  test("feature flag missing", () => {
+    const testable = new TestableResource();
 
-  expectErrorMetadata(
-    testable,
-    expect.stringContaining("@alma-cdk/project@v1:compatibility-v0-tags"),
-  );
+    warnAboutDeprecatedTags(testable);
+
+    expectErrorMetadata(testable, undefined);
+  });
 });
