@@ -134,9 +134,11 @@ new TextFile(project, "sonar-project.properties", {
     "sonar.sources=./src",
     "sonar.tests=./test",
     "sonar.test.inclusions=**/*.test.*",
-    "sonar.issue.ignore.multicriteria=e1",
+    "sonar.issue.ignore.multicriteria=e1,e2",
     "sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874",
     "sonar.issue.ignore.multicriteria.e1.resourceKey=src/smartstack/tags/*.ts",
+    "sonar.issue.ignore.multicriteria.e2.ruleKey=typescript:S1874",
+    "sonar.issue.ignore.multicriteria.e2.resourceKey=src/project/deprecation-warnings.ts",
   ],
 });
 
