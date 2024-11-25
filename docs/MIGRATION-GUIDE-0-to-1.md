@@ -22,7 +22,7 @@ npm i -D @alma-cdk/project@1
 
 Previous `v0` supported any NodeJS version starting from ~~`14.17.6`~~.
 
-As of `v1`, the aim is to support (subject to change in new future major versions):
+As of `v1`, the aim is to support: <sup>(subject to change in new future major versions)</sup>
 
 - any [NodeJS version in maintenance mode until EOL](https://github.com/nodejs/Release?tab=readme-ov-file#release-schedule)
 - active LTS version
