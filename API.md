@@ -268,6 +268,7 @@ new Project(props: ProjectProps)
 | --- | --- |
 | <code><a href="#@alma-cdk/project.Project.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@alma-cdk/project.Project.synth">synth</a></code> | Synthesize this stage into a cloud assembly. |
+| <code><a href="#@alma-cdk/project.Project.acknowledgeWarnings">acknowledgeWarnings</a></code> | Acknowledge warnings for all stacks in the project. |
 
 ---
 
@@ -293,6 +294,20 @@ calls will return the same assembly.
 ###### `options`<sup>Optional</sup> <a name="options" id="@alma-cdk/project.Project.synth.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.StageSynthesisOptions
+
+---
+
+##### `acknowledgeWarnings` <a name="acknowledgeWarnings" id="@alma-cdk/project.Project.acknowledgeWarnings"></a>
+
+```typescript
+public acknowledgeWarnings(acknowledgements: Acknowledgeable[]): void
+```
+
+Acknowledge warnings for all stacks in the project.
+
+###### `acknowledgements`<sup>Required</sup> <a name="acknowledgements" id="@alma-cdk/project.Project.acknowledgeWarnings.parameter.acknowledgements"></a>
+
+- *Type:* <a href="#@alma-cdk/project.Acknowledgeable">Acknowledgeable</a>[]
 
 ---
 
@@ -1768,6 +1783,47 @@ public readonly mock: AccountConfiguration;
 ```
 
 - *Type:* <a href="#@alma-cdk/project.AccountConfiguration">AccountConfiguration</a>
+
+---
+
+### Acknowledgeable <a name="Acknowledgeable" id="@alma-cdk/project.Acknowledgeable"></a>
+
+Interface for acknowledging warnings.
+
+#### Initializer <a name="Initializer" id="@alma-cdk/project.Acknowledgeable.Initializer"></a>
+
+```typescript
+import { Acknowledgeable } from '@alma-cdk/project'
+
+const acknowledgeable: Acknowledgeable = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@alma-cdk/project.Acknowledgeable.property.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@alma-cdk/project.Acknowledgeable.property.message">message</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@alma-cdk/project.Acknowledgeable.property.id"></a>
+
+```typescript
+public readonly id: string;
+```
+
+- *Type:* string
+
+---
+
+##### `message`<sup>Optional</sup> <a name="message" id="@alma-cdk/project.Acknowledgeable.property.message"></a>
+
+```typescript
+public readonly message: string;
+```
+
+- *Type:* string
 
 ---
 
