@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 
-export const V0_TAGS_CONTEXT_KEY = "@alma-cdk/project:compatibility:v0:tags";
+export const V0_TAGS_CONTEXT_KEY = "@alma-cdk/project:compatibilityV0Tags";
 
 /**
  * Compatibility flag for v0 tagging behavior.

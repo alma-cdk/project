@@ -227,7 +227,7 @@ Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as 
 {
   "context": {
     // existing context keys
-+   "@alma-cdk/project:compatibility:v0:tags": true
++   "@alma-cdk/project:compatibilityV0Tags": true
   },
 }
 ```
