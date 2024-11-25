@@ -28,6 +28,8 @@ As of `v1`, the aim is to support: <sup>(subject to change in new future major v
 - active LTS version
 - current version
 
+### Supported version ranges
+
 At the time of writing this document (2024-11-26), the supported NodeJS version range is the following:
 
 | Minimum  | Recommended     | Maximum      |
