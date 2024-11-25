@@ -42,7 +42,7 @@ You can see the actual up-to-date supported versions in [`package.json`'s `engin
 
 ## Tagging behavior changes
 
-Due to a bug in `v0`: The **`Contact`** and **`Organization` tags** were NOT anymore applied as they were intended already on `v0`.
+Due to a bug in `v0`: The **`Contact`** and **`Organization` tags** were NOT anymore applied as they were intended already on `v0` (and already in it's AWS CDK v1 compatible [predecessor](https://github.com/almamedia/alma-cdk-jsii-tag-and-name/) construct).
 
 This bug was fixed in `v1` which means that _by default_, upgrading from v0→v1 most likely introduces tagging related CloudFormation diff (depending on your `v0.x.x` version).
 
