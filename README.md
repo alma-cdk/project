@@ -221,7 +221,7 @@ Generally speaking you would be most interested in the following:
 Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This means that by default, upgrading from v0→v1 introduces CloudFormation diff:
 ![CloudFormation Diff example when upgrading from v0 to v1](assets/v0-to-v1-tag-diff.png)
 
-Adding the `Contact` and `Organization` tags to all resources should be safe operation, but we allow disabling the "new" tagging behavior via a feature flag in `cdk.json` context:
+Adding the `Contact` and `Organization` tags to all resources should be safe operation, but we allow disabling the "new" tagging behavior via a feature flag (since `v1.0.1`) in `cdk.json` context:
 
 ```diff
 {
@@ -240,11 +240,11 @@ Using this feature flag will output warnings during synthesis:
 
 ![Warning output from CDK CLI when compatibility flag used](assets/v0-to-v1-compat-feature-flag-warning.png)
 
-You can safely ignore these warnings until you decide to migrate, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning by setting:
+You can safely ignore these warnings until you decide to migrate, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
 ```ts
 project.acknowledgeWarnings([
   {
-    id: "@alma-cdk/project:compatibilityV0Tags", // since v1.0.1
+    id: "@alma-cdk/project:compatibilityV0Tags",
     message: "Temporarily disable warnings about compatibility feature flag",
   }
 ]);
