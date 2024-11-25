@@ -11,7 +11,7 @@ npm i -D @alma-cdk/project@1
 ```
 
 > [!Important]
-> No other source code changes are required and no CloudFormation diff will be caused by this upgrade, **with the EXCEPTION of how you want to control the [tagging behavior changes](#tagging-behavior-changes)**.
+> No other source code changes are required and no CloudFormation diff will be caused by this upgrade, **with the EXCEPTION of how you want to control the [tagging behavior changes](#tagging-behavior-changes)**. Additionally [minimum NodeJS version](#nodejs-version-requirements) is set to `18`.
 
 > [!Tip]
 > It's recommended to run `cdk diff` against your existing CDK stacks to verify the effects of the upgrade (instead of blindly deploying).
