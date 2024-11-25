@@ -1,6 +1,4 @@
 <div align="center">
-	<br/>
-	<br/>
   <h1>
 	<img width="300" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
   <br/>
@@ -16,8 +14,6 @@
 
 > [!Tip]
 > Migrating from `v0` to `v1`? See [Migration Guide](#migration-guide).
-
-<hr/>
 
 <br/>
 
