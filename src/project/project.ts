@@ -82,20 +82,6 @@ export class Project extends App {
     return projectConfiguration.accounts[accountType];
   }
 
-  /**
-   * Acknowledge warnings for all stacks in the project.
-   */
-  public acknowledgeWarnings(acknowledgements: Acknowledgeable[]) {
-    const stacks = this.node
-      .findAll()
-      .filter((x): x is Stack => x instanceof Stack);
-    stacks.map((stack) => {
-      acknowledgements.map((ack) => {
-        Annotations.of(stack).acknowledgeWarning(ack.id, ack.message);
-      });
-    });
-  }
-
   /** Initializes a new Project (which can be used in place of cdk.App) */
   constructor(props: ProjectProps) {
     // Define the project configuration set into App context
@@ -116,6 +102,20 @@ export class Project extends App {
         ...props.context, // while still passing the context given in props
         [Project.CONTEXT_SCOPE]: config, // and inject project context
       },
+    });
+  }
+
+  /**
+   * Acknowledge warnings for all stacks in the project.
+   */
+  public acknowledgeWarnings(acknowledgements: Acknowledgeable[]) {
+    const stacks = this.node
+      .findAll()
+      .filter((x): x is Stack => x instanceof Stack);
+    stacks.map((stack) => {
+      acknowledgements.map((ack) => {
+        Annotations.of(stack).acknowledgeWarning(ack.id, ack.message);
+      });
     });
   }
 }
