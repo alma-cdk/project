@@ -69,7 +69,8 @@ Adding the `Contact` and `Organization` tags to all resources should be safe ope
 
 > [!Important]
 > Using this feature flag is meant for easing the transition from v0 to v1 initially.
-> You should still remove the compatibility feature flag and deploy using the fixed tagging behavior rather sooner than later, as the **compatibility feature flag will be removed in future v2 major version** and the fixed tagging behavior will become default.
+>
+> You should still remove the compatibility feature flag and deploy using the fixed tagging behavior rather sooner than later, as the **compatibility feature flag WILL BE REMOVED IN FUTURE V2 MAJOR version** and the fixed tagging behavior will become default.
 
 <br/>
 
