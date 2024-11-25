@@ -1,9 +1,16 @@
-import { App, AppProps } from "aws-cdk-lib";
+import { Annotations, App, AppProps, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { Account, ProjectConfiguration } from "./interfaces";
 import { resolveDefaultRegion } from "./resolve-region";
 import { addError } from "../error";
-import { warnAboutDeprecatedTags } from "./deprecation-warnings";
+
+/**
+ * Interface for acknowledging warnings.
+ */
+export interface Acknowledgeable {
+  readonly id: string;
+  readonly message?: string;
+}
 
 /** Props given to `Project`.
  *
@@ -96,7 +103,19 @@ export class Project extends App {
         [Project.CONTEXT_SCOPE]: config, // and inject project context
       },
     });
+  }
 
-    warnAboutDeprecatedTags(this);
+  /**
+   * Acknowledge warnings for all stacks in the project.
+   */
+  public acknowledgeWarnings(acknowledgements: Acknowledgeable[]) {
+    const stacks = this.node
+      .findAll()
+      .filter((x): x is Stack => x instanceof Stack);
+    stacks.map((stack) => {
+      acknowledgements.map((ack) => {
+        Annotations.of(stack).acknowledgeWarning(ack.id, ack.message);
+      });
+    });
   }
 }

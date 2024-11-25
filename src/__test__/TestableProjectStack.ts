@@ -1,4 +1,5 @@
 import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
 import {
   Project,
   SmartStack,
@@ -14,9 +15,25 @@ interface TestStackInSharedAccountProps {
   accountType: AccountType;
   environmentType?: string;
   stackProps?: cdk.StackProps;
+  appContext?: Record<string, any>;
+}
+
+class TestContextProvider extends Construct {
+  constructor(
+    scope: Construct,
+    id: string,
+    appContext: Record<string, any> = {},
+  ) {
+    super(scope, id);
+
+    Object.entries(appContext).forEach(([key, value]) => {
+      this.node.setContext(key, value);
+    });
+  }
 }
 
 export class TestableProjectStack extends SmartStack {
+  public readonly project: Project;
   public readonly projectName: string;
   public readonly stackConstructId: string;
 
@@ -27,6 +44,7 @@ export class TestableProjectStack extends SmartStack {
       environmentType,
       defaultRegion,
       stackProps,
+      appContext,
     } = props;
 
     const projectName = "test-project";
@@ -41,18 +59,31 @@ export class TestableProjectStack extends SmartStack {
       accounts,
     });
 
-    project.node.setContext("account-type", accountType);
-    project.node.setContext("account", accountType);
+    const ctx: Record<string, any> = {};
+
+    if (typeof environmentType === "string") {
+      ctx["environment-type"] = environmentType;
+      ctx.environment = environmentType;
+      ctx.env = environmentType;
+    }
+
+    const testContextProvider = new TestContextProvider(
+      project,
+      "TestContextProvider",
+      {
+        ...appContext,
+        "account-type": accountType,
+        account: accountType,
+        ...ctx,
+      },
+    );
 
     let wrapper: AccountWrapper | EnvironmentWrapper;
 
-    if (environmentType) {
-      project.node.setContext("environment-type", environmentType);
-      project.node.setContext("environment", environmentType);
-      project.node.setContext("env", environmentType);
-      wrapper = new EnvironmentWrapper(project);
+    if (typeof environmentType === "string") {
+      wrapper = new EnvironmentWrapper(testContextProvider);
     } else {
-      wrapper = new AccountWrapper(project);
+      wrapper = new AccountWrapper(testContextProvider);
     }
 
     const stackConstructId = "TestStack";
@@ -62,6 +93,7 @@ export class TestableProjectStack extends SmartStack {
       ...stackProps,
     });
 
+    this.project = project;
     this.projectName = projectName;
     this.stackConstructId = stackConstructId;
   }
