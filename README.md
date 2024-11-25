@@ -233,7 +233,7 @@ Adding the `Contact` and `Organization` tags to all resources should be safe ope
 ```
 
 > [!Important]
-> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the feature flag (and the warning acknowledgement) at some point, as the **feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
+> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the feature flag at some point, as the **feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
 
 #### Acknowledging the warning
 
