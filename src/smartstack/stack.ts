@@ -1,11 +1,17 @@
 import { env } from "process";
-import { Stack, StackProps } from "aws-cdk-lib";
+import { Stack, StackProps, Annotations } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { formatDescription } from "./description";
 import { formatName } from "./name";
 import { addTags } from "./tags";
 import { decideTerminationProtection } from "./termination";
 import { addError } from "../error";
+import {
+  LEGACY_TAGS_CONTEXT_KEY,
+  useCompatibilityV0Tags,
+  useLegacyTags,
+  V0_TAGS_CONTEXT_KEY,
+} from "../feature-flags";
 import { ProjectContext } from "../project";
 
 export class SmartStack extends Stack {
@@ -52,6 +58,20 @@ export class SmartStack extends Stack {
     this.validateDescriptionMaxLength(props);
 
     addTags(this);
+
+    if (useLegacyTags(this)) {
+      Annotations.of(this).addWarningV2(
+        "@alma-cdk/project@v1:legacy-tags",
+        `Using @almamedia-cdk/tag-and-name (for AWS CDK v1) construct's legacy tagging behavior via "${LEGACY_TAGS_CONTEXT_KEY}" context key. This is not encouraged and will be removed in v2.`,
+      );
+    }
+
+    if (useCompatibilityV0Tags(this)) {
+      Annotations.of(this).addWarningV2(
+        "@alma-cdk/project@v1:compatibility-v0-tags",
+        `Using @alma-cdk/project@v0 construct's tagging behavior via "${V0_TAGS_CONTEXT_KEY}" context key. You should migrate to using the default tagging behavior as this feature flag will be removed in v2.`,
+      );
+    }
   }
 
   private validateDescriptionMinLength(props: StackProps) {
