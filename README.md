@@ -5,7 +5,6 @@
   <br/>
   </h1>
 
-  ![NPM License](https://img.shields.io/npm/l/%40alma-cdk%2Fproject)
   [![release](https://github.com/alma-cdk/project/actions/workflows/release.yml/badge.svg)](https://github.com/alma-cdk/project/actions/workflows/release.yml)
   [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
   [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
