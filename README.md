@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-	<img width="300" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
+	<img width="512" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
   <br/>
   <br/>
   </h1>
