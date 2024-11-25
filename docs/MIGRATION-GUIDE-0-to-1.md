@@ -86,11 +86,15 @@ project.acknowledgeWarnings([
 
 … but again, you need to adopt the "new" tagging behavior before future `v2` major version.
 
+<br/>
+
 #### Strict Mode
 
 If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning will cause metadata diff:
 
 ![metadata diff on strict mode](/assets/v0-to-v1-metadata-diff-on-strict.png)
+
+<br/>
 
 ### Opt-out individual stacks or resources
 
