@@ -40,7 +40,7 @@ You can see the actual up-to-date supported versions in [`package.json`'s `engin
 
 ## Tagging behavior changes
 
-Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This bug was fixed in `v1` which means that _by default_, upgrading from v0→v1 most likely introduces CloudFormation diff:
+Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This bug was fixed in `v1` which means that _by default_, upgrading from v0→v1 most likely introduces CloudFormation diff. Example:
 
 ![CloudFormation Diff example when upgrading from v0 to v1](/assets/v0-to-v1-tag-diff.png)
 
