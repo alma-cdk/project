@@ -221,7 +221,7 @@ To upgrade to stable major version 1, run:
 npm i -D @alma-cdk/project@1
 ```
 
-No other source code changes are required and no CloudFormation diff will be caused by this upgrade, **with the exception of how you want to control the [tagging behavior changes](#v0-to-v1-tagging-behavior-changes)**.
+No other source code changes are required and no CloudFormation diff will be caused by this upgrade, **with the EXCEPTION of how you want to control the [tagging behavior changes](#v0-to-v1-tagging-behavior-changes)**.
 
 > [!Tip]
 > It's recommended to run `cdk diff` against your existing CDK stacks to verify the effects of the upgrade (instead of blindly deploying).
