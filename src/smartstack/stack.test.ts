@@ -178,7 +178,7 @@ describe("deprecation warnings", () => {
 
     expectErrorMetadata(
       stack,
-      expect.stringContaining("@alma-cdk/project@v1:legacy-tags"),
+      expect.stringContaining("@alma-cdk/project:legacyTags"),
     );
   });
 

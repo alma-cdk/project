@@ -61,7 +61,7 @@ export class SmartStack extends Stack {
 
     if (useLegacyTags(this)) {
       Annotations.of(this).addWarningV2(
-        "@alma-cdk/project@v1:legacy-tags",
+        "@alma-cdk/project:legacyTags",
         `Using @almamedia-cdk/tag-and-name (for AWS CDK v1) construct's legacy tagging behavior via "${LEGACY_TAGS_CONTEXT_KEY}" context key. This is not encouraged and will be removed in v2.`,
       );
     }
