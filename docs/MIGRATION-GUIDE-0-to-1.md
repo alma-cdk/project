@@ -20,7 +20,7 @@ npm i -D @alma-cdk/project@1
 
 ## NodeJS version requirements
 
-Previous `v0` supported any NodeJS version starting from `14.17.6`.
+Previous `v0` supported any NodeJS version starting from ~~`14.17.6`~~.
 
 As of `v1`, the aim is to support (subject to change in new future major versions):
 
