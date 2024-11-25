@@ -16,7 +16,7 @@ npm i -D @alma-cdk/project@1
 > [!Tip]
 > It's recommended to run `cdk diff` against your existing CDK stacks to verify the effects of the upgrade (instead of blindly deploying).
 
-<br/>
+<br/><br/>
 
 ## NodeJS version requirements
 
@@ -36,7 +36,7 @@ At the time of writing this document (2024-11-26), the supported NodeJS version 
 
 You can see the actual up-to-date supported versions in [`package.json`'s `engines.node` field](https://github.com/alma-cdk/project/blob/main/package.json).
 
-<br/>
+<br/><br/>
 
 ## Tagging behavior changes
 
@@ -46,9 +46,11 @@ Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as 
 
 In most cases this is harmless, but to ease the migration process, we provide multiple options how you can control when you want to adopt the "new" tagging behavior (see below).
 
+<br/>
+
 ### Opt-out via Feature Flag
 
-Adding the `Contact` and `Organization` tags to all resources should be safe operation ([as we exclude problematic resources](https://github.com/alma-cdk/project/blob/main/src/smartstack/tags/exclude.ts)), but we allow disabling the "new" tagging behavior via a feature flag (since `v1.0.1`) in `cdk.json` context:
+Adding the `Contact` and `Organization` tags to all resources should be safe operation ([as we exclude problematic resources](https://github.com/alma-cdk/project/blob/main/src/smartstack/tags/exclude.ts)), but we allow disabling/postponing the "new" tagging behavior via a compatibility feature flag (since `v1.0.1`) in `cdk.json` context:
 
 ```diff
 {
@@ -60,24 +62,29 @@ Adding the `Contact` and `Organization` tags to all resources should be safe ope
 ```
 
 > [!Important]
-> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the feature flag and deploy using the "new" tagging behavior rather sooner than later, as the **feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
+> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the compatibility feature flag and deploy using the "new" tagging behavior rather sooner than later, as the **compatibility feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
+
+<br/>
 
 ### Acknowledging the warning
 
-Using this feature flag will output warnings during synthesis:
+Using this compatibility feature flag will output warnings during synthesis. For example:
 
 ![Warning output from CDK CLI when compatibility flag used](/assets/v0-to-v1-compat-feature-flag-warning.png)
 
-You can safely ignore these warnings until you decide to migrate into the "new" tagging behavior, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
+You can safely ignore these warnings until you decide to adopt into the "new" tagging behavior, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
 
 ```ts
 project.acknowledgeWarnings([
   {
     id: "@alma-cdk/project:compatibilityV0Tags",
-    message: "Temporarily disable warnings about compatibility feature flag",
+    message:
+      "Temporarily disable warnings about the use of compatibility feature flag",
   },
 ]);
 ```
+
+… but again, you need to adopt the "new" tagging behavior before future `v2` major version.
 
 #### Strict Mode
 
@@ -97,11 +104,13 @@ cdk.Tags.of(scope).remove("Organization");
 > [!WARNING]
 > Please, use these individual Tag removals sparingly and as a last resort. If the need for individual tag removal is caused by an issue/bug with the migration, please let us know via issue (see below).
 
-### Migration issues?
+<br/><br/>
+
+## Migration issues?
 
 File [a new issue](https://github.com/alma-cdk/project/issues/new). Do not disclose any sensitive information (including AWS Account IDs)!
 
-<br/>
+<br/><br/>
 
 ## Roadmap
 
