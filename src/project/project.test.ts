@@ -1,6 +1,6 @@
 import { Annotations } from "aws-cdk-lib";
-import { Construct } from "constructs";
 import * as assertions from "aws-cdk-lib/assertions";
+import { Construct } from "constructs";
 import { TestableProjectStack } from "../__test__/TestableProjectStack";
 
 describe("Acknowledge warnings", () => {
