@@ -5,6 +5,8 @@
   <br/>
   </h1>
 
+  ![Stability: Stable](https://img.shields.io/badge/stability-stable-%234BCA2A)
+  ![Versioning: SemVer 2.0.0](https://img.shields.io/badge/versioning-semver_2.0.0-blue)
   [![release](https://github.com/alma-cdk/project/actions/workflows/release.yml/badge.svg)](https://github.com/alma-cdk/project/actions/workflows/release.yml)
   [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
   [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
