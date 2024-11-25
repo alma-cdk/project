@@ -235,12 +235,13 @@ Adding the `Contact` and `Organization` tags to all resources should be safe ope
 > [!Important]
 > Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the feature flag (and the warning acknowledgement) at some point, as the **feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
 
+#### Acknowledging the warning
 
 Using this feature flag will output warnings during synthesis:
 
 ![Warning output from CDK CLI when compatibility flag used](assets/v0-to-v1-compat-feature-flag-warning.png)
 
-You can safely ignore these warnings until you decide to migrate, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
+You can safely ignore these warnings until you decide to migrate into the "new" tagging behavior, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
 ```ts
 project.acknowledgeWarnings([
   {
@@ -249,6 +250,8 @@ project.acknowledgeWarnings([
   }
 ]);
 ```
+
+##### Strict Mode
 
 If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning will cause metadata diff:
 
