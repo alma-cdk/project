@@ -16,6 +16,11 @@
   npm i -D @alma-cdk/project
   ```
 
+  > [!Tip]
+  > Migrating from `v0` to `v1`? See [Migration Guide](#migration-guide).
+
+  <br/>
+
   <div align="left">
 
   Opinionated CDK “framework” with constructs & utilities for:
@@ -215,6 +220,8 @@ Generally speaking you would be most interested in the following:
 - AccountContext (AC)
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
+
+<br/>
 
 ## Migration Guide
 
