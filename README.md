@@ -12,7 +12,7 @@
   [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
   [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
 
-  <pre><code>npm i -D @alma-cdk/project</code></pre>
+  <pre align="center"><code>npm i -D @alma-cdk/project</code></pre>
 </div>
 
 > [!Tip]
