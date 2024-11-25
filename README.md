@@ -280,6 +280,9 @@ cdk.Tags.of(scope).remove("Contact");
 cdk.Tags.of(scope).remove("Organization");
 ```
 
+> [!WARNING]
+> Please, use these individual Tag removals sparingly and as a last resort. If the need for individual tag removal is caused by an issue/bug with the migration, please let us know via issue (see below).
+
 #### Migration issues?
 
 File [a new issue](https://github.com/alma-cdk/project/issues/new). Do not disclose any sensitive information (including AWS Account IDs)!
