@@ -270,6 +270,10 @@ If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning wi
 
 ![metadata diff on strict mode](assets/v0-to-v1-metadata-diff-on-strict.png)
 
+#### Migration issues?
+
+File [a new issue](https://github.com/alma-cdk/project/issues/new). Do not disclose any sensitive information (including AWS Account IDs)!
+
 <br/>
 
 ## Roadmap

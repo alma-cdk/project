@@ -47,8 +47,8 @@ body:
 
 - type: textarea
   attributes:
-    label: What happened?
-    description: Also tell us, what did you expect to happen?
-    placeholder: Tell us what you see!
+    label: Explain the problem
+    description: Do not disclose any sensitive information (including AWS Account IDs)!
+    placeholder: Tell us what happened. Do not disclose any sensitive information (including AWS Account IDs)!
   validations:
     required: true
