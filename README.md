@@ -216,20 +216,45 @@ Generally speaking you would be most interested in the following:
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
 
-## Migration
+## Migration Guide
 
 ### v0 to v1
 
 #### Tagging behavior
 
-Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they should have. This means that by default, upgrading from v0→v1 introduces CloudFormation diff. Basically adding the `Contact` and `Organization` tags to all resources. This should be safe operation, but we allow disabling it via a feature flag (note that `Contact` and `Organization` tags will most likely be enforced in future `v2`).
+Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This means that by default, upgrading from v0→v1 introduces CloudFormation diff:
+![CloudFormation Diff example when upgrading from v0 to v1](assets/v0-to-v1-tag-diff.png)
+
+Adding the `Contact` and `Organization` tags to all resources should be safe operation, but we allow disabling the "new" tagging behavior via a feature flag in `cdk.json` context:
 
 ```diff
-// cdk.json
 {
   "context": {
++   "@alma-cdk/project:compatibilityV0Tags": true,
     // existing context keys
-+   "@alma-cdk/project:compatibilityV0Tags": true
   },
 }
 ```
+
+> [!Important]
+> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the feature flag (and the warning acknowledgement) at some point, as the feature flag will most probably be removed in future v2 major version and the "new" tagging behavior will become default.
+
+
+Using this feature flag will output warnings during synthesis:
+
+![Warning output from CDK CLI when compatibility flag used](assets/v0-to-v1-compat-feature-flag-warning.png)
+
+You can safely ignore these warnings until you decide to migrate, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning by setting:
+```ts
+project.acknowledgeWarnings([
+  {
+    id: "@alma-cdk/project:compatibilityV0Tags", // since v1.0.1
+    message: "Temporarily disable warnings about compatibility feature flag",
+  }
+]);
+```
+
+If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning will cause metadata diff:
+
+![metadata diff on strict mode](assets/v0-to-v1-metadata-diff-on-strict.png)
+
