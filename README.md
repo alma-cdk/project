@@ -216,9 +216,7 @@ Generally speaking you would be most interested in the following:
 
 ## Migration Guide
 
-### v0 to v1
-
-#### Tagging behavior
+### v0 to v1 Tagging behavior changes
 
 Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This means that by default, upgrading from v0→v1 introduces CloudFormation diff:
 ![CloudFormation Diff example when upgrading from v0 to v1](assets/v0-to-v1-tag-diff.png)
