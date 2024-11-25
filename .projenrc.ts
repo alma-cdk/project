@@ -70,6 +70,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     "/examples/**/.git",
     "TODO.md",
     ".scannerwork/",
+    "**/*.drawio.bkp",
+    "**/*.afdesign~lock~",
   ],
 });
 
