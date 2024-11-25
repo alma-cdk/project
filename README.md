@@ -272,6 +272,14 @@ If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning wi
 
 ![metadata diff on strict mode](assets/v0-to-v1-metadata-diff-on-strict.png)
 
+#### Opt-out individual stacks or resources
+
+If you have any specific problematic resources or stacks, you can always opt-out individual constructs (and their children) by using CDK [Tags](https://docs.aws.amazon.com/cdk/v2/guide/tagging.html):
+```ts
+cdk.Tags.of(scope).remove("Contact");
+cdk.Tags.of(scope).remove("Organization");
+```
+
 #### Migration issues?
 
 File [a new issue](https://github.com/alma-cdk/project/issues/new). Do not disclose any sensitive information (including AWS Account IDs)!
