@@ -50,13 +50,13 @@ An example of likely diff:
 
 ![CloudFormation Diff example when upgrading from v0 to v1](/assets/v0-to-v1-tag-diff.png)
 
-In most cases this is harmless, but to ease the migration process, we provide multiple options how you can control when you want to adopt the "new" tagging behavior (see below).
+In most cases this is harmless, but to ease the migration process, we provide multiple options how you can control when you want to adopt the fixed tagging behavior (see below).
 
 <br/>
 
 ### Opt-out via Feature Flag
 
-Adding the `Contact` and `Organization` tags to all resources should be safe operation ([as we exclude problematic resources](https://github.com/alma-cdk/project/blob/main/src/smartstack/tags/exclude.ts)), but we allow disabling/postponing the "new" tagging behavior via a compatibility feature flag (since `v1.0.1`) in `cdk.json` context:
+Adding the `Contact` and `Organization` tags to all resources should be safe operation ([as we exclude problematic resources](https://github.com/alma-cdk/project/blob/main/src/smartstack/tags/exclude.ts)), but we allow disabling/postponing the fixed tagging behavior via a compatibility feature flag (since `v1.0.1`) in `cdk.json` context:
 
 ```diff
 {
@@ -68,7 +68,7 @@ Adding the `Contact` and `Organization` tags to all resources should be safe ope
 ```
 
 > [!Important]
-> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the compatibility feature flag and deploy using the "new" tagging behavior rather sooner than later, as the **compatibility feature flag will be removed in future v2 major version** and the "new" tagging behavior will become default.
+> Using this feature flag is meant for easing the transition from v0 to v1 initially. You should still remove the compatibility feature flag and deploy using the fixed tagging behavior rather sooner than later, as the **compatibility feature flag will be removed in future v2 major version** and the fixed tagging behavior will become default.
 
 <br/>
 
@@ -78,7 +78,7 @@ Using this compatibility feature flag will output warnings during synthesis. For
 
 ![Warning output from CDK CLI when compatibility flag used](/assets/v0-to-v1-compat-feature-flag-warning.png)
 
-You can safely ignore these warnings until you decide to adopt into the "new" tagging behavior, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
+You can safely ignore these warnings until you decide to adopt into the fixed tagging behavior, but if you want to get rid of the warning message (or you run AWS CDK CLI with `--strict` flag that fails synthesis on warnings), you can acknowledge this warning (since `v1.0.1`) by setting:
 
 ```ts
 project.acknowledgeWarnings([
@@ -90,7 +90,7 @@ project.acknowledgeWarnings([
 ]);
 ```
 
-… but again, you need to adopt the "new" tagging behavior before future `v2` major version.
+… but again, you need to adopt the fixed tagging behavior before future `v2` major version.
 
 <br/>
 
