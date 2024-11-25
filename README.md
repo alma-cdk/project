@@ -15,31 +15,28 @@
   ```sh
   npm i -D @alma-cdk/project
   ```
-
-  > [!Tip]
-  > Migrating from `v0` to `v1`? See [Migration Guide](#migration-guide).
-
-  <br/>
-
-  <div align="left">
-
-  Opinionated CDK “framework” with constructs & utilities for:
-  - deploying multiple environments to multiple accounts (with many-to-many relationship)
-  - managing account configuration through standardized props (no more random config files)
-  - querying account and/or environment specific information within your CDK code
-  - enabling dynamic & short-lived “feature-environments”
-  - enabling well-defined tagging
-  - providing structure & common conventions to CDK projects
-  - choosing the target account & environment by passing in runtime context:
-
-    ```sh
-    npx cdk deploy -c account=dev -c environment=feature/abc-123
-    ```
-    ... which means you don't need to define all the possibile environments ahead of time!
-
-  </div>
   <br/>
 </div>
+
+> [!Tip]
+> Migrating from `v0` to `v1`? See [Migration Guide](#migration-guide).
+
+<br/>
+
+Opinionated CDK “framework” with constructs & utilities for:
+- deploying multiple environments to multiple accounts (with many-to-many relationship)
+- managing account configuration through standardized props (no more random config files)
+- querying account and/or environment specific information within your CDK code
+- enabling dynamic & short-lived “feature-environments”
+- enabling well-defined tagging
+- providing structure & common conventions to CDK projects
+- choosing the target account & environment by passing in runtime context:
+
+  ```sh
+  npx cdk deploy -c account=dev -c environment=feature/abc-123
+  ```
+  ... which means you don't need to define all the possibile environments ahead of time!
+
 
 
 ## Account Strategies
