@@ -68,7 +68,7 @@ export class SmartStack extends Stack {
 
     if (useCompatibilityV0Tags(this)) {
       Annotations.of(this).addWarningV2(
-        "@alma-cdk/project@v1:compatibility-v0-tags",
+        "@alma-cdk/project:compatibilityV0Tags",
         `Using @alma-cdk/project@v0 construct's tagging behavior via "${V0_TAGS_CONTEXT_KEY}" context key. You should migrate to using the default tagging behavior as this feature flag will be removed in v2.`,
       );
     }

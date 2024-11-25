@@ -209,7 +209,7 @@ describe("tagAuthorOrganization", () => {
   test("compatibility mode is set but disabled", () => {
     const testable = new TestableResource({
       context: {
-        "@alma-cdk/project:compatibility:v0:tags": false,
+        "@alma-cdk/project:compatibilityV0Tags": false,
       },
     });
 
@@ -232,7 +232,7 @@ describe("tagAuthorOrganization", () => {
   test("compatibility mode is set", () => {
     const testable = new TestableResource({
       context: {
-        "@alma-cdk/project:compatibility:v0:tags": true,
+        "@alma-cdk/project:compatibilityV0Tags": true,
       },
     });
 
@@ -271,7 +271,7 @@ describe("tagAuthorEmail", () => {
   test("compatibility mode is set but disabled", () => {
     const testable = new TestableResource({
       context: {
-        "@alma-cdk/project:compatibility:v0:tags": false,
+        "@alma-cdk/project:compatibilityV0Tags": false,
       },
     });
 
@@ -294,7 +294,7 @@ describe("tagAuthorEmail", () => {
   test("compatibility mode is set", () => {
     const testable = new TestableResource({
       context: {
-        "@alma-cdk/project:compatibility:v0:tags": true,
+        "@alma-cdk/project:compatibilityV0Tags": true,
       },
     });
 
