@@ -4,6 +4,7 @@ import { TestableProjectStack } from "../__test__/TestableProjectStack";
 import { AccountStrategy } from "../configurations";
 import { SmartStack } from "./stack";
 import { AccountType } from "../configurations/accounts";
+import { LEGACY_TAGS_CONTEXT_KEY, V0_TAGS_CONTEXT_KEY } from "../feature-flags";
 
 test("TestableProjectStack is instance of SmartStack", () => {
   const stack = new TestableProjectStack({
@@ -160,5 +161,46 @@ describe("env", () => {
     });
     expect(stack.account).toEqual("111111111111");
     expect(stack.region).toEqual("eu-central-1");
+  });
+});
+
+describe("deprecation warnings", () => {
+  test("warns about legacy tags", () => {
+    const stack = new TestableProjectStack({
+      accounts: AccountStrategy.one({
+        shared: { id: "111111111111" },
+      }),
+      accountType: AccountType.SHARED,
+      appContext: {
+        [LEGACY_TAGS_CONTEXT_KEY]: true,
+      },
+    });
+
+    expectErrorMetadata(
+      stack,
+      expect.stringContaining("@alma-cdk/project@v1:legacy-tags"),
+    );
+  });
+
+  test("warns about compatibility v0 tags", () => {
+    const stack = new TestableProjectStack({
+      accounts: AccountStrategy.one({ shared: { id: "111111111111" } }),
+      accountType: AccountType.SHARED,
+      appContext: { [V0_TAGS_CONTEXT_KEY]: true },
+    });
+
+    expectErrorMetadata(
+      stack,
+      expect.stringContaining("@alma-cdk/project@v1:compatibility-v0-tags"),
+    );
+  });
+
+  test("does not warn if no legacy or compatibility v0 tags", () => {
+    const stack = new TestableProjectStack({
+      accounts: AccountStrategy.one({ shared: { id: "111111111111" } }),
+      accountType: AccountType.SHARED,
+    });
+
+    expectErrorMetadata(stack, undefined);
   });
 });
