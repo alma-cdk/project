@@ -1,4 +1,4 @@
-import { awscdk, javascript, TextFile } from "projen";
+import { awscdk, javascript, TextFile, cdk } from "projen";
 import { WorkflowSteps } from "projen/lib/github";
 import { JobPermission } from "projen/lib/github/workflows-model";
 
@@ -19,7 +19,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
   jsiiVersion: "~5.5.0",
   // Metadata
-  stability: "experimental",
+  stability: cdk.Stability.STABLE,
   author: "Alma Media",
   authorOrganization: true,
   authorAddress: "opensource@almamedia.dev",
@@ -43,14 +43,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   // Publish configuration
-  majorVersion: 0,
-  releaseBranches: {
-    beta: {
-      majorVersion: 1,
-      prerelease: "beta",
-      npmDistTag: "beta",
-    },
-  },
+  majorVersion: 1,
   defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
