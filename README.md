@@ -29,7 +29,7 @@ Opinionated CDK “framework” with constructs & utilities for:
   ```sh
   npx cdk deploy -c account=dev -c environment=feature/abc-123
   ```
-  ... which means you don't need to define all the possibile environments ahead of time!
+  ... which means you don't need to define all the possible environments ahead of time!
 
 
 
