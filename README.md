@@ -257,3 +257,6 @@ If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning wi
 
 ![metadata diff on strict mode](assets/v0-to-v1-metadata-diff-on-strict.png)
 
+## Roadmap
+
+We are drafting a vision/roadmap for upcoming v2 and v3 versions during Dec 2024 – Jan 2025. For now, see [issue #36](https://github.com/alma-cdk/project/issues/36).
