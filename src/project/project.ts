@@ -1,8 +1,16 @@
-import { App, AppProps } from "aws-cdk-lib";
+import { Annotations, App, AppProps, Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { Account, ProjectConfiguration } from "./interfaces";
 import { resolveDefaultRegion } from "./resolve-region";
 import { addError } from "../error";
+
+/**
+ * Interface for acknowledging warnings.
+ */
+export interface Acknowledgeable {
+  id: string;
+  message?: string;
+}
 
 /** Props given to `Project`.
  *
@@ -72,6 +80,20 @@ export class Project extends App {
     }
 
     return projectConfiguration.accounts[accountType];
+  }
+
+  /**
+   * Acknowledge warnings for all stacks in the project.
+   */
+  public acknowledgeWarnings(acknowledgements: Acknowledgeable[]) {
+    const stacks = this.node
+      .findAll()
+      .filter((x): x is Stack => x instanceof Stack);
+    stacks.map((stack) => {
+      acknowledgements.map((ack) => {
+        Annotations.of(stack).acknowledgeWarning(ack.id, ack.message);
+      });
+    });
   }
 
   /** Initializes a new Project (which can be used in place of cdk.App) */
