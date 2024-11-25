@@ -106,7 +106,7 @@ If you are running AWS CDK CLI with `--strict` flag, the acknowledged warning wi
 
 ### Opt-out individual stacks or resources
 
-If you have any specific problematic resources or stacks, you can always opt-out individual constructs (and their children) by using CDK [Tags](https://docs.aws.amazon.com/cdk/v2/guide/tagging.html):
+If you have any specific problematic resources/stacks, you can opt-out individual constructs (and their children) by using CDK [Tags](https://docs.aws.amazon.com/cdk/v2/guide/tagging.html):
 
 ```ts
 cdk.Tags.of(scope).remove("Contact");
