@@ -4,7 +4,7 @@
 
 ## Upgrade
 
-To upgrade from the experimental `v0` into `v1` stable major, run:
+To upgrade from the experimental `v0` into `v1` stable major, run the following (notice the `@1` specifier):
 
 ```sh
 npm i -D @alma-cdk/project@1
