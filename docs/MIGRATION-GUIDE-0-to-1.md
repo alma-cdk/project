@@ -36,7 +36,7 @@ At the time of writing this document (2024-11-26), the supported NodeJS version 
 | -------- | --------------- | ------------ |
 | **`18`** | `22` active LTS | `23` current |
 
-You can see the actual up-to-date supported versions in [`package.json`'s `engines.node` field](https://github.com/alma-cdk/project/blob/main/package.json).
+You can see the actual up-to-date supported versions in [`package.json`'s `engines.node` field](/package.json).
 
 <br/><br/>
 
