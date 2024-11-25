@@ -8,8 +8,8 @@ import { addError } from "../error";
  * Interface for acknowledging warnings.
  */
 export interface Acknowledgeable {
-  id: string;
-  message?: string;
+  readonly id: string;
+  readonly message?: string;
 }
 
 /** Props given to `Project`.
