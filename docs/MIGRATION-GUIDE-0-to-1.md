@@ -1,4 +1,4 @@
-# Migration Guide `v0` → `v1`
+# Migration Guide `v0`→`v1`
 
 <br/>
 
