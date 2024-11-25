@@ -33,6 +33,7 @@ class TestContextProvider extends Construct {
 }
 
 export class TestableProjectStack extends SmartStack {
+  public readonly project: Project;
   public readonly projectName: string;
   public readonly stackConstructId: string;
 
@@ -92,6 +93,7 @@ export class TestableProjectStack extends SmartStack {
       ...stackProps,
     });
 
+    this.project = project;
     this.projectName = projectName;
     this.stackConstructId = stackConstructId;
   }
