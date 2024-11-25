@@ -234,7 +234,7 @@ Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as 
 
 ![CloudFormation Diff example when upgrading from v0 to v1](assets/v0-to-v1-tag-diff.png)
 
-#### Control Tagging Behavior via Feature Flag
+#### Opt-out via Feature Flag
 
 Adding the `Contact` and `Organization` tags to all resources should be safe operation ([as we exclude problematic resources](https://github.com/alma-cdk/project/blob/main/src/smartstack/tags/exclude.ts)), but we allow disabling the "new" tagging behavior via a feature flag (since `v1.0.1`) in `cdk.json` context:
 
