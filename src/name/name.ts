@@ -1,9 +1,9 @@
-import { pascalCase } from 'change-case';
-import { Construct } from 'constructs';
-import { NameProps } from './interfaces';
-import { validateMaxLength } from './max-length';
-import { trim } from './trim';
-import { ProjectContext } from '../project';
+import { pascalCase } from "change-case";
+import { Construct } from "constructs";
+import { NameProps } from "./interfaces";
+import { validateMaxLength } from "./max-length";
+import { trim } from "./trim";
+import { ProjectContext } from "../project";
 
 interface ContextualNamingInformation {
   readonly environment?: string;
@@ -12,8 +12,11 @@ interface ContextualNamingInformation {
 }
 
 export abstract class Name {
-
-  public static it(scope: Construct, baseName: string, props?: NameProps): string {
+  public static it(
+    scope: Construct,
+    baseName: string,
+    props?: NameProps,
+  ): string {
     const info = Name.getContextualInformation(scope);
     const result = Name.nameIt(baseName, {
       environment: info.environment,
@@ -23,7 +26,11 @@ export abstract class Name {
     return trimmed;
   }
 
-  public static withProject(scope: Construct, baseName: string, props?: NameProps): string {
+  public static withProject(
+    scope: Construct,
+    baseName: string,
+    props?: NameProps,
+  ): string {
     const info = Name.getContextualInformation(scope);
     const result = Name.nameIt(baseName, {
       environment: info.environment,
@@ -37,7 +44,11 @@ export abstract class Name {
   /**
    * PascalCase naming with global prefixes (org, project…).
    */
-  public static globally(scope: Construct, baseName: string, props?: NameProps): string {
+  public static globally(
+    scope: Construct,
+    baseName: string,
+    props?: NameProps,
+  ): string {
     const info = Name.getContextualInformation(scope);
     const result = Name.nameIt(baseName, {
       environment: info.environment,
@@ -49,19 +60,28 @@ export abstract class Name {
     return trimmed;
   }
 
-  private static nameIt(baseName: string, info: ContextualNamingInformation): string {
-    return `${info.organizationName || ''}${info.projectName || ''}${info.environment || ''}${pascalCase(baseName)}`;
+  private static nameIt(
+    baseName: string,
+    info: ContextualNamingInformation,
+  ): string {
+    return `${info.organizationName || ""}${info.projectName || ""}${info.environment || ""}${pascalCase(baseName)}`;
   }
 
-  private static getContextualInformation(scope: Construct): ContextualNamingInformation {
+  private static getContextualInformation(
+    scope: Construct,
+  ): ContextualNamingInformation {
     return {
-      environment: Name.stripNonAlphanumeric(pascalCase(ProjectContext.tryGetEnvironment(scope) || '')),
+      environment: Name.stripNonAlphanumeric(
+        pascalCase(ProjectContext.tryGetEnvironment(scope) || ""),
+      ),
       projectName: pascalCase(ProjectContext.getName(scope)),
-      organizationName: pascalCase(ProjectContext.getAuthorOrganization(scope) || ''),
+      organizationName: pascalCase(
+        ProjectContext.getAuthorOrganization(scope) || "",
+      ),
     };
   }
 
   private static stripNonAlphanumeric(name: string): string {
-    return name.replace(/[^a-z0-9]/gi, '');
+    return name.replace(/[^a-z0-9]/gi, "");
   }
 }

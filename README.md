@@ -1,9 +1,3 @@
-<br/><br/><br/>
-
-🚧 **Work-in-Progress**: Breaking changes may occur at any given point during `v0.x`.
-
-<br/><br/><br/>
-
 <div align="center">
 	<br/>
 	<br/>
@@ -12,6 +6,9 @@
   <br/>
   <br/>
   </h1>
+
+  ![NPM License](https://img.shields.io/npm/l/%40alma-cdk%2Fproject)
+  [![release](https://github.com/alma-cdk/project/actions/workflows/release.yml/badge.svg)](https://github.com/alma-cdk/project/actions/workflows/release.yml)
 
   ```sh
   npm i -D @alma-cdk/project
@@ -115,7 +112,7 @@ Steps required to define a _environmental_ project resources; At first, it might
     import { SmartStack, Name, UrlName, PathName, EC } from '@alma-cdk/project';
 
     export class MyStack extends SmartStack {
-      constructor(scope: Construct, id: string, props?: StackProps) {
+      constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
         new dynamodb.Table(this, 'Table', {
@@ -216,3 +213,21 @@ Generally speaking you would be most interested in the following:
 - AccountContext (AC)
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
+
+## Migration
+
+### v0 to v1
+
+#### Tagging behavior
+
+Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they should have. This means that by default, upgrading from v0→v1 introduces CloudFormation diff. Basically adding the `Contact` and `Organization` tags to all resources. This should be safe operation, but we allow disabling it via a feature flag (note that `Contact` and `Organization` tags will most likely be enforced in future `v2`).
+
+```diff
+// cdk.json
+{
+  "context": {
+    // existing context keys
++   "@alma-cdk/project:compatibility:v0:tags": true
+  },
+}
+```

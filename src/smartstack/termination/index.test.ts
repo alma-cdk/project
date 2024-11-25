@@ -1,4 +1,4 @@
-import { decideTerminationProtection, TerminationProtectionProps } from '.';
+import { decideTerminationProtection, TerminationProtectionProps } from ".";
 
 interface TestCase {
   name: string;
@@ -13,77 +13,76 @@ function runTest(tc: TestCase) {
   });
 }
 
-describe('SmartStack', () => {
-
-  describe('terminationProtection', () => {
+describe("SmartStack", () => {
+  describe("terminationProtection", () => {
     [
       {
-        name: 'override set to false for non-environmental',
+        name: "override set to false for non-environmental",
         input: {
           override: false,
         },
         expected: false,
       },
       {
-        name: 'override set to true for non-environmental',
+        name: "override set to true for non-environmental",
         input: {
           override: true,
         },
         expected: true,
       },
       {
-        name: 'override set to false for staging',
+        name: "override set to false for staging",
         input: {
           override: false,
-          environmentType: 'staging',
+          environmentType: "staging",
         },
         expected: false,
       },
       {
-        name: 'override set to true for mock1',
+        name: "override set to true for mock1",
         input: {
           override: true,
-          environmentType: 'mock1',
+          environmentType: "mock1",
         },
         expected: true,
       },
       {
-        name: 'non-environmental',
+        name: "non-environmental",
         input: {},
         expected: true,
       },
       {
-        name: 'feature environment',
+        name: "feature environment",
         input: {
-          environmentType: 'feature/foobar',
+          environmentType: "feature/foobar",
         },
         expected: false,
       },
       {
-        name: 'test environment',
+        name: "test environment",
         input: {
-          environmentType: 'test',
+          environmentType: "test",
         },
         expected: false,
       },
       {
-        name: 'staging environment',
+        name: "staging environment",
         input: {
-          environmentType: 'staging',
+          environmentType: "staging",
         },
         expected: true,
       },
       {
-        name: 'preproduction environment',
+        name: "preproduction environment",
         input: {
-          environmentType: 'preproduction',
+          environmentType: "preproduction",
         },
         expected: false,
       },
       {
-        name: 'production environment',
+        name: "production environment",
         input: {
-          environmentType: 'production',
+          environmentType: "production",
         },
         expected: true,
       },

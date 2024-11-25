@@ -1,10 +1,10 @@
-import { Construct } from 'constructs';
-import { get } from 'lodash';
-import { AccountType } from './account-type';
-import { EnvironmentType } from './environment-type';
-import { Account } from './interfaces';
-import { Project } from './project';
-import { addError } from '../error';
+import { Construct } from "constructs";
+import { AccountType } from "./account-type";
+import { EnvironmentType } from "./environment-type";
+import { Account } from "./interfaces";
+import { Project } from "./project";
+import { addError } from "../error";
+import { get } from "../utils/get";
 
 export class ProjectContext {
   /**
@@ -22,11 +22,18 @@ export class ProjectContext {
     return account.id;
   }
 
-  static getAccountConfig(scope: Construct, key: string, defaultValue?: any): any {
+  static getAccountConfig(
+    scope: Construct,
+    key: string,
+    defaultValue?: any,
+  ): any {
     const account = ProjectContext.getProjectAccountConfiguration(scope);
     const value = get(account.config, key, defaultValue);
-    if (value === undefined || value === '') {
-      addError(scope, `Account ${this.getName(scope)} does not have a config with key ${key}`);
+    if (value === undefined || value === "") {
+      addError(
+        scope,
+        `Account ${this.getName(scope)} does not have a config with key ${key}`,
+      );
     }
     return value;
   }
@@ -82,7 +89,11 @@ export class ProjectContext {
     environmentType: string,
   ): string {
     const projectConfiguration = Project.getConfiguration(scope);
-    return AccountType.matchFromEnvironment(scope, projectConfiguration.accounts, environmentType);
+    return AccountType.matchFromEnvironment(
+      scope,
+      projectConfiguration.accounts,
+      environmentType,
+    );
   }
 
   /**

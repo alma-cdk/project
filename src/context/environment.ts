@@ -1,10 +1,14 @@
-import { paramCase } from 'change-case';
-import { Construct } from 'constructs';
-import { getLabelByName, EnvironmentLabel, getCategoryByLabel, EnvironmentCategory } from '../configurations/environments';
-import { ProjectContext } from '../project';
+import { paramCase } from "change-case";
+import { Construct } from "constructs";
+import {
+  getLabelByName,
+  EnvironmentLabel,
+  getCategoryByLabel,
+  EnvironmentCategory,
+} from "../configurations/environments";
+import { ProjectContext } from "../project";
 
 export class EnvironmentContext {
-
   /**
    * Get Environment Name
    *
@@ -111,7 +115,10 @@ export class EnvironmentContext {
    * @returns boolean indicating does Environment belong to `mock` category
    */
   static isMock(scope: Construct): boolean {
-    return EnvironmentContext.isEnvironmentCategoryMatch(scope, EnvironmentCategory.MOCK);
+    return EnvironmentContext.isEnvironmentCategoryMatch(
+      scope,
+      EnvironmentCategory.MOCK,
+    );
   }
 
   /**
@@ -123,7 +130,10 @@ export class EnvironmentContext {
    * @returns boolean indicating does Environment belong to `development` category
    */
   static isDevelopment(scope: Construct): boolean {
-    return EnvironmentContext.isEnvironmentCategoryMatch(scope, EnvironmentCategory.DEVELOPMENT);
+    return EnvironmentContext.isEnvironmentCategoryMatch(
+      scope,
+      EnvironmentCategory.DEVELOPMENT,
+    );
   }
 
   /**
@@ -135,7 +145,10 @@ export class EnvironmentContext {
    * @returns boolean indicating does Environment belong to `feature` category
    */
   static isFeature(scope: Construct): boolean {
-    return EnvironmentContext.isEnvironmentCategoryMatch(scope, EnvironmentCategory.FEATURE);
+    return EnvironmentContext.isEnvironmentCategoryMatch(
+      scope,
+      EnvironmentCategory.FEATURE,
+    );
   }
 
   /**
@@ -147,7 +160,10 @@ export class EnvironmentContext {
    * @returns boolean indicating does Environment belong to `verification` category
    */
   static isVerification(scope: Construct): boolean {
-    return EnvironmentContext.isEnvironmentCategoryMatch(scope, EnvironmentCategory.VERIFICATION);
+    return EnvironmentContext.isEnvironmentCategoryMatch(
+      scope,
+      EnvironmentCategory.VERIFICATION,
+    );
   }
 
   /**
@@ -159,7 +175,10 @@ export class EnvironmentContext {
    * @returns boolean indicating does Environment belong to `stable` category
    */
   static isStable(scope: Construct): boolean {
-    return EnvironmentContext.isEnvironmentCategoryMatch(scope, EnvironmentCategory.STABLE);
+    return EnvironmentContext.isEnvironmentCategoryMatch(
+      scope,
+      EnvironmentCategory.STABLE,
+    );
   }
 
   /**
@@ -174,14 +193,16 @@ export class EnvironmentContext {
    * @returns string indicating the feature this environment relates to, if not feature environment returns an empty string
    */
   static getFeatureInfo(scope: Construct): string {
-    if (EnvironmentContext.isFeature(scope) !== false) return '';
+    if (!EnvironmentContext.isFeature(scope)) return "";
     const name = EnvironmentContext.getName(scope);
-    return name.replace(/^feature\//i, '');
+    return name.replace(/^feature\//i, "");
   }
 
-  private static isEnvironmentCategoryMatch(scope: Construct, match: EnvironmentCategory): boolean {
+  private static isEnvironmentCategoryMatch(
+    scope: Construct,
+    match: EnvironmentCategory,
+  ): boolean {
     const category = EnvironmentContext.getCategory(scope);
     return category === match;
   }
-
 }
