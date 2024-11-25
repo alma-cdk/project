@@ -216,6 +216,13 @@ Generally speaking you would be most interested in the following:
 
 ## Migration Guide
 
+To upgrade to stable major version 1, run:
+```sh
+npm i -D @alma-cdk/project@1
+```
+
+No other source code changes are required and no CloudFormation diff will be caused by this upgrade, with the exception of how you want to control the tagging behavior (see below):
+
 ### v0 to v1 Tagging behavior changes
 
 Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they were intended; This bug was fixed in `v1` which means that by default, upgrading from v0→v1 introduces CloudFormation diff:
