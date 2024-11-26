@@ -1,38 +1,37 @@
 <div align="center">
-	<br/>
-	<br/>
   <h1>
-	<img width="300" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
+	<img width="512" src="assets/alma-cdk-project.svg" alt="Alma CDK Project" />
   <br/>
   <br/>
   </h1>
 
-  ![NPM License](https://img.shields.io/npm/l/%40alma-cdk%2Fproject)
+  ![Stability: Stable](https://img.shields.io/badge/stability-stable-%234BCA2A)
+  ![Versioning: SemVer 2.0.0](https://img.shields.io/badge/versioning-semver_2.0.0-blue)
   [![release](https://github.com/alma-cdk/project/actions/workflows/release.yml/badge.svg)](https://github.com/alma-cdk/project/actions/workflows/release.yml)
+  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
+  [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alma-cdk_project&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alma-cdk_project)
+  <hr/>
+</div>
+
+> [!Tip]
+> Migrating from `v0` to `v1`? See [Migration Guide](/docs/MIGRATION-GUIDE-0-to-1.md).
+
+<br/>
+
+Opinionated CDK “framework” with constructs & utilities for:
+- deploying multiple environments to multiple accounts (with many-to-many relationship)
+- managing account configuration through standardized props (no more random config files)
+- querying account and/or environment specific information within your CDK code
+- enabling dynamic & short-lived “feature-environments”
+- enabling well-defined tagging
+- providing structure & common conventions to CDK projects
+- choosing the target account & environment by passing in runtime context:
 
   ```sh
-  npm i -D @alma-cdk/project
+  npx cdk deploy -c account=dev -c environment=feature/abc-123
   ```
+  ... which means you don't need to define all the possible environments ahead of time!
 
-  <div align="left">
-
-  Opinionated CDK “framework” with constructs & utilities for:
-  - deploying multiple environments to multiple accounts (with many-to-many relationship)
-  - managing account configuration through standardized props (no more random config files)
-  - querying account and/or environment specific information within your CDK code
-  - enabling dynamic & short-lived “feature-environments”
-  - enabling well-defined tagging
-  - providing structure & common conventions to CDK projects
-  - choosing the target account & environment by passing in runtime context:
-
-    ```sh
-    npx cdk deploy -c account=dev -c environment=feature/abc-123
-    ```
-    ... which means you don't need to define all the possibile environments ahead of time!
-
-  </div>
-  <br/>
-</div>
 
 
 ## Account Strategies
@@ -214,20 +213,6 @@ Generally speaking you would be most interested in the following:
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
 
-## Migration
+Migrating from `v0` to `v1`? See [Migration Guide](/docs/MIGRATION-GUIDE-0-to-1.md).
 
-### v0 to v1
-
-#### Tagging behavior
-
-Due to a bug in `v0`, the `Contact` and `Organization` tags were NOT applied as they should have. This means that by default, upgrading from v0→v1 introduces CloudFormation diff. Basically adding the `Contact` and `Organization` tags to all resources. This should be safe operation, but we allow disabling it via a feature flag (note that `Contact` and `Organization` tags will most likely be enforced in future `v2`).
-
-```diff
-// cdk.json
-{
-  "context": {
-    // existing context keys
-+   "@alma-cdk/project:compatibilityV0Tags": true
-  },
-}
-```
+<br/>

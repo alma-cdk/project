@@ -37,6 +37,8 @@ jspm_packages/
 /examples/**/.git
 TODO.md
 .scannerwork/
+**/*.drawio.bkp
+**/*.afdesign~lock~
 /test-reports/
 junit.xml
 /coverage/
