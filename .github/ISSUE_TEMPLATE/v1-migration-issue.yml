@@ -10,6 +10,35 @@ labels:
 
 body:
 
+- type: markdown
+  attributes:
+    value: |
+      - Do not disclose any sensitive information (including AWS Account IDs)!
+      - If you are reporting a generic issue/bug not related to v0 to v1 migration, please open a [bug report](https://github.com/alma-cdk/project/issues/new?assignees=maintainers&labels=bug&projects=&template=bug-report.yml&title=Report+a+bug).
+
+- type: dropdown
+  attributes:
+    label: Operating System
+    description: Which operating system are you using?
+    options:
+      - macOS
+      - Linux
+      - Windows
+      - Other
+    default: 0
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Operating System Version
+    description: >
+      Version of your operating system (e.g., Ubuntu 22.04, macOS 14.3.1, Windows 11)
+    placeholder: macOS 14.3.1
+  validations:
+    required: true
+
+
 - type: dropdown
   attributes:
     label: Language
@@ -18,6 +47,16 @@ body:
       - TypeScript/JavaScript
       - Python
       - Go
+    default: 0
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Language Runtime Version
+    description: >
+      Version of the language runtime (e.g., NodeJS v18.19.1, Python 3.13.0, Go 1.23.3)
+    placeholder: NodeJS v18.19.1
   validations:
     required: true
 
@@ -26,6 +65,7 @@ body:
     label: Version of aws-cdk-lib
     description: >
       AWS CDK Library version used
+    placeholder: "2.170.0"
   validations:
     required: true
 
@@ -34,14 +74,25 @@ body:
     label: Version of aws-cdk
     description: >
       AWS CDK CLI/Toolkit version used
+    placeholder: "2.170.0"
   validations:
     required: true
 
 - type: input
   attributes:
-    label: Original version of @alma-cdk/project
+    label: Old version of @alma-cdk/project
     description: >
-      The v0 version used before migration to v1
+      The original version of this library you were trying to migrate from
+    placeholder: "0.0.31"
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: New of @alma-cdk/project
+    description: >
+      The version of this library you are trying to migrate to
+    placeholder: "1.0.1"
   validations:
     required: true
 
