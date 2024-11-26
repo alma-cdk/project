@@ -25,7 +25,7 @@ body:
   attributes:
     label: Use Case
     description: Describe the situation or context where you need this feature
-    placeholder: When I'm deploying to multiple environments, I need to...
+    placeholder: I need to...
   validations:
     required: true
 
