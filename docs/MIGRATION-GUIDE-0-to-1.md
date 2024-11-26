@@ -106,6 +106,9 @@ project.acknowledgeWarnings([
 
 … but again, you need to adopt the fixed tagging behavior before future `v2` major version.
 
+> [!Warning]
+> Most likely we will make this warning non-acknowledgeable (non-dismissible) at some point in the future as `v2` release becomes more imminent.
+
 <br/>
 
 #### Strict Mode
