@@ -1,5 +1,17 @@
 # Migration Guide `v0`→`v1`
 
+The main points for this version:
+
+- API backwards compatible with v0:
+  - see migration guide for the exception of tagging behavior due to bug in v0
+  - nodejs v18 required (was v14)
+- Provide finally an official stable version
+- Start properly following SemVer 2.0.0
+- Fix some bugs
+- Upgrade dependencies and build tooling
+- Improve unit tests (coverage is now close to 95%)
+- Provide a good starting point for future refactoring/rewrites, fixes and new features
+
 <br/>
 
 ## Upgrade
