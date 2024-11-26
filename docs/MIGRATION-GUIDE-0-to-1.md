@@ -132,7 +132,7 @@ cdk.Tags.of(scope).remove("Organization");
 
 ## Migration issues?
 
-File [a new issue](https://github.com/alma-cdk/project/issues/new). Do not disclose any sensitive information (including AWS Account IDs)!
+File [a new migration issue](https://github.com/alma-cdk/project/issues/new?assignees=&labels=v1-migration-issue&projects=&template=v1-migration-issue.yml&title=Issue+with+V1+Migration%3A+). Do not disclose any sensitive information (including AWS Account IDs)!
 
 <br/><br/>
 
