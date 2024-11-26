@@ -2,8 +2,6 @@ name: "V0 to V1 Migration Issue"
 title: "Issue with V1 Migration: "
 description: >
   Report an issue with the V0 to V1 migration.
-assignees:
-  - maintainers
 
 labels:
 - v1-migration-issue
@@ -13,8 +11,8 @@ body:
 - type: markdown
   attributes:
     value: |
-      - Do not disclose any sensitive information (including AWS Account IDs)!
-      - If you are reporting a generic issue/bug not related to v0 to v1 migration, please open a [bug report](https://github.com/alma-cdk/project/issues/new?assignees=maintainers&labels=bug&projects=&template=bug-report.yml&title=Report+a+bug).
+      - Do not disclose any sensitive information (including AWS Account IDs)
+      - If you are reporting a generic issue/bug not related to v0 to v1 migration, please open a [bug report](https://github.com/alma-cdk/project/issues/new?assignees=maintainers&labels=bug&projects=&template=bug-report.yml&title=Report+a+bug)
 
 - type: dropdown
   attributes:
