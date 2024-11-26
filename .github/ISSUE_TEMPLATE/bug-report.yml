@@ -18,12 +18,32 @@ body:
 
 - type: dropdown
   attributes:
+    label: Operating System
+    description: Which operating system are you using?
+    options:
+      - Linux
+      - macOS
+      - Windows
+      - Other
+  validations:
+    required: true
+
+- type: dropdown
+  attributes:
     label: Language
     description: Programming Language used with AWS CDK
     options:
       - TypeScript/JavaScript
       - Python
       - Go
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Language Runtime Version
+    description: >
+      Version of the language runtime (e.g., Node.js v18.19.1, Python 3.13.0, Go 1.23.3)
   validations:
     required: true
 
