@@ -1,0 +1,76 @@
+name: "Bug Report"
+title: "Report a bug"
+description: >
+  Report an issue with the V0 to V1 migration.
+assignees:
+  - maintainers
+
+labels:
+- bug
+
+body:
+
+- type: markdown
+  attributes:
+    value: |
+      - Do not disclose any sensitive information (including AWS Account IDs)!
+      - If you are having issues with the v0 to v1 migration, please open a [v0 to v1 migration issue](https://github.com/alma-cdk/project/issues/new?assignees=maintainers&labels=v1-migration-issue&projects=&template=v1-migration-issue.yml&title=Issue+with+V1+Migration%3A+).
+
+- type: dropdown
+  attributes:
+    label: Language
+    description: Programming Language used with AWS CDK
+    options:
+      - TypeScript/JavaScript
+      - Python
+      - Go
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Version of aws-cdk-lib
+    description: >
+      AWS CDK Library version used
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Version of aws-cdk
+    description: >
+      AWS CDK CLI/Toolkit version used
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Version of @alma-cdk/project
+    description: >
+      The version of this library you are using that you noticed the bug in
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Explain the problem
+    description: What happened?
+    placeholder: Tell us what happened. Do not disclose any sensitive information (including AWS Account IDs)!
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: What you expected to happen
+    description: Do not disclose any sensitive information (including AWS Account IDs)!
+    placeholder: Tell us what happened. Do not disclose any sensitive information (including AWS Account IDs)!
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Workarounds
+    description: Have you found any workarounds? Please share them here to help others.
+    placeholder: Share any workarounds you've discovered. Do not disclose any sensitive information (including AWS Account IDs)!
+  validations:
+    required: false
