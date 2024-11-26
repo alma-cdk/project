@@ -1,0 +1,62 @@
+name: "Feature Request"
+title: "Feature Request: "
+description: >
+  Suggest a new feature or enhancement for this project.
+
+labels:
+- feature request
+
+body:
+
+- type: markdown
+  attributes:
+    value: |
+      Thank you for suggesting a new feature!
+
+      Please fill out the form below to help us understand your request better.
+
+      If you are reporting a bug, please open a [bug report](https://github.com/alma-cdk/project/issues/new?assignees=&labels=bug&projects=&template=bug-report.yml&title=Report+a+bug)!
+
+      > [!Important]
+      > Notice that currently we are mainly planning on introducing new features in upcoming v2/v3 major versions, after the internals have been rewritten.
+
+
+- type: textarea
+  attributes:
+    label: Use Case
+    description: Describe the situation or context where you need this feature
+    placeholder: |
+      Example:
+      "When I'm deploying to multiple environments, I need to..."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Proposed Solution
+    description: Describe what you'd like to see implemented
+    placeholder: |
+      Example:
+      "I would like to have the ability to..."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Alternative Solutions
+    description: Have you considered any alternative solutions or workarounds?
+    placeholder: |
+      Example:
+      "I've tried working around this by..."
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Additional Context
+    description: Add any other context, examples, or screenshots about the feature request here
+    placeholder: |
+      Example:
+      "This would be similar to how..."
+  validations:
+    required: false
