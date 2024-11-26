@@ -21,11 +21,11 @@ body:
     label: Operating System
     description: Which operating system are you using?
     options:
-      - Linux
       - macOS
+      - Linux
       - Windows
       - Other
-    default: 1
+    default: 0
   validations:
     required: true
 
