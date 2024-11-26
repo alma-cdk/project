@@ -213,6 +213,12 @@ Generally speaking you would be most interested in the following:
 - EnvironmentContext (EC)
 - Name / UrlName / PathName
 
+### Migration Guide
+
 Migrating from `v0` to `v1`? See [Migration Guide](/docs/MIGRATION-GUIDE-0-to-1.md).
+
+### Roadmap
+
+For now, see [Issue #36](https://github.com/alma-cdk/project/issues/36).
 
 <br/>
