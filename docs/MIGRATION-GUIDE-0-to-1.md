@@ -1,6 +1,6 @@
 # Migration Guide `v0`→`v1`
 
-The main points for this version:
+The main points for this new major version:
 
 - API backwards compatible with v0:
   - see migration guide for the exception of tagging behavior due to bug in v0
