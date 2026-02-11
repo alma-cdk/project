@@ -47,9 +47,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  python: {
+  npmTrustedPublishing: true,
+  releaseEnvironment: "production",
+  publishToPypi: {
     distName: "alma-cdk.project",
     module: "alma_cdk.project",
+    trustedPublishing: true,
   },
   publishToGo: {
     moduleName: "github.com/alma-cdk/project-go",
