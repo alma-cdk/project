@@ -6,18 +6,18 @@ const nodejsVersion = {
   /**
    * Minimum supported version.
    */
-  MIN: "18",
+  MIN: "20",
   /**
    * Maximum supported version.
    */
-  MAX: "23",
+  MAX: "24",
 } as const;
 
 const project = new awscdk.AwsCdkConstructLibrary({
   minNodeVersion: nodejsVersion.MIN,
   maxNodeVersion: nodejsVersion.MAX,
   projenrcTs: true,
-  jsiiVersion: "~5.5.0",
+  jsiiVersion: "~5.8.0",
   // Metadata
   stability: cdk.Stability.STABLE,
   author: "Alma Media",
@@ -43,7 +43,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   // Publish configuration
-  majorVersion: 1,
+  majorVersion: 2,
   defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
@@ -56,7 +56,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   // Dependencies
-  cdkVersion: "2.133.0",
+  cdkVersion: "2.220.0",
   constructsVersion: "10.3.0",
   devDeps: ["@types/nunjucks", `@types/node@^${nodejsVersion.MIN}`],
   bundledDeps: ["change-case", "nunjucks"],

@@ -644,13 +644,15 @@ new SmartStack(scope: Construct, id: string, props: StackProps)
 | --- | --- |
 | <code><a href="#@alma-cdk/project.SmartStack.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@alma-cdk/project.SmartStack.addDependency">addDependency</a></code> | Add a dependency between this stack and another stack. |
-| <code><a href="#@alma-cdk/project.SmartStack.addMetadata">addMetadata</a></code> | Adds an arbitary key-value pair, with information you want to record about the stack. |
+| <code><a href="#@alma-cdk/project.SmartStack.addMetadata">addMetadata</a></code> | Adds an arbitrary key-value pair, with information you want to record about the stack. |
+| <code><a href="#@alma-cdk/project.SmartStack.addStackTag">addStackTag</a></code> | Configure a stack tag. |
 | <code><a href="#@alma-cdk/project.SmartStack.addTransform">addTransform</a></code> | Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template. |
 | <code><a href="#@alma-cdk/project.SmartStack.exportStringListValue">exportStringListValue</a></code> | Create a CloudFormation Export for a string list value. |
 | <code><a href="#@alma-cdk/project.SmartStack.exportValue">exportValue</a></code> | Create a CloudFormation Export for a string value. |
 | <code><a href="#@alma-cdk/project.SmartStack.formatArn">formatArn</a></code> | Creates an ARN from components. |
 | <code><a href="#@alma-cdk/project.SmartStack.getLogicalId">getLogicalId</a></code> | Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource. |
 | <code><a href="#@alma-cdk/project.SmartStack.regionalFact">regionalFact</a></code> | Look up a fact value for the given fact for the region of this stack. |
+| <code><a href="#@alma-cdk/project.SmartStack.removeStackTag">removeStackTag</a></code> | Remove a stack tag. |
 | <code><a href="#@alma-cdk/project.SmartStack.renameLogicalId">renameLogicalId</a></code> | Rename a generated logical identities. |
 | <code><a href="#@alma-cdk/project.SmartStack.reportMissingContextKey">reportMissingContextKey</a></code> | Indicate that a context key was expected. |
 | <code><a href="#@alma-cdk/project.SmartStack.resolve">resolve</a></code> | Resolve a tokenized value in the context of the current stack. |
@@ -697,7 +699,7 @@ app, and also supports nested stacks.
 public addMetadata(key: string, value: any): void
 ```
 
-Adds an arbitary key-value pair, with information you want to record about the stack.
+Adds an arbitrary key-value pair, with information you want to record about the stack.
 
 These get translated to the Metadata section of the generated template.
 
@@ -712,6 +714,28 @@ These get translated to the Metadata section of the generated template.
 ###### `value`<sup>Required</sup> <a name="value" id="@alma-cdk/project.SmartStack.addMetadata.parameter.value"></a>
 
 - *Type:* any
+
+---
+
+##### `addStackTag` <a name="addStackTag" id="@alma-cdk/project.SmartStack.addStackTag"></a>
+
+```typescript
+public addStackTag(tagName: string, tagValue: string): void
+```
+
+Configure a stack tag.
+
+At deploy time, CloudFormation will automatically apply all stack tags to all resources in the stack.
+
+###### `tagName`<sup>Required</sup> <a name="tagName" id="@alma-cdk/project.SmartStack.addStackTag.parameter.tagName"></a>
+
+- *Type:* string
+
+---
+
+###### `tagValue`<sup>Required</sup> <a name="tagValue" id="@alma-cdk/project.SmartStack.addStackTag.parameter.tagValue"></a>
+
+- *Type:* string
 
 ---
 
@@ -805,8 +829,6 @@ temporarily ensure that the CloudFormation Export still exists while you
 remove the reference from the consuming stack. After that, you can remove
 the resource and the manual export.
 
-## Example
-
 Here is how the process works. Let's say there are two stacks,
 `producerStack` and `consumerStack`, and `producerStack` has a bucket
 called `bucket`, which is referenced by `consumerStack` (perhaps because
@@ -817,7 +839,7 @@ deleted, `consumerStack` might still be using it.
 
 Instead, the process takes two deployments:
 
-### Deployment 1: break the relationship
+**Deployment 1: break the relationship**:
 
 - Make sure `consumerStack` no longer references `bucket.bucketName` (maybe the consumer
   stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just
@@ -827,7 +849,7 @@ Instead, the process takes two deployments:
   between the two stacks is being broken.
 - Deploy (this will effectively only change the `consumerStack`, but it's safe to deploy both).
 
-### Deployment 2: remove the bucket resource
+**Deployment 2: remove the bucket resource**:
 
 - You are now free to remove the `bucket` resource from `producerStack`.
 - Don't forget to remove the `exportValue()` call as well.
@@ -928,6 +950,22 @@ the given region.
 ---
 
 ###### `defaultValue`<sup>Optional</sup> <a name="defaultValue" id="@alma-cdk/project.SmartStack.regionalFact.parameter.defaultValue"></a>
+
+- *Type:* string
+
+---
+
+##### `removeStackTag` <a name="removeStackTag" id="@alma-cdk/project.SmartStack.removeStackTag"></a>
+
+```typescript
+public removeStackTag(tagName: string): void
+```
+
+Remove a stack tag.
+
+At deploy time, CloudFormation will automatically apply all stack tags to all resources in the stack.
+
+###### `tagName`<sup>Required</sup> <a name="tagName" id="@alma-cdk/project.SmartStack.removeStackTag.parameter.tagName"></a>
 
 - *Type:* string
 
@@ -1195,9 +1233,9 @@ attempt to parse it to implement your logic. If you do, you must first
 check that it is a concrete value an not an unresolved token. If this
 value is an unresolved token (`Token.isUnresolved(stack.account)` returns
 `true`), this implies that the user wishes that this stack will synthesize
-into a **account-agnostic template**. In this case, your code should either
+into an **account-agnostic template**. In this case, your code should either
 fail (throw an error, emit a synth error using `Annotations.of(construct).addError()`) or
-implement some other region-agnostic behavior.
+implement some other account-agnostic behavior.
 
 ---
 
@@ -2083,6 +2121,7 @@ const projectProps: ProjectProps = { ... }
 | <code><a href="#@alma-cdk/project.ProjectProps.property.outdir">outdir</a></code> | <code>string</code> | The output directory into which to emit synthesized artifacts. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.policyValidationBeta1">policyValidationBeta1</a></code> | <code>aws-cdk-lib.IPolicyValidationPluginBeta1[]</code> | Validation plugins to run after synthesis. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.postCliContext">postCliContext</a></code> | <code>{[ key: string ]: any}</code> | Additional context values for the application. |
+| <code><a href="#@alma-cdk/project.ProjectProps.property.propertyInjectors">propertyInjectors</a></code> | <code>aws-cdk-lib.IPropertyInjector[]</code> | A list of IPropertyInjector attached to this App. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.stackTraces">stackTraces</a></code> | <code>boolean</code> | Include construct creation stack trace in the `aws:cdk:trace` metadata key of all constructs. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.treeMetadata">treeMetadata</a></code> | <code>boolean</code> | Include construct tree metadata as part of the Cloud Assembly. |
 
@@ -2310,6 +2349,19 @@ new App({
 });
 ```
 
+
+##### `propertyInjectors`<sup>Optional</sup> <a name="propertyInjectors" id="@alma-cdk/project.ProjectProps.property.propertyInjectors"></a>
+
+```typescript
+public readonly propertyInjectors: IPropertyInjector[];
+```
+
+- *Type:* aws-cdk-lib.IPropertyInjector[]
+- *Default:* no PropertyInjectors
+
+A list of IPropertyInjector attached to this App.
+
+---
 
 ##### `stackTraces`<sup>Optional</sup> <a name="stackTraces" id="@alma-cdk/project.ProjectProps.property.stackTraces"></a>
 

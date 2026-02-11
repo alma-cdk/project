@@ -126,7 +126,8 @@
       "name": "eslint",
       "description": "Runs eslint against the codebase",
       "env": {
-        "ESLINT_USE_FLAT_CONFIG": "false"
+        "ESLINT_USE_FLAT_CONFIG": "false",
+        "NODE_NO_WARNINGS": "1"
       },
       "steps": [
         {
@@ -239,7 +240,7 @@
       "description": "Prepare a release from \"main\" branch",
       "env": {
         "RELEASE": "true",
-        "MAJOR": "1"
+        "MAJOR": "2"
       },
       "steps": [
         {
@@ -306,7 +307,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/jest,@types/nunjucks,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,jsii-diff,jsii-pacmak,prettier,projen,ts-jest,ts-node,typescript,change-case,nunjucks"
+          "exec": "npx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/jest,@types/nunjucks,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,jsii-diff,jsii-pacmak,prettier,projen,ts-jest,ts-node,typescript,change-case,nunjucks"
         },
         {
           "exec": "npm install"
