@@ -111,7 +111,7 @@ sonarCloudReportWorkflow?.addJob("sonarcloud-report", {
     },
     {
       name: "SonarCloud Scan",
-      uses: "SonarSource/sonarqube-scan-action@7",
+      uses: "SonarSource/sonarqube-scan-action@v7",
       env: {
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
         SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}",
