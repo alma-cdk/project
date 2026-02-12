@@ -1,3 +1,4 @@
+import { Duration } from "aws-cdk-lib";
 import { awscdk, javascript, TextFile, cdk } from "projen";
 import { WorkflowSteps } from "projen/lib/github";
 import { JobPermission } from "projen/lib/github/workflows-model";
@@ -161,9 +162,9 @@ new TextFile(project, ".nvmrc", {
  */
 new TextFile(project, "pnpm-workspace.yaml", {
   lines: [
-    `minimumReleaseAge: ${3 * 24 * 60}`, // days in minutes
+    `minimumReleaseAge: ${Duration.days(3).toMinutes()}`,
     "trustPolicy: no-downgrade",
-    `trustPolicyIgnoreAfter: ${30 * 24 * 60}`, // days in minutes
+    `trustPolicyIgnoreAfter: ${Duration.days(30).toMinutes()}`,
     "nodeLinker: hoisted", // required for bundled deps
     "resolutionMode: highest",
   ],
