@@ -47,9 +47,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: "main",
   packageManager: javascript.NodePackageManager.NPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  python: {
+  npmTrustedPublishing: true,
+  releaseEnvironment: "production",
+  publishToPypi: {
     distName: "alma-cdk.project",
     module: "alma_cdk.project",
+    trustedPublishing: true,
   },
   publishToGo: {
     moduleName: "github.com/alma-cdk/project-go",
@@ -108,7 +111,7 @@ sonarCloudReportWorkflow?.addJob("sonarcloud-report", {
     },
     {
       name: "SonarCloud Scan",
-      uses: "SonarSource/sonarcloud-github-action@v2",
+      uses: "SonarSource/sonarqube-scan-action@v7",
       env: {
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
         SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}",
