@@ -10,6 +10,7 @@
     ".github/workflows/upgrade-main.yml",
     ".gitignore",
     ".mergify.yml",
+    ".npmrc",
     ".nvmrc",
     ".prettierignore",
     ".prettierrc.json",
@@ -17,6 +18,7 @@
     ".projen/files.json",
     ".projen/tasks.json",
     "LICENSE",
+    "pnpm-workspace.yaml",
     "sonar-project.properties",
     "tsconfig.dev.json"
   ],
