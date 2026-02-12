@@ -7,6 +7,14 @@ const nodejsVersion = {
    * Minimum supported version.
    */
   MIN: "20",
+
+  /**
+   * Version used for GitHub Actions workflows.
+   * This is required due to OIDC & trusted publishing.
+   * Has to be used also for local development to avoid
+   * package-lock.json mutation check fail on CI.
+   */
+  WORKFLOW: "24",
   /**
    * Maximum supported version.
    */
@@ -16,6 +24,7 @@ const nodejsVersion = {
 const project = new awscdk.AwsCdkConstructLibrary({
   minNodeVersion: nodejsVersion.MIN,
   maxNodeVersion: nodejsVersion.MAX,
+  workflowNodeVersion: nodejsVersion.WORKFLOW,
   projenrcTs: true,
   jsiiVersion: "~5.8.0",
   // Metadata
@@ -144,7 +153,7 @@ new TextFile(project, "sonar-project.properties", {
  * .nvmrc file
  */
 new TextFile(project, ".nvmrc", {
-  lines: [nodejsVersion.MIN],
+  lines: [nodejsVersion.WORKFLOW],
 });
 
 project.synth();
