@@ -51,6 +51,7 @@ junit.xml
 !/.github/pull_request_template.md
 !/.prettierignore
 !/.prettierrc.json
+!/.npmrc
 !/test/
 !/tsconfig.dev.json
 !/src/
@@ -63,4 +64,5 @@ tsconfig.json
 !/.github/workflows/sonarcloud-report.yml
 !/sonar-project.properties
 !/.nvmrc
+!/pnpm-workspace.yaml
 !/.projenrc.ts

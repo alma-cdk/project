@@ -54,7 +54,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   // Publish configuration
   majorVersion: 2,
   defaultReleaseBranch: "main",
-  packageManager: javascript.NodePackageManager.NPM,
+  packageManager: javascript.NodePackageManager.PNPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   npmTrustedPublishing: true,
   releaseEnvironment: "production",
@@ -116,7 +116,7 @@ sonarCloudReportWorkflow?.addJob("sonarcloud-report", {
     ...project.renderWorkflowSetup(),
     {
       name: "Run tests",
-      run: "npm run test",
+      run: "pnpm run test",
     },
     {
       name: "SonarCloud Scan",
@@ -154,6 +154,19 @@ new TextFile(project, "sonar-project.properties", {
  */
 new TextFile(project, ".nvmrc", {
   lines: [nodejsVersion.WORKFLOW],
+});
+
+/**
+ * pnpm-workspace.yaml configuration
+ */
+new TextFile(project, "pnpm-workspace.yaml", {
+  lines: [
+    `minimumReleaseAge: ${3 * 24 * 60}`, // days in minutes
+    "trustPolicy: no-downgrade",
+    `trustPolicyIgnoreAfter: ${30 * 24 * 60}`, // days in minutes
+    "nodeLinker: hoisted", // required for bundled deps
+    "resolutionMode: highest",
+  ],
 });
 
 project.synth();
