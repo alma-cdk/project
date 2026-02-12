@@ -7,6 +7,12 @@ const nodejsVersion = {
    * Minimum supported version.
    */
   MIN: "20",
+
+  /**
+   * Version used for GitHub Actions workflows.
+   * This is required due to OIDC & trusted publishing.
+   */
+  WORKFLOW: "24",
   /**
    * Maximum supported version.
    */
@@ -16,6 +22,7 @@ const nodejsVersion = {
 const project = new awscdk.AwsCdkConstructLibrary({
   minNodeVersion: nodejsVersion.MIN,
   maxNodeVersion: nodejsVersion.MAX,
+  workflowNodeVersion: nodejsVersion.WORKFLOW,
   projenrcTs: true,
   jsiiVersion: "~5.8.0",
   // Metadata
