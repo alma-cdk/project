@@ -167,6 +167,8 @@ new TextFile(project, "pnpm-workspace.yaml", {
     `trustPolicyIgnoreAfter: ${Duration.days(30).toMinutes()}`,
     "nodeLinker: hoisted", // required for bundled deps
     "resolutionMode: highest",
+    "strictDepBuilds: true",
+    "blockExoticSubdeps: true",
   ],
 });
 
