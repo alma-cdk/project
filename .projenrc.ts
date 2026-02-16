@@ -1,3 +1,4 @@
+import { Duration } from "aws-cdk-lib";
 import { awscdk, javascript, TextFile, cdk } from "projen";
 import { WorkflowSteps } from "projen/lib/github";
 import { JobPermission } from "projen/lib/github/workflows-model";
@@ -54,7 +55,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   // Publish configuration
   majorVersion: 2,
   defaultReleaseBranch: "main",
-  packageManager: javascript.NodePackageManager.NPM,
+  packageManager: javascript.NodePackageManager.PNPM,
   npmAccess: javascript.NpmAccess.PUBLIC,
   npmTrustedPublishing: true,
   releaseEnvironment: "production",
@@ -116,7 +117,7 @@ sonarCloudReportWorkflow?.addJob("sonarcloud-report", {
     ...project.renderWorkflowSetup(),
     {
       name: "Run tests",
-      run: "npm run test",
+      run: "pnpm run test",
     },
     {
       name: "SonarCloud Scan",
@@ -154,6 +155,21 @@ new TextFile(project, "sonar-project.properties", {
  */
 new TextFile(project, ".nvmrc", {
   lines: [nodejsVersion.WORKFLOW],
+});
+
+/**
+ * pnpm-workspace.yaml configuration
+ */
+new TextFile(project, "pnpm-workspace.yaml", {
+  lines: [
+    `minimumReleaseAge: ${Duration.days(3).toMinutes()}`,
+    "trustPolicy: no-downgrade",
+    `trustPolicyIgnoreAfter: ${Duration.days(30).toMinutes()}`,
+    "nodeLinker: hoisted", // required for bundled deps
+    "resolutionMode: highest",
+    "strictDepBuilds: true",
+    "blockExoticSubdeps: true",
+  ],
 });
 
 project.synth();

@@ -1,0 +1,7 @@
+minimumReleaseAge: 4320
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 43200
+nodeLinker: hoisted
+resolutionMode: highest
+strictDepBuilds: true
+blockExoticSubdeps: true
