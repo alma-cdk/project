@@ -2,7 +2,6 @@ import { awscdk, javascript, cdk } from "projen";
 import { SonarCloudReportWorkflow } from "./SonarCloudReportWorkflow";
 import { NodeConfig } from "./NodeConfig";
 
-
 const nodejsVersion = {
   /**
    * Minimum supported version.
@@ -23,26 +22,26 @@ const nodejsVersion = {
 } as const;
 
 export interface AlmaCdkConstructLibraryOptions {
-  stability: cdk.Stability,
-  majorVersion: number,
-  authorAddress: string,
-  name: string, // TODO validate scope
-  description: string,
-  repositoryUrl: string,
-  releaseBranches?: awscdk.AwsCdkConstructLibraryOptions['releaseBranches'],
-  deps?: string[],
-  devDeps?: string[],
-  bundledDeps?: string[],
+  stability: cdk.Stability;
+  majorVersion: number;
+  authorAddress: string;
+  name: string; // TODO validate scope
+  description: string;
+  repositoryUrl: string;
+  releaseBranches?: awscdk.AwsCdkConstructLibraryOptions["releaseBranches"];
+  deps?: string[];
+  devDeps?: string[];
+  bundledDeps?: string[];
 }
 
 export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
-
   public readonly workflowNodeVersion: string;
-  
-  constructor(options: AlmaCdkConstructLibraryOptions) {
 
-    const [packageScope, packageName] = options.name.replace("@", "").split("/");
-    
+  constructor(options: AlmaCdkConstructLibraryOptions) {
+    const [packageScope, packageName] = options.name
+      .replace("@", "")
+      .split("/");
+
     const opts = {
       ...options,
       author: "Alma Media",
@@ -70,7 +69,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       },
 
       // Publish configuration
-      
+
       defaultReleaseBranch: "main",
       packageManager: javascript.NodePackageManager.PNPM,
       npmAccess: javascript.NpmAccess.PUBLIC,
@@ -104,7 +103,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         "**/*.afdesign~lock~",
       ],
     };
-    
+
     super(opts);
 
     this.workflowNodeVersion = opts.workflowNodeVersion;

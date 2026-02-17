@@ -2,31 +2,31 @@ import { TextFile, awscdk, YamlFile } from "projen";
 import { Duration } from "aws-cdk-lib";
 
 export interface NodeConfigOptions {
-    workflowNodeVersion: string;
+  workflowNodeVersion: string;
 }
 
 export class NodeConfig {
-    constructor(project: awscdk.AwsCdkConstructLibrary & NodeConfigOptions) {
-         /**
-        * .nvmrc file
-        */
-        new TextFile(project, ".nvmrc", {
-            lines: [project.workflowNodeVersion],
-        });
-  
-        /**
-         * pnpm-workspace.yaml configuration
-         */
-        new YamlFile(project, "pnpm-workspace.yaml", {
-            obj: {
-                minimumReleaseAge: Duration.days(3).toMinutes(),
-                trustPolicy: "no-downgrade",
-                trustPolicyIgnoreAfter: Duration.days(30).toMinutes(),
-                nodeLinker: "hoisted", // required for bundled deps
-                resolutionMode: "highest",
-                strictDepBuilds: true,
-                blockExoticSubdeps: true,
-            },
-        });
-    }
+  constructor(project: awscdk.AwsCdkConstructLibrary & NodeConfigOptions) {
+    /**
+     * .nvmrc file
+     */
+    new TextFile(project, ".nvmrc", {
+      lines: [project.workflowNodeVersion],
+    });
+
+    /**
+     * pnpm-workspace.yaml configuration
+     */
+    new YamlFile(project, "pnpm-workspace.yaml", {
+      obj: {
+        minimumReleaseAge: Duration.days(3).toMinutes(),
+        trustPolicy: "no-downgrade",
+        trustPolicyIgnoreAfter: Duration.days(30).toMinutes(),
+        nodeLinker: "hoisted", // required for bundled deps
+        resolutionMode: "highest",
+        strictDepBuilds: true,
+        blockExoticSubdeps: true,
+      },
+    });
+  }
 }

@@ -1,1 +1,4 @@
-export { AlmaCdkConstructLibrary, type AlmaCdkConstructLibraryOptions } from "./AlmaCdkConstructLibrary";
+export {
+  AlmaCdkConstructLibrary,
+  type AlmaCdkConstructLibraryOptions,
+} from "./AlmaCdkConstructLibrary";
