@@ -112,25 +112,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     new SonarCloudReportWorkflow(this);
 
-    /**
-    * Sonarcloud properties file
-    */
-    new TextFile(this, "sonar-project.properties", {
-      lines: [
-        "sonar.host.url=https://sonarcloud.io",
-        `sonar.projectKey=${this.name.replace("@", "").replace("/", "_")}`,
-        `sonar.organization=${this.name.replace("@", "").split("/")[0]}`,
-        "sonar.javascript.lcov.reportPaths=./coverage/lcov.info",
-        "sonar.sources=./src",
-        "sonar.tests=./test",
-        "sonar.test.inclusions=**/*.test.*",
-        "sonar.issue.ignore.multicriteria=e1,e2",
-        "sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874",
-        "sonar.issue.ignore.multicriteria.e1.resourceKey=src/smartstack/tags/*.ts",
-        "sonar.issue.ignore.multicriteria.e2.ruleKey=typescript:S1874",
-        "sonar.issue.ignore.multicriteria.e2.resourceKey=src/project/deprecation-warnings.ts",
-      ],
-    });
+  
 
     /**
     * .nvmrc file
