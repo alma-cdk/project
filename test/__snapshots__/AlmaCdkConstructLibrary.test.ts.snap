@@ -939,6 +939,11 @@ dist/**/*
         "version": "^20",
       },
       Object {
+        "name": "@types/semver",
+        "type": "build",
+        "version": "^7",
+      },
+      Object {
         "name": "@typescript-eslint/eslint-plugin",
         "type": "build",
         "version": "^8",
@@ -1027,6 +1032,16 @@ dist/**/*
         "type": "build",
       },
       Object {
+        "name": "semver",
+        "type": "bundled",
+        "version": "7",
+      },
+      Object {
+        "name": "zod",
+        "type": "bundled",
+        "version": "4",
+      },
+      Object {
         "name": "aws-cdk-lib",
         "type": "peer",
         "version": "^2.220.0",
@@ -1035,6 +1050,16 @@ dist/**/*
         "name": "constructs",
         "type": "peer",
         "version": "^10.3.0",
+      },
+      Object {
+        "name": "semver",
+        "type": "runtime",
+        "version": "7",
+      },
+      Object {
+        "name": "zod",
+        "type": "runtime",
+        "version": "4",
       },
     ],
   },
@@ -1395,7 +1420,7 @@ UNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .c
             "exec": "pnpm i --no-frozen-lockfile",
           },
           Object {
-            "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier projen ts-jest ts-node typescript aws-cdk-lib constructs",
+            "exec": "pnpm update @types/jest @types/node @types/semver @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier projen ts-jest ts-node typescript semver zod aws-cdk-lib constructs",
           },
           Object {
             "exec": "npx projen",
@@ -1627,10 +1652,19 @@ UNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .c
       "name": "Alma Media",
       "organization": true,
     },
+    "bundledDependencies": Array [
+      "semver",
+      "zod",
+    ],
+    "dependencies": Object {
+      "semver": "7",
+      "zod": "4",
+    },
     "description": "Opinionated CDK Project “Framework”",
     "devDependencies": Object {
       "@types/jest": "*",
       "@types/node": "^20",
+      "@types/semver": "^7",
       "@typescript-eslint/eslint-plugin": "^8",
       "@typescript-eslint/parser": "^8",
       "aws-cdk-lib": "2.220.0",
@@ -1835,6 +1869,7 @@ test('hello', () => {
     "include": Array [
       "src/**/*.ts",
       "test/**/*.ts",
+      "AlmaCdkConstructLibrary/**/*.ts",
       ".projenrc.ts",
       "projenrc/**/*.ts",
     ],

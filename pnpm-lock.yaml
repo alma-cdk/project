@@ -14,6 +14,12 @@ importers:
       nunjucks:
         specifier: ^3.2.4
         version: 3.2.4
+      semver:
+        specifier: '7'
+        version: 7.7.4
+      zod:
+        specifier: '4'
+        version: 4.3.6
     devDependencies:
       '@types/jest':
         specifier: ^27
@@ -24,6 +30,9 @@ importers:
       '@types/nunjucks':
         specifier: ^3.2.6
         version: 3.2.6
+      '@types/semver':
+        specifier: ^7
+        version: 7.7.1
       '@typescript-eslint/eslint-plugin':
         specifier: ^8
         version: 8.55.0(@typescript-eslint/parser@8.55.0(eslint@9.39.2)(typescript@4.9.5))(eslint@9.39.2)(typescript@4.9.5)
@@ -511,6 +520,9 @@ packages:
 
   '@types/prettier@2.7.3':
     resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
+
+  '@types/semver@7.7.1':
+    resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -3113,6 +3125,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+
 snapshots:
 
   '@aws-cdk/asset-awscli-v1@2.2.242': {}
@@ -3655,6 +3670,8 @@ snapshots:
   '@types/nunjucks@3.2.6': {}
 
   '@types/prettier@2.7.3': {}
+
+  '@types/semver@7.7.1': {}
 
   '@types/stack-utils@2.0.3': {}
 
@@ -6748,3 +6765,5 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@4.3.6: {}
