@@ -1,6 +1,6 @@
 import { awscdk, javascript, cdk } from "projen";
-import { SonarCloudReportWorkflow } from "./AlmaCdkConstructLibrary/SonarCloudReportWorkflow";
-import { NodeConfig } from "./AlmaCdkConstructLibrary/NodeConfig";
+import { SonarCloudReportWorkflow } from "./SonarCloudReportWorkflow";
+import { NodeConfig } from "./NodeConfig";
 
 
 const nodejsVersion = {
