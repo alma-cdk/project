@@ -1,6 +1,7 @@
 import { awscdk, javascript, cdk } from "projen";
 import { SonarCloudReportWorkflow } from "./SonarCloudReportWorkflow";
 import { NodeConfig } from "./NodeConfig";
+import { UpdateSnapshot } from "projen/lib/javascript";
 
 const nodejsVersion = {
   /**
@@ -42,11 +43,13 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       .replace("@", "")
       .split("/");
 
-    const opts = {
+    const opts: awscdk.AwsCdkConstructLibraryOptions = {
       ...options,
       author: "Alma Media",
       authorOrganization: true,
-
+      jestOptions: {
+        updateSnapshot: UpdateSnapshot.NEVER,
+      },
       minNodeVersion: nodejsVersion.MIN,
       maxNodeVersion: nodejsVersion.MAX,
       workflowNodeVersion: nodejsVersion.WORKFLOW,
@@ -87,8 +90,9 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       // Dependencies
       cdkVersion: "2.220.0",
       constructsVersion: "10.3.0",
+      deps: [...(options.deps || [])],
       devDeps: [...(options.devDeps || []), `@types/node@^${nodejsVersion.MIN}`],
-      // bundledDeps: ["change-case", "nunjucks"],
+      bundledDeps: [...(options.bundledDeps || [])],
 
       // Gitignore
       gitignore: [
@@ -106,7 +110,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     super(opts);
 
-    this.workflowNodeVersion = opts.workflowNodeVersion;
+    this.workflowNodeVersion = opts.workflowNodeVersion!;
 
     this.addTask("format", {
       exec: "prettier --write .",
