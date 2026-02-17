@@ -40,6 +40,8 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
   public readonly workflowNodeVersion: string;
   
   constructor(options: AlmaCdkConstructLibraryOptions) {
+
+    const [packageScope, packageName] = options.name.replace("@", "").split("/");
     
     const opts = {
       ...options,
@@ -75,12 +77,12 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       npmTrustedPublishing: true,
       releaseEnvironment: "production",
       publishToPypi: {
-        distName: "alma-cdk.project",
-        module: "alma_cdk.project",
+        distName: `${packageScope}.${packageName}`,
+        module: `${packageScope.replace("-", "_")}.${packageName.replace("-", "_")}`,
         trustedPublishing: true,
       },
       publishToGo: {
-        moduleName: "github.com/alma-cdk/project-go",
+        moduleName: `${options.repositoryUrl.replace("https://", "").replace(".git", "")}-go`,
       },
 
       // Dependencies
