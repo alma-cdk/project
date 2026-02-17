@@ -87,7 +87,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       // Dependencies
       cdkVersion: "2.220.0",
       constructsVersion: "10.3.0",
-      // devDeps: ["@types/nunjucks", `@types/node@^${nodejsVersion.MIN}`],
+      devDeps: [...(options.devDeps || []), `@types/node@^${nodejsVersion.MIN}`],
       // bundledDeps: ["change-case", "nunjucks"],
 
       // Gitignore
