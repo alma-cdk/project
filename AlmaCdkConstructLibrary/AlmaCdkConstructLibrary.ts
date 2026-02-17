@@ -30,6 +30,7 @@ export interface AlmaCdkConstructLibraryOptions {
   description: string,
   repositoryUrl: string,
   releaseBranches?: awscdk.AwsCdkConstructLibraryOptions['releaseBranches'],
+  deps: string[],
   devDeps: string[],
   bundledDeps: string[],
 }
