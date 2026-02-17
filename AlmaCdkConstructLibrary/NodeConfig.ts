@@ -1,4 +1,4 @@
-import { TextFile, awscdk } from "projen";
+import { TextFile, awscdk, YamlFile } from "projen";
 import { Duration } from "aws-cdk-lib";
 
 export interface NodeConfigOptions {
@@ -17,16 +17,16 @@ export class NodeConfig {
         /**
          * pnpm-workspace.yaml configuration
          */
-        new TextFile(project, "pnpm-workspace.yaml", {
-            lines: [
-                `minimumReleaseAge: ${Duration.days(3).toMinutes()}`,
-                "trustPolicy: no-downgrade",
-                `trustPolicyIgnoreAfter: ${Duration.days(30).toMinutes()}`,
-                "nodeLinker: hoisted", // required for bundled deps
-                "resolutionMode: highest",
-                "strictDepBuilds: true",
-                "blockExoticSubdeps: true",
-            ],
+        new YamlFile(project, "pnpm-workspace.yaml", {
+            obj: {
+                minimumReleaseAge: Duration.days(3).toMinutes(),
+                trustPolicy: "no-downgrade",
+                trustPolicyIgnoreAfter: Duration.days(30).toMinutes(),
+                nodeLinker: "hoisted", // required for bundled deps
+                resolutionMode: "highest",
+                strictDepBuilds: true,
+                blockExoticSubdeps: true,
+            },
         });
     }
 }
