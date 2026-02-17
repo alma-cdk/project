@@ -36,8 +36,12 @@ export interface AlmaCdkConstructLibraryOptions {
 }
 
 export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
+
+  public readonly workflowNodeVersion: string;
+  
   constructor(options: AlmaCdkConstructLibraryOptions) {
-    super({
+    
+    const opts = {
       ...options,
       author: "Alma Media",
       authorOrganization: true,
@@ -97,7 +101,11 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         "**/*.drawio.bkp",
         "**/*.afdesign~lock~",
       ],
-    });
+    };
+    
+    super(opts);
+
+    this.workflowNodeVersion = opts.workflowNodeVersion;
 
     this.addTask("format", {
       exec: "prettier --write .",
