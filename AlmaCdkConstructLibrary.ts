@@ -1,6 +1,6 @@
-import { Duration } from "aws-cdk-lib";
-import { awscdk, javascript, TextFile, cdk } from "projen";
+import { awscdk, javascript, cdk } from "projen";
 import { SonarCloudReportWorkflow } from "./AlmaCdkConstructLibrary/SonarCloudReportWorkflow";
+import { NodeConfig } from "./AlmaCdkConstructLibrary/NodeConfig";
 
 
 const nodejsVersion = {
@@ -112,28 +112,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     new SonarCloudReportWorkflow(this);
 
-  
-
-    /**
-    * .nvmrc file
-    */
-    new TextFile(this, ".nvmrc", {
-      lines: [nodejsVersion.WORKFLOW],
-    });
-
-    /**
-    * pnpm-workspace.yaml configuration
-    */
-    new TextFile(this, "pnpm-workspace.yaml", {
-      lines: [
-        `minimumReleaseAge: ${Duration.days(3).toMinutes()}`,
-        "trustPolicy: no-downgrade",
-        `trustPolicyIgnoreAfter: ${Duration.days(30).toMinutes()}`,
-        "nodeLinker: hoisted", // required for bundled deps
-        "resolutionMode: highest",
-        "strictDepBuilds: true",
-        "blockExoticSubdeps: true",
-      ],
-    });
+    new NodeConfig(this);
   }
 }
