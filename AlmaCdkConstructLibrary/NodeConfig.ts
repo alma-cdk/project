@@ -8,16 +8,11 @@ export interface NodeConfigOptions {
 
 export class NodeConfig {
   constructor(project: awscdk.AwsCdkConstructLibrary & NodeConfigOptions) {
-    /**
-     * .nvmrc file
-     */
+
     new TextFile(project, ".nvmrc", {
       lines: [project.workflowNodeVersion],
     });
 
-    /**
-     * pnpm-workspace.yaml configuration
-     */
     new YamlFile(project, "pnpm-workspace.yaml", {
       obj: {
         minimumReleaseAge: Duration.days(3).toMinutes(),
