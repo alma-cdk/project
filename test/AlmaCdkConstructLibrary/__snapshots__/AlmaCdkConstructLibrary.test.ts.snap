@@ -1668,7 +1668,7 @@ UNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .c
       "semver": "7",
       "zod": "4",
     },
-    "description": "Opinionated CDK Project “Framework”",
+    "description": "Opinionated CDK Project "Framework"",
     "devDependencies": {
       "@types/jest": "^30",
       "@types/node": "^20",
