@@ -60,8 +60,7 @@ export const almaCdkConstructLibraryOptionsSchema = z
       );
     },
     {
-      message:
-        "Node versions must satisfy min <= workflow <= max",
+      message: "Node versions must satisfy min <= workflow <= max",
     },
   ) satisfies z.ZodType<Partial<awscdk.AwsCdkConstructLibraryOptions>>;
 

@@ -2,7 +2,10 @@ import { awscdk, javascript } from "projen";
 import { SonarCloudReportWorkflow } from "./SonarCloudReportWorkflow";
 import { NodeConfig } from "./NodeConfig";
 import { UpdateSnapshot } from "projen/lib/javascript";
-import { almaCdkConstructLibraryOptionsSchema, type AlmaCdkConstructLibraryOptions } from "./schemas/almaCdkConstructLibraryOptions";
+import {
+  almaCdkConstructLibraryOptionsSchema,
+  type AlmaCdkConstructLibraryOptions,
+} from "./schemas/almaCdkConstructLibraryOptions";
 
 export type { AlmaCdkConstructLibraryOptions } from "./schemas/almaCdkConstructLibraryOptions";
 
@@ -10,9 +13,8 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
   public readonly workflowNodeVersion: string;
 
   constructor(options: AlmaCdkConstructLibraryOptions) {
-
-    const validatedOptions = almaCdkConstructLibraryOptionsSchema.parse(options);
-
+    const validatedOptions =
+      almaCdkConstructLibraryOptionsSchema.parse(options);
 
     const [packageScope, packageName] = validatedOptions.name
       .replace("@", "")
@@ -73,9 +75,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       ],
 
       tsconfigDev: {
-        include: [
-          "AlmaCdkConstructLibrary/**/*.ts",
-        ],
+        include: ["AlmaCdkConstructLibrary/**/*.ts"],
       },
     };
 
@@ -83,19 +83,20 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
-    this.addDevDeps('typescript@^5.9'); // Defaults to very old typescript@4.9
-    this.addDevDeps('@types/semver@^7');
-    this.addDevDeps('json-schema-to-typescript@^15');
+    this.addDevDeps("typescript@^5.9"); // Defaults to very old typescript@4.9
+    this.addDevDeps("@types/semver@^7");
+    this.addDevDeps("json-schema-to-typescript@^15");
 
-    this.addBundledDeps('zod@4');
-    this.addBundledDeps('semver@7');
+    this.addBundledDeps("zod@4");
+    this.addBundledDeps("semver@7");
 
     this.addTask("format", {
       exec: "prettier --write .",
     });
 
     this.addTask("generate:pnpm-workspace-types", {
-      description: "Download pnpm-workspace JSON schema and generate pnpm-workspace-schema.d.ts",
+      description:
+        "Download pnpm-workspace JSON schema and generate pnpm-workspace-schema.d.ts",
       exec: "ts-node scripts/generate-pnpm-workspace-types.ts",
     });
 

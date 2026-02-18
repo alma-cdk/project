@@ -8,7 +8,6 @@ export interface NodeConfigOptions {
 
 export class NodeConfig {
   constructor(project: awscdk.AwsCdkConstructLibrary & NodeConfigOptions) {
-
     new TextFile(project, ".nvmrc", {
       lines: [project.workflowNodeVersion],
     });
@@ -18,9 +17,7 @@ export class NodeConfig {
         minimumReleaseAge: Duration.days(3).toMinutes(),
         trustPolicy: "no-downgrade",
         trustPolicyIgnoreAfter: Duration.days(14).toMinutes(),
-        trustPolicyExclude: [
-          "jsii@5.9.26",
-        ],
+        trustPolicyExclude: ["jsii@5.9.26"],
         nodeLinker: "hoisted", // required for bundled deps
         resolutionMode: "highest",
         strictDepBuilds: true,

@@ -4,9 +4,7 @@ import { z } from "zod";
 export const nameSchema = z
   .string()
   .min(1)
-  .refine(
-    (name) => name.startsWith("@") && name.split("/").length === 2,
-    {
-      message: 'Name must be a scoped package starting with "@" and contain exactly one "/"',
-    },
-  );
+  .refine((name) => name.startsWith("@") && name.split("/").length === 2, {
+    message:
+      'Name must be a scoped package starting with "@" and contain exactly one "/"',
+  });

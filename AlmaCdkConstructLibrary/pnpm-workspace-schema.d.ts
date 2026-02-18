@@ -202,7 +202,12 @@ export interface PnpmWorkspaceSpecification {
   /**
    * Controls the way packages are imported from the store (if you want to disable symlinks inside node_modules, then you need to change the nodeLinker setting, not this one).
    */
-  packageImportMethod?: "auto" | "hardlink" | "copy" | "clone" | "clone-or-copy";
+  packageImportMethod?:
+    | "auto"
+    | "hardlink"
+    | "copy"
+    | "clone"
+    | "clone-or-copy";
   /**
    * The time in minutes after which orphan packages from the modules directory should be removed.
    */

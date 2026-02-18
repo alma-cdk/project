@@ -6,5 +6,8 @@ export const repositoryUrlSchema = z
   .url()
   .refine(
     (url) => url.startsWith("https://github.com/") && url.endsWith(".git"),
-    { message: 'Repository URL must start with "https://github.com/" and end with ".git"' },
+    {
+      message:
+        'Repository URL must start with "https://github.com/" and end with ".git"',
+    },
   );
