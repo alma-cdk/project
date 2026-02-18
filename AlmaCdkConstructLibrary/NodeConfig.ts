@@ -7,6 +7,9 @@ export interface NodeConfigOptions {
 }
 
 export class NodeConfig {
+  /**
+   * @param project - The CDK construct library project; must expose `workflowNodeVersion` (e.g. AlmaCdkConstructLibrary).
+   */
   constructor(project: awscdk.AwsCdkConstructLibrary & NodeConfigOptions) {
     new TextFile(project, ".nvmrc", {
       lines: [project.workflowNodeVersion],

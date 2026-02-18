@@ -6,8 +6,14 @@ import {
   almaCdkConstructLibraryOptionsSchema,
   type AlmaCdkConstructLibraryOptions,
 } from "./schemas/almaCdkConstructLibraryOptions";
+import { parseScopedPackageName } from "./schemas/name";
 
 export type { AlmaCdkConstructLibraryOptions } from "./schemas/almaCdkConstructLibraryOptions";
+
+const CDK_VERSION = "2.220.0";
+const CONSTRUCTS_VERSION = "10.3.0";
+const JSII_VERSION = "~5.9.0";
+const JEST_VERSION = "^30";
 
 export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
   public readonly workflowNodeVersion: string;
@@ -16,21 +22,27 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
     const validatedOptions =
       almaCdkConstructLibraryOptionsSchema.parse(options);
 
-    const [packageScope, packageName] = validatedOptions.name
-      .replace("@", "")
-      .split("/");
+    const { scope: packageScope, packageName } = parseScopedPackageName(
+      validatedOptions.name,
+    );
 
     const opts: awscdk.AwsCdkConstructLibraryOptions = {
       ...validatedOptions,
+      // Package manager & projen
       projenCommand: "pnpm exec projen",
       authorOrganization: true,
+      defaultReleaseBranch: "main",
+      packageManager: javascript.NodePackageManager.PNPM,
+      npmAccess: javascript.NpmAccess.PUBLIC,
+      npmTrustedPublishing: true,
+      projenrcTs: true,
+      jsiiVersion: JSII_VERSION,
+      keywords: ["cdk", "aws-cdk", "awscdk", "aws"],
       jestOptions: {
-        jestVersion: "^30",
+        jestVersion: JEST_VERSION,
         updateSnapshot: UpdateSnapshot.NEVER,
       },
-      projenrcTs: true,
-      jsiiVersion: "~5.9.0",
-      keywords: ["cdk", "aws-cdk", "awscdk", "aws"],
+      // Code quality (Prettier)
       prettier: true,
       prettierOptions: {
         ignoreFileOptions: {
@@ -45,11 +57,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
           ],
         },
       },
-
-      defaultReleaseBranch: "main",
-      packageManager: javascript.NodePackageManager.PNPM,
-      npmAccess: javascript.NpmAccess.PUBLIC,
-      npmTrustedPublishing: true,
+      // Publishing
       publishToPypi: {
         distName: `${packageScope}.${packageName}`,
         module: `${packageScope.replace("-", "_")}.${packageName.replace("-", "_")}`,
@@ -58,10 +66,10 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       publishToGo: {
         moduleName: `${validatedOptions.repositoryUrl.replace("https://", "").replace(".git", "")}-go`,
       },
-
-      cdkVersion: "2.220.0",
-      constructsVersion: "10.3.0",
-
+      // CDK
+      cdkVersion: CDK_VERSION,
+      constructsVersion: CONSTRUCTS_VERSION,
+      // Git & dev
       gitignore: [
         ".DS_Store",
         "/examples/**/cdk.context.json",
@@ -73,7 +81,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         "**/*.drawio.bkp",
         "**/*.afdesign~lock~",
       ],
-
       tsconfigDev: {
         include: ["AlmaCdkConstructLibrary/**/*.ts"],
       },
@@ -81,6 +88,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     super(opts);
 
+    // Schema default ensures this is set
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
     this.addDevDeps("typescript@^5.9"); // Defaults to very old typescript@4.9
