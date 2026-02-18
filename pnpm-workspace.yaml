@@ -9,3 +9,5 @@ nodeLinker: hoisted
 resolutionMode: highest
 strictDepBuilds: true
 blockExoticSubdeps: true
+overrides:
+  ajv@^8: ^8.18.0

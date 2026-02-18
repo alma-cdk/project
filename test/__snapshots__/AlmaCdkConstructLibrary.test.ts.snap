@@ -1060,16 +1060,6 @@ dist/**/*
         "type": "peer",
         "version": "^10.3.0",
       },
-      {
-        "name": "semver",
-        "type": "runtime",
-        "version": "7",
-      },
-      {
-        "name": "zod",
-        "type": "runtime",
-        "version": "4",
-      },
     ],
   },
   ".projen/files.json": {
@@ -1836,6 +1826,8 @@ nodeLinker: hoisted
 resolutionMode: highest
 strictDepBuilds: true
 blockExoticSubdeps: true
+overrides:
+  ajv@^8: ^8.18.0
 ",
   "sonar-project.properties": "sonar.host.url=https://sonarcloud.io
 sonar.projectKey=alma-cdk_project

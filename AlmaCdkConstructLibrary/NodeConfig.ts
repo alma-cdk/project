@@ -25,6 +25,9 @@ export class NodeConfig {
         resolutionMode: "highest",
         strictDepBuilds: true,
         blockExoticSubdeps: true,
+        overrides: {
+          "ajv@^8": "^8.18.0",
+        },
       } as PnpmWorkspaceSpecification,
     });
   }

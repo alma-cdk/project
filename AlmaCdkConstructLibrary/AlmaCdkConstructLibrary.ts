@@ -59,14 +59,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
       cdkVersion: "2.220.0",
       constructsVersion: "10.3.0",
-      deps: [...(validatedOptions.deps || []), "zod@4", "semver@7"],
-      devDeps: [
-        ...(validatedOptions.devDeps || []),
-        `@types/node@^${validatedOptions.minNodeVersion}`,
-        `@types/semver@^7`,
-        "json-schema-to-typescript@^15",
-      ],
-      bundledDeps: [...(validatedOptions.bundledDeps || []), "zod@4", "semver@7"],
 
       gitignore: [
         ".DS_Store",
@@ -92,6 +84,11 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
     this.addDevDeps('typescript@^5.9'); // Defaults to very old typescript@4.9
+    this.addDevDeps('@types/semver@^7');
+    this.addDevDeps('json-schema-to-typescript@^15');
+
+    this.addBundledDeps('zod@4');
+    this.addBundledDeps('semver@7');
 
     this.addTask("format", {
       exec: "prettier --write .",
