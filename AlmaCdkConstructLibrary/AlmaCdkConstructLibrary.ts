@@ -6,22 +6,6 @@ import { almaCdkConstructLibraryOptionsSchema, type AlmaCdkConstructLibraryOptio
 
 export type { AlmaCdkConstructLibraryOptions } from "./schemas/almaCdkConstructLibraryOptions";
 
-// export interface AlmaCdkConstructLibraryOptions {
-//   stability: cdk.Stability;
-//   majorVersion: number;
-//   author: string;
-//   authorAddress: string;
-//   name: string; // TODO validate scope
-//   description: string;
-//   repositoryUrl: string;
-//   releaseBranches?: awscdk.AwsCdkConstructLibraryOptions["releaseBranches"];
-//   releaseEnvironment: string;
-//   deps?: string[];
-//   devDeps?: string[];
-//   bundledDeps?: string[];
-// }
-
-
 export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
   public readonly workflowNodeVersion: string;
 
@@ -63,8 +47,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         },
       },
 
-      // Publish configuration
-
       defaultReleaseBranch: "main",
       packageManager: javascript.NodePackageManager.PNPM,
       npmAccess: javascript.NpmAccess.PUBLIC,
@@ -78,7 +60,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         moduleName: `${validatedOptions.repositoryUrl.replace("https://", "").replace(".git", "")}-go`,
       },
 
-      // Dependencies
       cdkVersion: "2.220.0",
       constructsVersion: "10.3.0",
       deps: [...(validatedOptions.deps || []), "zod@4", "semver@7"],
@@ -90,7 +71,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       ],
       bundledDeps: [...(validatedOptions.bundledDeps || []), "zod@4", "semver@7"],
 
-      // Gitignore
       gitignore: [
         ".DS_Store",
         "/examples/**/cdk.context.json",
@@ -114,12 +94,8 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
-    // Bump up versions
+    // Defaults to very old typescript@4.9
     this.addDevDeps('typescript@^5.9');
-    // this.addDevDeps('eslint@^8');
-    // this.addDevDeps('eslint@^10');
-    // this.addDevDeps('eslint-config-prettier@^10');
-    // this.addDevDeps('eslint-import-resolver-typescript@^4.4');
 
     this.addTask("format", {
       exec: "prettier --write .",
