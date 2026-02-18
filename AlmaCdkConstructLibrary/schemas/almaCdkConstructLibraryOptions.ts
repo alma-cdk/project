@@ -1,4 +1,4 @@
-import { awscdk } from "projen";
+import { awscdk, cdk } from "projen";
 import { z } from "zod";
 import { nameSchema } from "./name";
 import { repositoryUrlSchema } from "./repositoryUrl";
@@ -16,9 +16,6 @@ const semverSchema = z.string().refine(
   { message: "Must be a valid semver or coercible to one" },
 );
 
-/** Stability (projen cdk.Stability); validated as string due to compatibility issue with TS@4. */
-export const stabilitySchema = z.string();
-
 /** Options for a release branch (matches projen BranchOptions) */
 export const branchOptionsSchema = z.object({
   workflowName: z.string().optional(),
@@ -33,7 +30,7 @@ export const branchOptionsSchema = z.object({
 
 export const almaCdkConstructLibraryOptionsSchema = z
   .object({
-    stability: stabilitySchema,
+    stability: z.enum(cdk.Stability),
     majorVersion: positiveInteger,
     author: z.string(),
     authorAddress: z.email(),

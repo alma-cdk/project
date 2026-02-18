@@ -6,25 +6,6 @@ import { almaCdkConstructLibraryOptionsSchema, type AlmaCdkConstructLibraryOptio
 
 export type { AlmaCdkConstructLibraryOptions } from "./schemas/almaCdkConstructLibraryOptions";
 
-// const nodejsVersion = {
-//   /**
-//    * Minimum supported version.
-//    */
-//   MIN: "20",
-
-//   /**
-//    * Version used for GitHub Actions workflows.
-//    * This is required due to OIDC & trusted publishing.
-//    * Has to be used also for local development to avoid
-//    * package-lock.json mutation check fail on CI.
-//    */
-//   WORKFLOW: "24",
-//   /**
-//    * Maximum supported version.
-//    */
-//   MAX: "24",
-// } as const;
-
 // export interface AlmaCdkConstructLibraryOptions {
 //   stability: cdk.Stability;
 //   majorVersion: number;
@@ -55,15 +36,17 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     const opts: awscdk.AwsCdkConstructLibraryOptions = {
       ...validatedOptions,
+      projenCommand: "pnpm exec projen",
       authorOrganization: true,
       jestOptions: {
+        jestVersion: "^30",
         updateSnapshot: UpdateSnapshot.NEVER,
       },
       // minNodeVersion: nodejsVersion.MIN,
       // maxNodeVersion: nodejsVersion.MAX,
       // workflowNodeVersion: nodejsVersion.WORKFLOW,
       projenrcTs: true,
-      jsiiVersion: "~5.8.0",
+      jsiiVersion: "~5.9.0",
       keywords: ["cdk", "aws-cdk", "awscdk", "aws"],
       prettier: true,
       prettierOptions: {
@@ -99,7 +82,12 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
       cdkVersion: "2.220.0",
       constructsVersion: "10.3.0",
       deps: [...(validatedOptions.deps || []), "zod@4", "semver@7"],
-      devDeps: [...(validatedOptions.devDeps || []), `@types/node@^${validatedOptions.minNodeVersion}`, `@types/semver@^7`],
+      devDeps: [
+        ...(validatedOptions.devDeps || []),
+        `@types/node@^${validatedOptions.minNodeVersion}`,
+        `@types/semver@^7`,
+        "json-schema-to-typescript@^15",
+      ],
       bundledDeps: [...(validatedOptions.bundledDeps || []), "zod@4", "semver@7"],
 
       // Gitignore
@@ -126,8 +114,20 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
+    // Bump up versions
+    this.addDevDeps('typescript@^5.9');
+    // this.addDevDeps('eslint@^8');
+    // this.addDevDeps('eslint@^10');
+    // this.addDevDeps('eslint-config-prettier@^10');
+    // this.addDevDeps('eslint-import-resolver-typescript@^4.4');
+
     this.addTask("format", {
       exec: "prettier --write .",
+    });
+
+    this.addTask("generate:pnpm-workspace-types", {
+      description: "Download pnpm-workspace JSON schema and generate pnpm-workspace-schema.d.ts",
+      exec: "ts-node scripts/generate-pnpm-workspace-types.ts",
     });
 
     new SonarCloudReportWorkflow(this);
