@@ -26,9 +26,6 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
         jestVersion: "^30",
         updateSnapshot: UpdateSnapshot.NEVER,
       },
-      // minNodeVersion: nodejsVersion.MIN,
-      // maxNodeVersion: nodejsVersion.MAX,
-      // workflowNodeVersion: nodejsVersion.WORKFLOW,
       projenrcTs: true,
       jsiiVersion: "~5.9.0",
       keywords: ["cdk", "aws-cdk", "awscdk", "aws"],
@@ -94,8 +91,7 @@ export class AlmaCdkConstructLibrary extends awscdk.AwsCdkConstructLibrary {
 
     this.workflowNodeVersion = validatedOptions.workflowNodeVersion!;
 
-    // Defaults to very old typescript@4.9
-    this.addDevDeps('typescript@^5.9');
+    this.addDevDeps('typescript@^5.9'); // Defaults to very old typescript@4.9
 
     this.addTask("format", {
       exec: "prettier --write .",
