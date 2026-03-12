@@ -2,9 +2,9 @@ import { repositoryUrlSchema } from "../../../AlmaCdkConstructLibrary/schemas/re
 
 describe("repositoryUrlSchema", () => {
   it("accepts valid GitHub repository URLs", () => {
-    expect(repositoryUrlSchema.parse("https://github.com/alma-cdk/project.git")).toBe(
-      "https://github.com/alma-cdk/project.git",
-    );
+    expect(
+      repositoryUrlSchema.parse("https://github.com/alma-cdk/project.git"),
+    ).toBe("https://github.com/alma-cdk/project.git");
     expect(repositoryUrlSchema.parse("https://github.com/org/repo.git")).toBe(
       "https://github.com/org/repo.git",
     );

@@ -52,7 +52,9 @@ describe("almaCdkConstructLibraryOptionsSchema", () => {
   it("accepts valid full options", () => {
     const result = almaCdkConstructLibraryOptionsSchema.parse(validBaseOptions);
     expect(result.name).toBe("@alma-cdk/project");
-    expect(result.repositoryUrl).toBe("https://github.com/alma-cdk/project.git");
+    expect(result.repositoryUrl).toBe(
+      "https://github.com/alma-cdk/project.git",
+    );
     expect(result.minNodeVersion).toBe("20");
     expect(result.workflowNodeVersion).toBe("24");
     expect(result.maxNodeVersion).toBe("24");
