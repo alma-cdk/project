@@ -142,6 +142,21 @@ describe("SmartStack", () => {
           "-" +
           capitalizeFirstLetter("n".repeat(48)),
       },
+      // The very first instance of the pattern "a hyphen followed by a number"
+      // got the hyphen stripped, however every other instance ended up with
+      // the hyphen replaced by an underscore -- underscores are not allowed in
+      // CloudFormation stack names. The code was changes to handle every instance
+      // of the pattern the same way -- stripping the hyphen.
+      {
+        name: "multiple hyphen-followed-by-number sequences do not produce underscores",
+        input: {
+          projectName: "Name-123",
+          accountType: undefined,
+          environmentType: "Type-123",
+          stackId: "Id-123",
+        },
+        expected: "Name123-Environment-Type123-Id123",
+      },
     ].map(runTest);
   });
 });
