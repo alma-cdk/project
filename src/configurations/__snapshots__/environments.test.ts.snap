@@ -1,7 +1,7 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`EnvironmentCategory 1`] = `
-Object {
+{
   "DEVELOPMENT": "development",
   "FEATURE": "feature",
   "MOCK": "mock",
@@ -11,7 +11,7 @@ Object {
 `;
 
 exports[`EnvironmentLabel 1`] = `
-Object {
+{
   "DEVELOPMENT": "development",
   "FEATURE": "feature/[/a-zA-z0-9-]+",
   "MOCK": "mock[0-9]",
@@ -24,7 +24,7 @@ Object {
 `;
 
 exports[`labelToCategory 1`] = `
-Object {
+{
   "development": "development",
   "feature/[/a-zA-z0-9-]+": "feature",
   "mock[0-9]": "mock",
