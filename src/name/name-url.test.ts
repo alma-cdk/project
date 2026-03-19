@@ -1,6 +1,8 @@
 import * as cdk from "aws-cdk-lib";
+import { Annotations, Match, Template } from "aws-cdk-lib/assertions";
 import { UrlName, urlName } from ".";
 import { Project, ProjectProps } from "../project";
+import { MAX_LENGTH_DEFAULT } from "./max-length";
 
 const projectProps: ProjectProps = {
   name: "test-project",
@@ -77,6 +79,37 @@ describe("UrlName resources", () => {
     expect(UrlName.globally(stack, "foo bar")).toBe(expected);
     expect(UrlName.globally(stack, "foo.bar")).toBe(expected);
   });
+
+  const longBaseName = "a".repeat(MAX_LENGTH_DEFAULT + 10);
+  const maxLength = MAX_LENGTH_DEFAULT + 100;
+
+  test.each<[string, (stack: cdk.Stack, name: string) => string, string]>([
+    ["it", (s, n) => UrlName.it(s, n, { maxLength }), `test-${longBaseName}`],
+    [
+      "withProject",
+      (s, n) => UrlName.withProject(s, n, { maxLength }),
+      `test-project-test-${longBaseName}`,
+    ],
+    [
+      "globally",
+      (s, n) => UrlName.globally(s, n, { maxLength }),
+      `acme-test-project-test-${longBaseName}`,
+    ],
+  ])(
+    '"%s" accepts baseName longer than MAX_LENGTH_DEFAULT chars when maxLength is higher',
+    (_methodName, methodCall, expected) => {
+      const project = new Project({
+        ...projectProps,
+        context: { environment: "test" },
+      });
+
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      expect(methodCall(stack, longBaseName)).toBe(expected);
+      Template.fromStack(stack);
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
 
   test("shorthand method", () => {
     const project = new Project({

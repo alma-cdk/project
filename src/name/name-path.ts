@@ -10,7 +10,7 @@ export abstract class PathName extends UrlName {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = `/${super.it(scope, "").replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
+    const result = `/${super.it(scope, "", { maxLength: props?.maxLength }).replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;
@@ -20,7 +20,7 @@ export abstract class PathName extends UrlName {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = `/${super.withProject(scope, "").replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
+    const result = `/${super.withProject(scope, "", { maxLength: props?.maxLength }).replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;
@@ -30,7 +30,7 @@ export abstract class PathName extends UrlName {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = `/${super.globally(scope, "").replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
+    const result = `/${super.globally(scope, "", { maxLength: props?.maxLength }).replace(/-/g, "/")}/${baseName.replace(/[\.\s]/g, "")}`;
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;

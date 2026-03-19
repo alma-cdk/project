@@ -11,7 +11,9 @@ export abstract class UrlName extends Name {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = paramCase(super.it(scope, baseName));
+    const result = paramCase(
+      super.it(scope, baseName, { maxLength: props?.maxLength }),
+    );
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;
@@ -21,7 +23,9 @@ export abstract class UrlName extends Name {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = paramCase(super.withProject(scope, baseName));
+    const result = paramCase(
+      super.withProject(scope, baseName, { maxLength: props?.maxLength }),
+    );
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;
@@ -31,7 +35,9 @@ export abstract class UrlName extends Name {
     baseName: string,
     props?: NameProps,
   ): string {
-    const result = paramCase(super.globally(scope, baseName));
+    const result = paramCase(
+      super.globally(scope, baseName, { maxLength: props?.maxLength }),
+    );
     const trimmed = trim(result, baseName, props);
     validateMaxLength(scope, trimmed, props?.maxLength);
     return trimmed;
