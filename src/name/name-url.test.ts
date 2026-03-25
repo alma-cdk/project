@@ -111,6 +111,29 @@ describe("UrlName resources", () => {
     },
   );
 
+  test.each<[string, (stack: cdk.Stack, name: string) => string]>([
+    ["it", (s, n) => UrlName.it(s, n, { trim: true })],
+    ["withProject", (s, n) => UrlName.withProject(s, n, { trim: true })],
+    ["globally", (s, n) => UrlName.globally(s, n, { trim: true })],
+  ])(
+    '"%s" with trim:true accepts baseName longer than MAX_LENGTH_DEFAULT and trims it to the correct length',
+    (_methodName, methodCall) => {
+      const project = new Project({
+        ...projectProps,
+        context: { environment: "test" },
+      });
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      const longBaseName = "TenLetters".repeat(
+        Math.ceil(MAX_LENGTH_DEFAULT / 10) + 1,
+      );
+
+      expect(methodCall(stack, longBaseName)).toHaveLength(MAX_LENGTH_DEFAULT);
+      Template.fromStack(stack);
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
+
   test("shorthand method", () => {
     const project = new Project({
       ...projectProps,
