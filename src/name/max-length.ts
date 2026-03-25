@@ -26,7 +26,7 @@ export function validateMaxLength(
 ): void {
   if (isTooLong(value, maxLength)) {
     Annotations.of(scope).addError(
-      `Name value "${value}" is longer than the allowed limit of ${maxLength}`,
+      `Name value "${value}" is longer than the allowed limit of ${decideMaxLength(value, maxLength)}`,
     );
   }
 }
