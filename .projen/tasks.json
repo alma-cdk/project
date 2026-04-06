@@ -144,15 +144,6 @@
         }
       ]
     },
-    "generate:pnpm-workspace-types": {
-      "name": "generate:pnpm-workspace-types",
-      "description": "Download pnpm-workspace JSON schema and generate pnpm-workspace-schema.d.ts",
-      "steps": [
-        {
-          "exec": "ts-node scripts/generate-pnpm-workspace-types.ts"
-        }
-      ]
-    },
     "install": {
       "name": "install",
       "description": "Install project dependencies and update lockfile (non-frozen)",
@@ -326,13 +317,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@types/nunjucks,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jsii-diff,jsii-pacmak,prettier,projen,ts-node,change-case,nunjucks"
+          "exec": "pnpm dlx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@alma-cdk/construct-library,@types/nunjucks,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jsii-diff,jsii-pacmak,prettier,projen,ts-node,change-case,nunjucks"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/jest @types/node @types/nunjucks @types/semver @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii json-schema-to-typescript prettier projen ts-jest ts-node typescript change-case nunjucks semver zod aws-cdk-lib constructs"
+          "exec": "pnpm update @alma-cdk/construct-library @types/jest @types/node @types/nunjucks @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier projen ts-jest ts-node typescript change-case nunjucks aws-cdk-lib constructs"
         },
         {
           "exec": "pnpm exec projen"

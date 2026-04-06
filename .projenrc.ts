@@ -1,5 +1,5 @@
+import { AlmaCdkConstructLibrary } from "@alma-cdk/construct-library";
 import { cdk } from "projen";
-import { AlmaCdkConstructLibrary } from "./AlmaCdkConstructLibrary";
 
 const project = new AlmaCdkConstructLibrary({
   name: "@alma-cdk/project",
@@ -12,6 +12,13 @@ const project = new AlmaCdkConstructLibrary({
   devDeps: ["@types/nunjucks"],
   bundledDeps: ["change-case", "nunjucks"],
   releaseEnvironment: "production",
+  sonarProjectPropertiesExtraLines: [
+    "sonar.issue.ignore.multicriteria=e1,e2",
+    "sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874",
+    "sonar.issue.ignore.multicriteria.e1.resourceKey=src/smartstack/tags/*.ts",
+    "sonar.issue.ignore.multicriteria.e2.ruleKey=typescript:S1874",
+    "sonar.issue.ignore.multicriteria.e2.resourceKey=src/project/deprecation-warnings.ts",
+  ],
 });
 
 project.synth();

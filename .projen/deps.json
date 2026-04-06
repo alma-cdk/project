@@ -1,6 +1,10 @@
 {
   "dependencies": [
     {
+      "name": "@alma-cdk/construct-library",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "version": "^30",
       "type": "build"
@@ -12,11 +16,6 @@
     },
     {
       "name": "@types/nunjucks",
-      "type": "build"
-    },
-    {
-      "name": "@types/semver",
-      "version": "^7",
       "type": "build"
     },
     {
@@ -89,11 +88,6 @@
       "type": "build"
     },
     {
-      "name": "json-schema-to-typescript",
-      "version": "^15",
-      "type": "build"
-    },
-    {
       "name": "prettier",
       "type": "build"
     },
@@ -121,16 +115,6 @@
     },
     {
       "name": "nunjucks",
-      "type": "bundled"
-    },
-    {
-      "name": "semver",
-      "version": "7",
-      "type": "bundled"
-    },
-    {
-      "name": "zod",
-      "version": "4",
       "type": "bundled"
     },
     {
