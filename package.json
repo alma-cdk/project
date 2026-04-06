@@ -16,7 +16,6 @@
     "eject": "pnpm exec projen eject",
     "eslint": "pnpm exec projen eslint",
     "format": "pnpm exec projen format",
-    "generate:pnpm-workspace-types": "pnpm exec projen generate:pnpm-workspace-types",
     "package": "pnpm exec projen package",
     "package-all": "pnpm exec projen package-all",
     "package:go": "pnpm exec projen package:go",
@@ -40,10 +39,10 @@
     "organization": true
   },
   "devDependencies": {
+    "@alma-cdk/construct-library": "^0.0.20",
     "@types/jest": "^30",
     "@types/node": "^20",
     "@types/nunjucks": "^3.2.6",
-    "@types/semver": "^7",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.220.0",
@@ -61,9 +60,8 @@
     "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.126.0",
     "jsii-rosetta": "~5.9.0",
-    "json-schema-to-typescript": "^15",
     "prettier": "^3.8.1",
-    "projen": "^0.99.12",
+    "projen": "^0.99.21",
     "ts-jest": "^29",
     "ts-node": "^10.9.2",
     "typescript": "^5.9"
@@ -74,15 +72,11 @@
   },
   "dependencies": {
     "change-case": "^4.1.2",
-    "nunjucks": "^3.2.4",
-    "semver": "7",
-    "zod": "4"
+    "nunjucks": "^3.2.4"
   },
   "bundledDependencies": [
     "change-case",
-    "nunjucks",
-    "semver",
-    "zod"
+    "nunjucks"
   ],
   "pnpm": {},
   "keywords": [
