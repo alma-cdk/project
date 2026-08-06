@@ -26,7 +26,6 @@
     "post-upgrade": "projen post-upgrade",
     "pre-compile": "projen pre-compile",
     "release": "projen release",
-    "release:3.x": "projen release:3.x",
     "test": "projen test",
     "test:update": "projen test:update",
     "test:watch": "projen test:watch",

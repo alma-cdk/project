@@ -8,7 +8,7 @@ const project = new AlmaCdkConstructLibrary({
   description: "Opinionated CDK Project “Framework”",
   repositoryUrl: "https://github.com/alma-cdk/project.git",
   stability: cdk.Stability.STABLE,
-  majorVersion: 2,
+  majorVersion: 3,
   devDeps: ["@types/nunjucks"],
   bundledDeps: ["change-case", "nunjucks"],
   releaseEnvironment: "production",
@@ -19,12 +19,6 @@ const project = new AlmaCdkConstructLibrary({
     "sonar.issue.ignore.multicriteria.e2.ruleKey=typescript:S1874",
     "sonar.issue.ignore.multicriteria.e2.resourceKey=src/project/deprecation-warnings.ts",
   ],
-  releaseBranches: {
-    "3.x": {
-      majorVersion: 3,
-      prerelease: "beta",
-    },
-  },
 });
 
 project.synth();
