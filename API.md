@@ -312,7 +312,7 @@ new Project(props: ProjectProps)
 | --- | --- |
 | <code><a href="#@alma-cdk/project.Project.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@alma-cdk/project.Project.with">with</a></code> | Applies one or more mixins to this construct. |
-| <code><a href="#@alma-cdk/project.Project.synth">synth</a></code> | Synthesize this stage into a cloud assembly. |
+| <code><a href="#@alma-cdk/project.Project.synth">synth</a></code> | Synthesize this App into a cloud assembly. |
 | <code><a href="#@alma-cdk/project.Project.acknowledgeWarnings">acknowledgeWarnings</a></code> | Acknowledge warnings for all stacks in the project. |
 
 ---
@@ -352,7 +352,7 @@ The mixins to apply.
 public synth(options?: StageSynthesisOptions): CloudAssembly
 ```
 
-Synthesize this stage into a cloud assembly.
+Synthesize this App into a cloud assembly.
 
 Once an assembly has been synthesized, it cannot be modified. Subsequent
 calls will return the same assembly.
@@ -383,7 +383,7 @@ Acknowledge warnings for all stacks in the project.
 | --- | --- |
 | <code><a href="#@alma-cdk/project.Project.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 | <code><a href="#@alma-cdk/project.Project.isStage">isStage</a></code> | Test whether the given construct is a stage. |
-| <code><a href="#@alma-cdk/project.Project.of">of</a></code> | Return the stage this construct is contained with, if available. |
+| <code><a href="#@alma-cdk/project.Project.of">of</a></code> | Return the app that is the root of the construct tree, if available. |
 | <code><a href="#@alma-cdk/project.Project.isApp">isApp</a></code> | Checks if an object is an instance of the `App` class. |
 | <code><a href="#@alma-cdk/project.Project.getAccount">getAccount</a></code> | Return account configuration. |
 | <code><a href="#@alma-cdk/project.Project.getConfiguration">getConfiguration</a></code> | Return the project configuration as given in ProjectProps. |
@@ -446,10 +446,7 @@ import { Project } from '@alma-cdk/project'
 Project.of(construct: IConstruct)
 ```
 
-Return the stage this construct is contained with, if available.
-
-If called
-on a nested stage, returns its parent.
+Return the app that is the root of the construct tree, if available.
 
 ###### `construct`<sup>Required</sup> <a name="construct" id="@alma-cdk/project.Project.of.parameter.construct"></a>
 
@@ -753,8 +750,6 @@ constructs.
 ###### `mixins`<sup>Required</sup> <a name="mixins" id="@alma-cdk/project.SmartStack.with.parameter.mixins"></a>
 
 - *Type:* ...constructs.IMixin[]
-
-The mixins to apply.
 
 ---
 
@@ -1183,6 +1178,8 @@ Convert an object, potentially containing tokens, to a YAML string.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@alma-cdk/project.SmartStack.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@alma-cdk/project.SmartStack.consumeListReference">consumeListReference</a></code> | Override the reference strength for a specific cross-stack string list reference. |
+| <code><a href="#@alma-cdk/project.SmartStack.consumeReference">consumeReference</a></code> | Override the reference strength for a specific cross-stack reference value. |
 | <code><a href="#@alma-cdk/project.SmartStack.isStack">isStack</a></code> | Return whether the given object is a Stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.of">of</a></code> | Looks up the first stack scope in which `construct` is defined. |
 
@@ -1220,6 +1217,83 @@ Any object.
 
 ---
 
+##### `consumeListReference` <a name="consumeListReference" id="@alma-cdk/project.SmartStack.consumeListReference"></a>
+
+```typescript
+import { SmartStack } from '@alma-cdk/project'
+
+SmartStack.consumeListReference(value: string[], strength?: ReferenceStrength)
+```
+
+Override the reference strength for a specific cross-stack string list reference.
+
+This is the string list equivalent of `consumeReference`.
+
+###### `value`<sup>Required</sup> <a name="value" id="@alma-cdk/project.SmartStack.consumeListReference.parameter.value"></a>
+
+- *Type:* string[]
+
+A tokenized string list reference.
+
+---
+
+###### `strength`<sup>Optional</sup> <a name="strength" id="@alma-cdk/project.SmartStack.consumeListReference.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use.
+
+Defaults to `BOTH`.
+
+---
+
+##### `consumeReference` <a name="consumeReference" id="@alma-cdk/project.SmartStack.consumeReference"></a>
+
+```typescript
+import { SmartStack } from '@alma-cdk/project'
+
+SmartStack.consumeReference(value: string, strength?: ReferenceStrength)
+```
+
+Override the reference strength for a specific cross-stack reference value.
+
+Use this to weaken (or strengthen) an individual reference without
+affecting other references to the same resource. For example:
+
+```ts
+// producerStack defines an SNS topic
+declare const topic: sns.Topic;
+
+// consumerStack subscribes to it with a weak reference,
+// so the producer can be torn down without blocking on this consumer
+const consumerStack = new Stack(app, 'Consumer', {
+  env: { account: '123456789012', region: 'us-east-1' },
+});
+new sns.Subscription(consumerStack, 'Subscription', {
+  topic: sns.Topic.fromTopicArn(consumerStack, 'Topic', Stack.consumeReference(topic.topicArn)),
+  endpoint: 'https://example.com/webhook',
+  protocol: sns.SubscriptionProtocol.HTTPS,
+});
+```
+
+###### `value`<sup>Required</sup> <a name="value" id="@alma-cdk/project.SmartStack.consumeReference.parameter.value"></a>
+
+- *Type:* string
+
+A tokenized string reference (e.g. `bucket.bucketArn`).
+
+---
+
+###### `strength`<sup>Optional</sup> <a name="strength" id="@alma-cdk/project.SmartStack.consumeReference.parameter.strength"></a>
+
+- *Type:* aws-cdk-lib.ReferenceStrength
+
+The reference strength to use.
+
+Defaults to `BOTH`.
+
+---
+
 ##### `isStack` <a name="isStack" id="@alma-cdk/project.SmartStack.isStack"></a>
 
 ```typescript
@@ -1250,6 +1324,8 @@ Looks up the first stack scope in which `construct` is defined.
 
 Fails if there is no stack up the tree.
 
+Will return the closest containing `Stack` or `NestedStack`.
+
 ###### `construct`<sup>Required</sup> <a name="construct" id="@alma-cdk/project.SmartStack.of.parameter.construct"></a>
 
 - *Type:* constructs.IConstruct
@@ -1268,8 +1344,9 @@ The construct to start the search from.
 | <code><a href="#@alma-cdk/project.SmartStack.property.availabilityZones">availabilityZones</a></code> | <code>string[]</code> | Returns the list of AZs that are available in the AWS environment (account/region) associated with this stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.bundlingRequired">bundlingRequired</a></code> | <code>boolean</code> | Indicates whether the stack requires bundling or not. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.dependencies">dependencies</a></code> | <code>aws-cdk-lib.Stack[]</code> | Return the stacks this stack depends on. |
+| <code><a href="#@alma-cdk/project.SmartStack.property.env">env</a></code> | <code>aws-cdk-lib.interfaces.ResourceEnvironment</code> | The environment this Stack deploys to. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.environment">environment</a></code> | <code>string</code> | The environment coordinates in which this stack is deployed. |
-| <code><a href="#@alma-cdk/project.SmartStack.property.nested">nested</a></code> | <code>boolean</code> | Indicates if this is a nested stack, in which case `parentStack` will include a reference to it's parent. |
+| <code><a href="#@alma-cdk/project.SmartStack.property.nested">nested</a></code> | <code>boolean</code> | Indicates if this is a nested stack, in which case `parentStack` will include a reference to its parent. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.notificationArns">notificationArns</a></code> | <code>string[]</code> | Returns the list of notification Amazon Resource Names (ARNs) for the current stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.partition">partition</a></code> | <code>string</code> | The partition in which this stack is defined. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.region">region</a></code> | <code>string</code> | The AWS region into which this stack will be deployed (e.g. `us-west-2`). |
@@ -1280,7 +1357,7 @@ The construct to start the search from.
 | <code><a href="#@alma-cdk/project.SmartStack.property.templateFile">templateFile</a></code> | <code>string</code> | The name of the CloudFormation template file emitted to the output directory during synthesis. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.templateOptions">templateOptions</a></code> | <code>aws-cdk-lib.ITemplateOptions</code> | Options for CloudFormation template (like version, transform, description). |
 | <code><a href="#@alma-cdk/project.SmartStack.property.urlSuffix">urlSuffix</a></code> | <code>string</code> | The Amazon domain suffix for the region in which this stack is defined. |
-| <code><a href="#@alma-cdk/project.SmartStack.property.nestedStackParent">nestedStackParent</a></code> | <code>aws-cdk-lib.Stack</code> | If this is a nested stack, returns it's parent stack. |
+| <code><a href="#@alma-cdk/project.SmartStack.property.nestedStackParent">nestedStackParent</a></code> | <code>aws-cdk-lib.Stack</code> | If this is a nested stack, returns its parent stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.nestedStackResource">nestedStackResource</a></code> | <code>aws-cdk-lib.CfnResource</code> | If this is a nested stack, this represents its `AWS::CloudFormation::Stack` resource. |
 | <code><a href="#@alma-cdk/project.SmartStack.property.terminationProtection">terminationProtection</a></code> | <code>boolean</code> | Whether termination protection is enabled for this stack. |
 
@@ -1386,6 +1463,18 @@ Return the stacks this stack depends on.
 
 ---
 
+##### `env`<sup>Required</sup> <a name="env" id="@alma-cdk/project.SmartStack.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.interfaces.ResourceEnvironment
+
+The environment this Stack deploys to.
+
+---
+
 ##### `environment`<sup>Required</sup> <a name="environment" id="@alma-cdk/project.SmartStack.property.environment"></a>
 
 ```typescript
@@ -1418,7 +1507,7 @@ public readonly nested: boolean;
 
 - *Type:* boolean
 
-Indicates if this is a nested stack, in which case `parentStack` will include a reference to it's parent.
+Indicates if this is a nested stack, in which case `parentStack` will include a reference to its parent.
 
 ---
 
@@ -1586,7 +1675,7 @@ public readonly nestedStackParent: Stack;
 
 - *Type:* aws-cdk-lib.Stack
 
-If this is a nested stack, returns it's parent stack.
+If this is a nested stack, returns its parent stack.
 
 ---
 
@@ -2207,6 +2296,7 @@ const projectProps: ProjectProps = { ... }
 | <code><a href="#@alma-cdk/project.ProjectProps.property.context">context</a></code> | <code>{[ key: string ]: any}</code> | Additional context values for the application. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.defaultStackSynthesizer">defaultStackSynthesizer</a></code> | <code>aws-cdk-lib.IReusableStackSynthesizer</code> | The stack synthesizer to use by default for all Stacks in the App. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.outdir">outdir</a></code> | <code>string</code> | The output directory into which to emit synthesized artifacts. |
+| <code><a href="#@alma-cdk/project.ProjectProps.property.performanceReporting">performanceReporting</a></code> | <code>boolean</code> | Produce a performance counter report if supported by the CLI. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.policyValidationBeta1">policyValidationBeta1</a></code> | <code>aws-cdk-lib.IPolicyValidationPluginBeta1[]</code> | Validation plugins to run after synthesis. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.postCliContext">postCliContext</a></code> | <code>{[ key: string ]: any}</code> | Additional context values for the application. |
 | <code><a href="#@alma-cdk/project.ProjectProps.property.propertyInjectors">propertyInjectors</a></code> | <code>aws-cdk-lib.IPropertyInjector[]</code> | A list of IPropertyInjector attached to this App. |
@@ -2384,7 +2474,26 @@ This property is intended for internal and testing use.
 
 ---
 
-##### `policyValidationBeta1`<sup>Optional</sup> <a name="policyValidationBeta1" id="@alma-cdk/project.ProjectProps.property.policyValidationBeta1"></a>
+##### `performanceReporting`<sup>Optional</sup> <a name="performanceReporting" id="@alma-cdk/project.ProjectProps.property.performanceReporting"></a>
+
+```typescript
+public readonly performanceReporting: boolean;
+```
+
+- *Type:* boolean
+- *Default:* Value of 'aws:cdk:performance-reporting' context key
+
+Produce a performance counter report if supported by the CLI.
+
+The performance report will be produced if the total synthesis time
+exceeds 10 seconds/stack, unless this property is used to switch the
+report off altogether (set to `false`).
+
+---
+
+##### ~~`policyValidationBeta1`~~<sup>Optional</sup> <a name="policyValidationBeta1" id="@alma-cdk/project.ProjectProps.property.policyValidationBeta1"></a>
+
+- *Deprecated:* Use `Validations.of(app).addPlugins()` instead.
 
 ```typescript
 public readonly policyValidationBeta1: IPolicyValidationPluginBeta1[];
