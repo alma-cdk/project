@@ -19,6 +19,12 @@ const project = new AlmaCdkConstructLibrary({
     "sonar.issue.ignore.multicriteria.e2.ruleKey=typescript:S1874",
     "sonar.issue.ignore.multicriteria.e2.resourceKey=src/project/deprecation-warnings.ts",
   ],
+  releaseBranches: {
+    '3.x': {
+      majorVersion: 3,
+      prerelease: 'beta',
+    },
+  },
 });
 
 project.synth();
