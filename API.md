@@ -31,6 +31,7 @@ new AccountWrapper(scope: Construct)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@alma-cdk/project.AccountWrapper.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@alma-cdk/project.AccountWrapper.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -41,6 +42,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@alma-cdk/project.AccountWrapper.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@alma-cdk/project.AccountWrapper.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -132,6 +154,7 @@ new EnvironmentWrapper(scope: Construct)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@alma-cdk/project.EnvironmentWrapper.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@alma-cdk/project.EnvironmentWrapper.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -142,6 +165,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@alma-cdk/project.EnvironmentWrapper.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@alma-cdk/project.EnvironmentWrapper.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -267,6 +311,7 @@ new Project(props: ProjectProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@alma-cdk/project.Project.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@alma-cdk/project.Project.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@alma-cdk/project.Project.synth">synth</a></code> | Synthesize this stage into a cloud assembly. |
 | <code><a href="#@alma-cdk/project.Project.acknowledgeWarnings">acknowledgeWarnings</a></code> | Acknowledge warnings for all stacks in the project. |
 
@@ -279,6 +324,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@alma-cdk/project.Project.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@alma-cdk/project.Project.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `synth` <a name="synth" id="@alma-cdk/project.Project.synth"></a>
 
@@ -643,6 +709,7 @@ new SmartStack(scope: Construct, id: string, props: StackProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@alma-cdk/project.SmartStack.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@alma-cdk/project.SmartStack.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@alma-cdk/project.SmartStack.addDependency">addDependency</a></code> | Add a dependency between this stack and another stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.addMetadata">addMetadata</a></code> | Adds an arbitrary key-value pair, with information you want to record about the stack. |
 | <code><a href="#@alma-cdk/project.SmartStack.addStackTag">addStackTag</a></code> | Configure a stack tag. |
@@ -669,6 +736,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@alma-cdk/project.SmartStack.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@alma-cdk/project.SmartStack.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `addDependency` <a name="addDependency" id="@alma-cdk/project.SmartStack.addDependency"></a>
 

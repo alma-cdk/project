@@ -28,5 +28,7 @@
 /package.json linguist-generated
 /pnpm-lock.yaml linguist-generated
 /pnpm-workspace.yaml linguist-generated
+/projenrc/tsconfig.json linguist-generated linguist-language=JSON-with-Comments
 /sonar-project.properties linguist-generated
-/tsconfig.dev.json linguist-generated linguist-language=JSON-with-Comments
+/test/tsconfig.json linguist-generated linguist-language=JSON-with-Comments
+/tsconfig.json linguist-generated
