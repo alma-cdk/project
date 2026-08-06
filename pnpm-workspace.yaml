@@ -6,12 +6,16 @@ resolutionMode: highest
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - "@alma-cdk/construct-library"
+  - jsii@6.0.9
+  - jsii-rosetta@6.0.9
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - jsii@5.9.33
   - jsii@5.9.49
   - jsii@6.0.7
   - jsii@6.0.8
+  - jsii@6.0.9
+  - jsii-rosetta@6.0.9
 allowBuilds:
   unrs-resolver: true
 blockExoticSubdeps: true
