@@ -8,6 +8,7 @@ minimumReleaseAgeExclude:
   - "@alma-cdk/construct-library"
   - jsii@6.0.9
   - jsii-rosetta@6.0.9
+  - js-yaml@3.15.0
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - jsii@5.9.33
@@ -20,3 +21,6 @@ allowBuilds:
   unrs-resolver: true
 blockExoticSubdeps: true
 trustPolicyIgnoreAfter: 20160
+overrides:
+  js-yaml@<3.15.0: ^3.15.0
+  js-yaml@>=3.0.0 <3.15.0: ^3.15.0
