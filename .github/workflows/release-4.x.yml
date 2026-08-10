@@ -166,7 +166,7 @@ jobs:
       - name: Release
         id: release
         env:
-          NPM_DIST_TAG: latest
+          NPM_DIST_TAG: beta
           NPM_REGISTRY: registry.npmjs.org
           NPM_CONFIG_PROVENANCE: "true"
           NPM_TRUSTED_PUBLISHER: "true"
