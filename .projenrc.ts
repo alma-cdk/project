@@ -2,7 +2,6 @@ import { AlmaCdkConstructLibrary } from "@alma-cdk/construct-library";
 import { cdk } from "projen";
 
 const MAJOR_VERSION = 3;
-const NEXT_MAJOR_VERSION = MAJOR_VERSION + 1;
 
 const project = new AlmaCdkConstructLibrary({
   name: "@alma-cdk/project",
@@ -15,13 +14,6 @@ const project = new AlmaCdkConstructLibrary({
   devDeps: ["@types/nunjucks"],
   bundledDeps: ["change-case", "nunjucks"],
   releaseEnvironment: "production",
-  releaseBranches: {
-    [`${NEXT_MAJOR_VERSION}.x`]: {
-      majorVersion: NEXT_MAJOR_VERSION,
-      prerelease: "beta",
-      npmDistTag: "beta",
-    },
-  },
   sonarProjectPropertiesExtraLines: [
     "sonar.issue.ignore.multicriteria=e1,e2",
     "sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1874",
