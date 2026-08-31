@@ -21,7 +21,7 @@ const template = `{#
     #}{#
 
     "MyProject-"
-    #}{{ projectName | pascal | truncate(32, true, "") | append("-") }}{#
+    #}{{ projectName | pascal | stripUnderscore | truncate(32, true, "") | append("-") }}{#
 
     #}{% if environment | notEmpty %}{#
       "Environment-Staging-"
@@ -34,7 +34,7 @@ const template = `{#
     #}{% endif %}{#
 
     "MyStack"
-    #}{{ stackId | pascal | truncate(48, true, "")}}`;
+    #}{{ stackId | pascal | stripUnderscore | truncate(48, true, "")}}`;
 
 interface TemplateProps extends TemplateContext {
   stackId: string;

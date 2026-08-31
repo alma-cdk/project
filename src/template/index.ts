@@ -8,7 +8,7 @@ env.addFilter("pascal", function (str: string) {
 });
 
 env.addFilter("stripUnderscore", function (str: string) {
-  return str.replace("_", "");
+  return str.replace(/_/g, "");
 });
 
 env.addFilter("notEmpty", function (str: string) {
