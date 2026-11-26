@@ -1,6 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import { Annotations, Match, Template } from "aws-cdk-lib/assertions";
-import { PathName, pathName } from "./";
+import { NameProps, PathName, pathName } from "./";
 import { Project, ProjectProps } from "../project";
 import { MAX_LENGTH_DEFAULT } from "./max-length";
 
@@ -165,6 +165,28 @@ describe("PathName resources", () => {
 
       expect(methodCall(stack, longBaseName)).toHaveLength(MAX_LENGTH_DEFAULT);
       Template.fromStack(stack);
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
+
+  test.each<[string, NameProps | undefined]>([
+    ["no props", undefined],
+    ["trim: true", { trim: true }],
+  ])(
+    "keeps a prefix longer than MAX_LENGTH_DEFAULT intact with %s",
+    (_label, props) => {
+      const project = new Project({
+        ...projectProps,
+        context: {
+          environment:
+            "feature/add-a-very-long-branch-name-that-goes-on-and-on-and-on-forever",
+        },
+      });
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      expect(PathName.withProject(stack, "foo", props)).toBe(
+        "/test/project/feature/add/a/very/long/branch/name/that/goes/on/and/on/and/on/forever/foo",
+      );
       Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
     },
   );
