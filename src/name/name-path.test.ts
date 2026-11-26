@@ -1,6 +1,8 @@
 import * as cdk from "aws-cdk-lib";
-import { PathName, pathName } from "./";
+import { Annotations, Match, Template } from "aws-cdk-lib/assertions";
+import { NameProps, PathName, pathName } from "./";
 import { Project, ProjectProps } from "../project";
+import { MAX_LENGTH_DEFAULT } from "./max-length";
 
 const projectProps: ProjectProps = {
   name: "test-project",
@@ -97,6 +99,114 @@ describe("PathName resources", () => {
     expect(PathName.globally(stack, "foo.bar")).toBe(expectedBase + "foobar");
     expect(PathName.globally(stack, "foo/bar")).toBe(expectedBase + "foo/bar");
   });
+
+  const longBaseName = "a".repeat(MAX_LENGTH_DEFAULT + 10);
+  const maxLength = MAX_LENGTH_DEFAULT + 100;
+
+  test.each<[string, (stack: cdk.Stack, name: string) => string, string]>([
+    ["it", (s, n) => PathName.it(s, n, { maxLength }), `/test/${longBaseName}`],
+    [
+      "withProject",
+      (s, n) => PathName.withProject(s, n, { maxLength }),
+      `/test/project/test/${longBaseName}`,
+    ],
+    [
+      "globally",
+      (s, n) => PathName.globally(s, n, { maxLength }),
+      `/acme/test/project/test/${longBaseName}`,
+    ],
+  ])(
+    '"%s" accepts baseName longer than MAX_LENGTH_DEFAULT chars when maxLength is higher',
+    (_methodName, methodCall, expected) => {
+      const project = new Project({
+        ...projectProps,
+        context: { environment: "test" },
+      });
+
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      expect(methodCall(stack, longBaseName)).toBe(expected);
+      Template.fromStack(stack);
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
+
+  test.each<[string, (stack: cdk.Stack, name: string) => string]>([
+    [
+      "it",
+      (s, n) =>
+        PathName.it(s, n, { maxLength: MAX_LENGTH_DEFAULT, trim: true }),
+    ],
+    [
+      "withProject",
+      (s, n) =>
+        PathName.withProject(s, n, {
+          maxLength: MAX_LENGTH_DEFAULT,
+          trim: true,
+        }),
+    ],
+    [
+      "globally",
+      (s, n) =>
+        PathName.globally(s, n, { maxLength: MAX_LENGTH_DEFAULT, trim: true }),
+    ],
+  ])(
+    '"%s" with trim:true accepts baseName longer than MAX_LENGTH_DEFAULT and trims it to the correct length',
+    (_methodName, methodCall) => {
+      const project = new Project({
+        ...projectProps,
+        context: { environment: "test" },
+      });
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      const multiWordBaseName = "TenLetters".repeat(
+        Math.ceil(MAX_LENGTH_DEFAULT / 10) + 1,
+      );
+
+      expect(methodCall(stack, multiWordBaseName)).toHaveLength(
+        MAX_LENGTH_DEFAULT,
+      );
+      Template.fromStack(stack);
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
+
+  test("forwards a custom limit above the default path limit", () => {
+    const environment = "a".repeat(1000);
+    const project = new Project({
+      ...projectProps,
+      context: { environment },
+    });
+    const stack = new cdk.Stack(project, "testing-stack");
+
+    expect(PathName.withProject(stack, "foo", { maxLength: 1200 })).toBe(
+      `/test/project/${environment}/foo`,
+    );
+    Template.fromStack(stack);
+    Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+  });
+
+  test.each<[string, NameProps | undefined]>([
+    ["no props", undefined],
+    ["trim: true", { trim: true }],
+  ])(
+    "keeps a prefix longer than MAX_LENGTH_DEFAULT intact with %s",
+    (_label, props) => {
+      const project = new Project({
+        ...projectProps,
+        context: {
+          environment:
+            "feature/add-a-very-long-branch-name-that-goes-on-and-on-and-on-forever",
+        },
+      });
+      const stack = new cdk.Stack(project, "testing-stack");
+
+      expect(PathName.withProject(stack, "foo", props)).toBe(
+        "/test/project/feature/add/a/very/long/branch/name/that/goes/on/and/on/and/on/forever/foo",
+      );
+      Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+    },
+  );
 
   test("shorthand method", () => {
     const project = new Project({
