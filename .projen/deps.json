@@ -1,22 +1,21 @@
 {
   "dependencies": [
     {
+      "name": "@alma-cdk/construct-library",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "version": "^30",
       "type": "build"
     },
     {
       "name": "@types/node",
-      "version": "^20",
+      "version": "^22",
       "type": "build"
     },
     {
       "name": "@types/nunjucks",
-      "type": "build"
-    },
-    {
-      "name": "@types/semver",
-      "version": "^7",
       "type": "build"
     },
     {
@@ -57,7 +56,7 @@
     },
     {
       "name": "jest-junit",
-      "version": "^16",
+      "version": "^17",
       "type": "build"
     },
     {
@@ -80,17 +79,12 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "~5.9.0",
+      "version": "~6.0.7",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "~5.9.0",
-      "type": "build"
-    },
-    {
-      "name": "json-schema-to-typescript",
-      "version": "^15",
+      "version": "~6.0.7",
       "type": "build"
     },
     {
@@ -112,7 +106,7 @@
     },
     {
       "name": "typescript",
-      "version": "^5.9",
+      "version": "^6.0.2",
       "type": "build"
     },
     {
@@ -124,23 +118,13 @@
       "type": "bundled"
     },
     {
-      "name": "semver",
-      "version": "7",
-      "type": "bundled"
-    },
-    {
-      "name": "zod",
-      "version": "4",
-      "type": "bundled"
-    },
-    {
       "name": "aws-cdk-lib",
-      "version": "^2.220.0",
+      "version": "^2.260.0",
       "type": "peer"
     },
     {
       "name": "constructs",
-      "version": "^10.3.0",
+      "version": "^10.7.2",
       "type": "peer"
     }
   ],
