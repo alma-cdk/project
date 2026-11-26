@@ -171,6 +171,21 @@ describe("PathName resources", () => {
     },
   );
 
+  test("forwards a custom limit above the default path limit", () => {
+    const environment = "a".repeat(1000);
+    const project = new Project({
+      ...projectProps,
+      context: { environment },
+    });
+    const stack = new cdk.Stack(project, "testing-stack");
+
+    expect(PathName.withProject(stack, "foo", { maxLength: 1200 })).toBe(
+      `/test/project/${environment}/foo`,
+    );
+    Template.fromStack(stack);
+    Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
+  });
+
   test.each<[string, NameProps | undefined]>([
     ["no props", undefined],
     ["trim: true", { trim: true }],
