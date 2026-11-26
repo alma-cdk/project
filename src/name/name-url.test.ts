@@ -124,11 +124,13 @@ describe("UrlName resources", () => {
       });
       const stack = new cdk.Stack(project, "testing-stack");
 
-      const longBaseName = "TenLetters".repeat(
+      const multiWordBaseName = "TenLetters".repeat(
         Math.ceil(MAX_LENGTH_DEFAULT / 10) + 1,
       );
 
-      expect(methodCall(stack, longBaseName)).toHaveLength(MAX_LENGTH_DEFAULT);
+      expect(methodCall(stack, multiWordBaseName)).toHaveLength(
+        MAX_LENGTH_DEFAULT,
+      );
       Template.fromStack(stack);
       Annotations.fromStack(stack).hasNoError("*", Match.anyValue());
     },
